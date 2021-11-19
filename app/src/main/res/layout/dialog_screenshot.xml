@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="65dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/screenshot_dialog" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TTAP Wallet"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_regular"
+                android:includeFontPadding="false"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:fontFamily="@font/notosanskr_regular"
+                android:includeFontPadding="false"
+                android:text="이 사용자의 사진에"/>
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="추가하려고 합니다."
+            android:layout_marginTop="2dp"
+            android:textSize="15dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:fontFamily="@font/notosanskr_regular"
+            android:includeFontPadding="false"/>
+
+
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="15dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textStyle="normal"
+            android:text="디바이스의 사진앨범에 이미지를 저장합니다."
+            android:textSize="14dp"
+            android:textColor="#121212" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/noBtn"
+                android:text="허용안함"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/notosanskr_regular"
+                android:textSize="17dp"
+                android:textColor="@color/white"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+               android:background="#999999"
+
+                />
+            <TextView
+                android:id="@+id/okBtn"
+                android:text="확인"
+                android:layout_weight="1"
+                android:textSize="17dp"
+                android:fontFamily="@font/notosanskr_regular"
+                android:gravity="center"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+
+                />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+</layout>

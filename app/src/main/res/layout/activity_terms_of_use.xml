@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:includeFontPadding="false"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/notosanskr_regular"
+            android:textSize="30dp"
+            android:text="개인정보 처리방침"/>
+
+
+    </LinearLayout>
+</layout>

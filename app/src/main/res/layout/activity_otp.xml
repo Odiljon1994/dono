@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"/>
+
+
+        <TextView
+            android:id="@+id/otp_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:textSize="34dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:text="6자리 비밀번호를\n입력해주세요."/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="지갑 로그인 및 코인을"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/notosanskr_regular"
+            android:includeFontPadding="false"
+            android:layout_marginTop="60dp"
+            android:layout_gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/notosanskr_regular"
+                android:includeFontPadding="false"
+                android:text="보낼 때 "/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textColor="#43B0DD"
+                android:fontFamily="@font/notosanskr_regular"
+                android:includeFontPadding="false"
+                android:text="6자리 비밀번호"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/notosanskr_regular"
+                android:includeFontPadding="false"
+                android:text="가 사용됩니다"/>
+
+        </LinearLayout>
+
+        <com.andrognito.pinlockview.IndicatorDots
+            android:id="@+id/indicatorDots"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            app:dotEmptyBackground="@drawable/otp_unselected"
+            app:dotFilledBackground="@drawable/otp_selected"
+            app:dotSpacing="5dp"
+            app:dotDiameter="48dp"
+            app:pinLength="6"
+            />
+
+        <TextView
+            android:id="@+id/blueText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:lineSpacingExtra="3dp"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center"
+            android:textSize="12dp"
+            android:gravity="center"
+            android:text="연속되는 숫자 3자리, 동일한 숫자 3자리는\n
+비밀번호로 사용할 수 없습니다."/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <com.andrognito.pinlockview.PinLockView
+            android:id="@+id/pin_lock_view"
+            android:layout_width="305dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="80dp"
+            app:keypadButtonSize="56dp"
+            app:keypadDeleteButtonSize="24dp"
+            app:keypadShowDeleteButton="true"
+            app:keypadTextColor="@color/colorBlack"
+            app:keypadTextSize="28dp"
+            app:pinLength="6"/>
+
+    </LinearLayout>
+</layout>

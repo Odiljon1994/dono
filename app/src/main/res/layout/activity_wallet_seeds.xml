@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#262626"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:padding="18dp"
+            android:src="@drawable/back_btn_black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/notosanskr_regular"
+            android:includeFontPadding="false"
+            android:text="시드 구문 백업"
+            android:textColor="@color/white"
+            android:textSize="34dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="30dp"
+            android:fontFamily="@font/notosanskr_regular"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="2dp"
+            android:text=" 아래 시드 구문 12단어를 종이에 적어 안전한 곳에\n
+보관하세요. 타니에게 문구가 노출될 경우 보관중인\n
+가상자산이 동의 없이 외부로 전송될 수 있습니다."
+            android:textColor="@color/white"
+            android:textSize="14dp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/key" />
+
+        <TextView
+            android:id="@+id/seeds"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="18dp"
+            android:background="#373737"
+            android:fontFamily="@font/poppins_regular"
+            android:padding="10dp"
+            android:text="can doom"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="18dp"
+            android:text="※ TTAP Wallet에서는 시드 구문을 보관하지 않기 때문에\n
+     분실 및 유출로 인한 손해를 책임지지 않습니다."
+            android:textColor="#999999"
+            android:textSize="14dp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/okBtn"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="30dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:fontFamily="@font/notosanskr_regular"
+            android:text="새 지갑 생성"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+</layout>

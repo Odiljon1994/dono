@@ -1,0 +1,105 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdk 30
+
+    defaultConfig {
+        applicationId "com.centerprime.ttap"
+        minSdk 23
+        targetSdk 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildFeatures {
+        dataBinding true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+project.ext {
+    retrofitVersion = "2.3.0"
+    okhttpVersion = "3.10.0"
+    supportVersion = "28.0.0"
+    web3jVersion = "3.0.1-android"
+    gethVersion = "1.7.3"
+    gsonVersion = "2.8.2"
+    rxJavaVersion = "2.1.6"
+    rxAndroidVersion = "2.1.0"
+    daggerVersion = '2.14.1'
+
+    appCompatVersion = '1.1.0'
+    designSupportVersion = '1.1.0'
+    recyclerViewVersion = '1.1.0'
+}
+
+dependencies {
+    implementation 'com.romandanylyk:pageindicatorview:1.0.0'
+    implementation 'com.andrognito.pinlockview:pinlockview:2.1.0'
+
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    implementation 'android.arch.lifecycle:runtime:1.1.1'
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+    implementation 'com.android.support:multidex:1.0.3'
+
+    // Bar code scanning
+    implementation 'com.google.zxing:core:3.3.3'
+    implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'com.nabinbhandari.android:permissions:3.8'
+    implementation 'com.jakewharton.timber:timber:4.6.0'
+
+    implementation "com.google.dagger:dagger:$project.daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$project.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$project.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$project.daggerVersion"
+
+    implementation "com.squareup.retrofit2:retrofit:$project.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$project.retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$project.retrofitVersion"
+    implementation "com.squareup.okhttp3:okhttp:$project.okhttpVersion"
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.8.1'
+
+    implementation "io.reactivex.rxjava2:rxjava:$project.rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$project.rxAndroidVersion"
+
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+
+
+
+    implementation 'com.droidninja:filepicker:2.2.5'
+    implementation 'com.nbsp:materialfilepicker:1.9.1'
+
+    implementation group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.1.2'
+
+    implementation platform('com.google.firebase:firebase-bom:26.8.0')
+    implementation 'com.google.firebase:firebase-dynamic-links'
+    implementation 'com.google.firebase:firebase-analytics'
+
+    implementation group: 'commons-codec', name: 'commons-codec', version: '1.9'
+    implementation "org.web3j:core:3.0.1-android"
+
+    implementation 'com.github.centerprime:Ethereum-Client-SDK:1.2.0'
+}
