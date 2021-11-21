@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/mainPage"
+            android:title="마이페이지"
+            />
+        <item android:id="@+id/walletManaging"
+            android:title="지갑관리하기"
+            />
+        <item android:id="@+id/addressBook"
+            android:title="주소록"
+            />
+        <item android:id="@+id/settings"
+            android:title="주소록"
+            />
+
+        <item
+            android:id="@+id/serviceCenter"
+            android:title="고객센터"/>
+        <item
+            android:id="@+id/notice"
+            android:title="공지사항"/>
+        <item
+            android:id="@+id/faq"
+            android:title="FAQ"/>
+        <item
+            android:id="@+id/directMessage"
+            android:title="1:1 문의하기"/>
+    </group>
+
+
+</menu>

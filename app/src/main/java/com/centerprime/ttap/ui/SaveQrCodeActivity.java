@@ -24,6 +24,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import jnr.ffi.annotations.In;
 
 public class SaveQrCodeActivity extends AppCompatActivity {
     ActivitySaveQrcodeBinding binding;
@@ -58,7 +59,7 @@ public class SaveQrCodeActivity extends AppCompatActivity {
                     isConfirmed = true;
                 } else {
 
-                    System.out.println("ok");
+                    startActivity(new Intent(SaveQrCodeActivity.this, MainActivity.class));
                     dialog.dismiss();
                 }
 

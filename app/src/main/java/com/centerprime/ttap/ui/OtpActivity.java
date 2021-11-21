@@ -53,7 +53,6 @@ public class OtpActivity extends AppCompatActivity {
 
 
 
-
         binding.toolbar.backBtn.setOnClickListener(v -> finish());
         binding.pinLockView.attachIndicatorDots(binding.indicatorDots);
         EthManager ethManager = EthManager.getInstance();
@@ -109,7 +108,7 @@ public class OtpActivity extends AppCompatActivity {
     private void screenshoot() {
         Date date = new Date();
         CharSequence now = android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", date);
-        String filename = Environment.DIRECTORY_PICTURES + "/ScreenShooter/" + now + ".jpg";
+        String filename = Environment.getExternalStorageDirectory().toString() + "/ScreenShooter/" + now + ".jpg";
 
         View root = getWindow().getDecorView();
         root.setDrawingCacheEnabled(true);
