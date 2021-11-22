@@ -9,6 +9,9 @@ public class PreferencesUtil {
     private SharedPreferences sharedPreferences;
     private static final String OTP = "OTP";
     private static final String WALLET_ADDRESS = "WALLET_ADDRESS";
+    private static final String MNEMONIC = "MNEMONIC";
+    private static final String PRIVATE_KEY = "PRIVATE_KEY";
+
 
 
     public PreferencesUtil(Context context, SharedPreferences sharedPreferences) {
@@ -29,6 +32,20 @@ public class PreferencesUtil {
     }
     public String getWalletAddress() {
         return sharedPreferences.getString(WALLET_ADDRESS, "");
+    }
+
+    public void savePrivateKey(String privateKey) {
+        sharedPreferences.edit().putString(PRIVATE_KEY, privateKey).apply();
+    }
+    public String getPrivateKey() {
+        return sharedPreferences.getString(PRIVATE_KEY, "");
+    }
+
+    public void saveMnemonic(String mnemonic) {
+        sharedPreferences.edit().putString(MNEMONIC, mnemonic).apply();
+    }
+    public String getMnemonic() {
+        return sharedPreferences.getString(MNEMONIC, "");
     }
 
 

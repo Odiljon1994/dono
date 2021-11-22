@@ -59,7 +59,10 @@ public class SaveQrCodeActivity extends AppCompatActivity {
                     isConfirmed = true;
                 } else {
 
-                    startActivity(new Intent(SaveQrCodeActivity.this, MainActivity.class));
+                    Intent intent = new Intent(SaveQrCodeActivity.this, MainActivity.class);
+
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
                     dialog.dismiss();
                 }
 

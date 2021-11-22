@@ -38,6 +38,7 @@ public class WalletSeedsActivity extends AppCompatActivity {
         ethManager.init("https://mainnet.infura.io/v3/7c36e7f5656d4384bbcb2cbaf67ad699");
 
 
+
         ethManager.exportKeyStore(preferencesUtil.getWalletAddress(), WalletSeedsActivity.this)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

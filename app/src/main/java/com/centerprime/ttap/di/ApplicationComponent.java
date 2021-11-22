@@ -2,6 +2,7 @@ package com.centerprime.ttap.di;
 
 import com.centerprime.ttap.MyApp;
 import com.centerprime.ttap.ui.OtpActivity;
+import com.centerprime.ttap.ui.SplashActivity;
 import com.centerprime.ttap.ui.WalletSeedsActivity;
 
 import javax.inject.Singleton;
@@ -20,6 +21,7 @@ public interface ApplicationComponent {
     void inject(MyApp activity);
     void inject(OtpActivity activity);
     void inject(WalletSeedsActivity activity);
+    void inject(SplashActivity activity);
 
     @Component.Builder
     interface Builder {

@@ -23,10 +23,14 @@ import com.centerprime.ttap.databinding.ActivityOtpBinding;
 import com.centerprime.ttap.ui.dialogs.BaseDialog;
 import com.centerprime.ttap.util.PreferencesUtil;
 
+
+
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.CharsetEncoder;
 import java.util.Date;
 
@@ -40,6 +44,7 @@ public class OtpActivity extends AppCompatActivity {
     ActivityOtpBinding binding;
     private boolean isRepeated = false;
     private String OTP = "";
+    EthManager ethManager;
     private boolean isDoubleClicked = false;
     @Inject
     PreferencesUtil preferencesUtil;
@@ -55,7 +60,7 @@ public class OtpActivity extends AppCompatActivity {
 
         binding.toolbar.backBtn.setOnClickListener(v -> finish());
         binding.pinLockView.attachIndicatorDots(binding.indicatorDots);
-        EthManager ethManager = EthManager.getInstance();
+        ethManager = EthManager.getInstance();
         ethManager.init("https://mainnet.infura.io/v3/7c36e7f5656d4384bbcb2cbaf67ad699");
 
 
@@ -72,6 +77,7 @@ public class OtpActivity extends AppCompatActivity {
                     if (OTP.equals(pin)) {
                         System.out.println(pin);
                         preferencesUtil.saveOtp(pin);
+
 
                         ethManager.createWallet(pin, OtpActivity.this)
                                 .subscribeOn(Schedulers.io())
@@ -105,6 +111,46 @@ public class OtpActivity extends AppCompatActivity {
             }
         });
     }
+
+//    public void generateAddress() throws CipherException, IOException {
+//        System.out.println("Creating New Account");
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//
+//        String walletPassword = "121212";
+//        /* Define Wallet File Location */
+//        String walletPath = this.getFilesDir() + "/" + "wallets";
+//        File walletDirectory = new File(String.valueOf(this.getFilesDir()));
+//
+//        Bip39Wallet walletName = WalletUtils.generateBip39Wallet(walletPassword, walletDirectory);
+//        System.out.println("wallet location: " + walletDirectory + "/" + walletName);
+//
+//        Credentials credentials = WalletUtils.loadBip39Credentials(walletPassword, walletName.getMnemonic());
+//        String accountAddress = credentials.getAddress();
+//
+//        System.out.println("Account address: " + credentials.getAddress());
+//
+//        preferencesUtil.saveWalletAddress(credentials.getAddress());
+//
+//
+//        ECKeyPair privateKey = credentials.getEcKeyPair();
+//
+//
+//
+//        String seedPhrase = walletName.getMnemonic();
+//        System.out.println("Account Details:");
+//        System.out.println("Your New Account : " + credentials.getAddress());
+//        System.out.println("Mneminic Code: " + walletName.getMnemonic());
+//        System.out.println(Numeric.toHexStringWithPrefix(credentials.getEcKeyPair().getPrivateKey()));
+//
+//        System.out.println("Private Key: " + privateKey.getPrivateKey().toString(16));
+//        System.out.println("Public Key: " + privateKey.getPublicKey().toString(16));
+//
+//        preferencesUtil.saveMnemonic(walletName.getMnemonic());
+//        preferencesUtil.savePrivateKey(Numeric.toHexStringWithPrefix(credentials.getEcKeyPair().getPrivateKey()));
+//    }
+
+
+
     private void screenshoot() {
         Date date = new Date();
         CharSequence now = android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", date);

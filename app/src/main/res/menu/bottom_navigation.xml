@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/page_1"
+        android:id="@+id/home"
         android:enabled="true"
         android:icon="@drawable/home_bottom"
         android:title="Home"/>
     <item
-        android:id="@+id/page_2"
+        android:id="@+id/wallet"
         android:enabled="true"
         android:icon="@drawable/wallet_bottom"
         android:title="Wallet"/>
 
     <item
-        android:id="@+id/page_3"
+        android:id="@+id/lock"
         android:enabled="true"
         android:icon="@drawable/lockup_bottom"
         android:title="Lockup"/>

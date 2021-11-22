@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginTop="40dp"
+            android:orientation="vertical"
+            android:background="@color/grayColor">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TTAP"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="15dp"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:includeFontPadding="false"
+                    />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="5dp"
+                    android:layout_marginEnd="18dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/three_dots"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/walletAddress"
+                    android:layout_width="220dp"
+                    android:maxLines="1"
+                    android:ellipsize="middle"
+                    android:layout_height="wrap_content"
+                    android:text="0x19f5cf38c2fas12df3c4389f78b0cfc5"
+                    android:layout_marginStart="18dp"
+                    android:textSize="14dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:includeFontPadding="false"
+                    />
+
+                <Button
+                    android:id="@+id/copyBtn"
+                    android:layout_gravity="center"
+                    android:layout_width="15dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_height="15dp"
+                    android:layout_marginEnd="18dp"
+                    android:background="@drawable/copy_btn"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="10dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="10dp"
+                android:textColor="#121212"
+                android:layout_marginEnd="18dp"
+                android:text="지갑 로그인 및 코인을 보낼 때 6자리 비밀번호가 사용됩니다. 비밀번호 분실 시\n재발급 절차가 없어 가상자산이 유실 될 수 있으니 주의 바랍니다."/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:maxLines="1"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="18dp"
+                    android:src="@drawable/keyss"
+                    />
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:text="프라이빗키 보기"
+                    android:textSize="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_height="15dp"
+                    android:layout_marginEnd="18dp"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="보유 가상 자산"
+            android:textSize="22dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="18dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/notosanskr_regular"
+            android:includeFontPadding="false"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grayColor"/>
+
+        <LinearLayout
+            android:id="@+id/ttapAsset"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ttap_coin_logo"
+                android:layout_marginStart="18dp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="TTAP"
+                android:fontFamily="@font/notosanskr_regular"
+                android:includeFontPadding="false"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="18dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/amountTtap"
+                    android:textColor="@color/black"
+
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="15dp"
+                    android:layout_gravity="right"
+                    android:includeFontPadding="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
+                    android:textColor="#999999"
+                    android:text="0 KRW"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/grayColor"
+         />
+
+    </LinearLayout>
+</layout>
