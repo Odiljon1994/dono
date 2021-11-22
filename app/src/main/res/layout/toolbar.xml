@@ -29,6 +29,14 @@
             android:padding="18dp"
             android:src="@drawable/bback_button" />
 
+        <ImageView
+            android:id="@+id/endImage"
+            android:layout_width="56dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|center"
+            android:padding="18dp"
+             />
+
     </FrameLayout>
 
 

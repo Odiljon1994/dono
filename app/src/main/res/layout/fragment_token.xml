@@ -70,7 +70,8 @@
             android:orientation="horizontal"
             android:weightSum="2">
 
-            <TextView
+            <Button
+                android:id="@+id/receive"
                 android:layout_width="0dp"
                 android:background="#253D85"
                 android:text="입금"
@@ -79,7 +80,8 @@
                 android:fontFamily="@font/notosanskr_regular"
                 android:layout_height="match_parent"
                 android:layout_weight="1"/>
-            <TextView
+            <Button
+                android:id="@+id/send"
                 android:layout_width="0dp"
                 android:background="#121212"
                 android:text="출금"

@@ -5,10 +5,12 @@
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21739130434782608" />
         <entry key="app/src/main/res/layout/activity_otp.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_receive.xml" value="0.28958333333333336" />
+        <entry key="app/src/main/res/layout/activity_privacy_policy.xml" value="0.2821557971014493" />
+        <entry key="app/src/main/res/layout/activity_receive.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_save_qrcode.xml" value="0.25226449275362317" />
-        <entry key="app/src/main/res/layout/activity_send.xml" value="0.28958333333333336" />
+        <entry key="app/src/main/res/layout/activity_send.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.18161094224924013" />
+        <entry key="app/src/main/res/layout/activity_verify_sending.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_wallet.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_wallet_seeds.xml" value="0.25" />
         <entry key="app/src/main/res/layout/base_dialog.xml" value="0.18802083333333333" />

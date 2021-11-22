@@ -1,5 +1,6 @@
 package com.centerprime.ttap.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import androidx.fragment.app.Fragment;
 import com.centerprime.ttap.R;
 import com.centerprime.ttap.databinding.FragmentTokenBinding;
 import com.centerprime.ttap.databinding.FragmentWalletBinding;
+import com.centerprime.ttap.ui.ReceiveActivity;
+import com.centerprime.ttap.ui.SendActivity;
 import com.google.android.material.tabs.TabLayout;
 
 public class TokenFragment extends Fragment {
@@ -23,6 +26,13 @@ public class TokenFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_token, container, false);
         View view = binding.getRoot();
+
+        binding.receive.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), ReceiveActivity.class));
+        });
+        binding.send.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), SendActivity.class));
+        });
 
         tabLayout = binding.tabLayout;
         tabLayout.addTab(tabLayout.newTab().setText("전체"));

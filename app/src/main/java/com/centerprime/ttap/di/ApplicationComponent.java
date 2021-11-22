@@ -2,6 +2,8 @@ package com.centerprime.ttap.di;
 
 import com.centerprime.ttap.MyApp;
 import com.centerprime.ttap.ui.OtpActivity;
+import com.centerprime.ttap.ui.ReceiveActivity;
+import com.centerprime.ttap.ui.SendActivity;
 import com.centerprime.ttap.ui.SplashActivity;
 import com.centerprime.ttap.ui.WalletSeedsActivity;
 
@@ -22,6 +24,8 @@ public interface ApplicationComponent {
     void inject(OtpActivity activity);
     void inject(WalletSeedsActivity activity);
     void inject(SplashActivity activity);
+    void inject(ReceiveActivity activity);
+    void inject(SendActivity activity);
 
     @Component.Builder
     interface Builder {
