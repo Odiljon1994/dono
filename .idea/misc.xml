@@ -19,6 +19,7 @@
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/fragment_token.xml" value="0.28958333333333336" />
         <entry key="app/src/main/res/layout/fragment_wallet.xml" value="0.28020833333333334" />
+        <entry key="app/src/main/res/layout/item_eth_transaction.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/navigation_header.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/privacy_policy_activity.xml" value="0.21739130434782608" />
         <entry key="app/src/main/res/layout/terms_of_use_activity.xml" value="0.21739130434782608" />

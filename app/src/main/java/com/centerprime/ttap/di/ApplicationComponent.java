@@ -6,6 +6,7 @@ import com.centerprime.ttap.ui.ReceiveActivity;
 import com.centerprime.ttap.ui.SendActivity;
 import com.centerprime.ttap.ui.SplashActivity;
 import com.centerprime.ttap.ui.WalletSeedsActivity;
+import com.centerprime.ttap.ui.fragments.TokenFragment;
 
 import javax.inject.Singleton;
 
@@ -26,6 +27,7 @@ public interface ApplicationComponent {
     void inject(SplashActivity activity);
     void inject(ReceiveActivity activity);
     void inject(SendActivity activity);
+    void inject(TokenFragment fragment);
 
     @Component.Builder
     interface Builder {
