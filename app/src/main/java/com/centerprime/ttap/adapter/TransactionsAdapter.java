@@ -10,10 +10,10 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.centerprime.ethereum_client_sdk.util.BalanceUtils;
 import com.centerprime.ttap.R;
 import com.centerprime.ttap.databinding.ItemEthTransactionBinding;
 import com.centerprime.ttap.models.Transaction;
+import com.centerprime.ttap.web3.BalanceUtils;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;

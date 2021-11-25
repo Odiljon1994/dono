@@ -16,13 +16,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.andrognito.pinlockview.PinLockListener;
-import com.centerprime.ethereum_client_sdk.EthManager;
 import com.centerprime.ttap.MyApp;
 import com.centerprime.ttap.R;
 import com.centerprime.ttap.databinding.ActivityOtpBinding;
 import com.centerprime.ttap.ui.dialogs.BaseDialog;
 import com.centerprime.ttap.util.PreferencesUtil;
-
+import com.centerprime.ttap.web3.EthManager;
+import com.centerprime.ttap.web3.MnemonicWallet;
 
 
 import java.io.BufferedReader;
@@ -78,16 +78,28 @@ public class OtpActivity extends AppCompatActivity {
                         System.out.println(pin);
                         preferencesUtil.saveOtp(pin);
 
+                        MnemonicWallet mnemonicWallet = ethManager.createWalletWithMnemonic();
+                        preferencesUtil.saveWalletAddress(mnemonicWallet.getWalletAddress());
+                        preferencesUtil.saveMnemonic(mnemonicWallet.getMnemonic());
 
-                        ethManager.createWallet(pin, OtpActivity.this)
+                        ethManager.importFromPrivateKey(mnemonicWallet.getPrivateKey(), OtpActivity.this)
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(walletAddress -> {
-                                    System.out.println(walletAddress.getAddress());
+                                    System.out.println(walletAddress);
                                     showDialog();
-                                    preferencesUtil.saveWalletAddress(walletAddress.getAddress());
 
                                 });
+
+//                        ethManager.createWallet(pin, OtpActivity.this)
+//                                .subscribeOn(Schedulers.io())
+//                                .observeOn(AndroidSchedulers.mainThread())
+//                                .subscribe(walletAddress -> {
+//                                    System.out.println(walletAddress.getAddress());
+//                                    showDialog();
+//                                    preferencesUtil.saveWalletAddress(walletAddress.getAddress());
+//
+//                                });
 
 
                     } else {

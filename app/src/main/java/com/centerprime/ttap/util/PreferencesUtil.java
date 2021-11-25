@@ -11,6 +11,7 @@ public class PreferencesUtil {
     private static final String WALLET_ADDRESS = "WALLET_ADDRESS";
     private static final String MNEMONIC = "MNEMONIC";
     private static final String PRIVATE_KEY = "PRIVATE_KEY";
+    private static final String IS_REGISTERED = "IS_REGISTERED";
 
 
 
@@ -46,6 +47,13 @@ public class PreferencesUtil {
     }
     public String getMnemonic() {
         return sharedPreferences.getString(MNEMONIC, "");
+    }
+
+    public void saveIsRegistered(boolean isRegistered) {
+        sharedPreferences.edit().putBoolean(IS_REGISTERED, isRegistered).apply();
+    }
+    public boolean getIsRegistered() {
+        return sharedPreferences.getBoolean(IS_REGISTERED, false);
     }
 
 

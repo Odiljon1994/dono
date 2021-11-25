@@ -62,6 +62,7 @@
             android:orientation="horizontal">
 
             <EditText
+                android:id="@+id/receiverAddress"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="40dp"
@@ -132,8 +133,10 @@
             android:orientation="horizontal">
 
             <EditText
+                android:id="@+id/amount"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
+                android:inputType="number"
                 android:paddingStart="10dp"
                 android:layout_gravity="center"
                 android:hint="TTAP 수량을 입력해주세요."
@@ -206,6 +209,15 @@
             android:layout_width="1dp"
             android:layout_height="0dp"
             android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/errorMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="18dp"
+            android:textColor="#ff0000"/>
 
 
         <Button

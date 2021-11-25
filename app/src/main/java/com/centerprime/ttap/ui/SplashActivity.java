@@ -40,7 +40,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler(Looper.getMainLooper()).postDelayed((Runnable) () -> {
 
 
-            if (preferencesUtil.getOtp().equals("")) {
+            if (!preferencesUtil.getIsRegistered()) {
                 startActivity(new Intent(SplashActivity.this, WalletActivity.class));
             } else {
                 startActivity(new Intent(SplashActivity.this, MainActivity.class));

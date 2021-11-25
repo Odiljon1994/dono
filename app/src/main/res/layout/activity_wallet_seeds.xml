@@ -61,9 +61,9 @@
             android:background="#373737"
             android:fontFamily="@font/poppins_regular"
             android:padding="10dp"
-            android:text="can doom"
+            android:text=""
             android:textColor="@color/white"
-            android:textSize="14dp"
+            android:textSize="18dp"
             android:textStyle="bold" />
 
         <TextView

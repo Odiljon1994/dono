@@ -38,7 +38,7 @@ public class ReceiveActivity extends AppCompatActivity {
 
 
         binding.toolbar.backBtn.setOnClickListener(v -> finish());
-        binding.walletAddress.setText("0x" + preferencesUtil.getWalletAddress());
+        binding.walletAddress.setText(preferencesUtil.getWalletAddress());
         binding.copyBtn.setOnClickListener(v -> {
             ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData clip = ClipData.newPlainText("", binding.walletAddress.getText().toString());

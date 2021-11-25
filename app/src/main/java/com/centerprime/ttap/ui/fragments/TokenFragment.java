@@ -12,19 +12,23 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.centerprime.ethereum_client_sdk.EthManager;
 import com.centerprime.ttap.MyApp;
 import com.centerprime.ttap.R;
 import com.centerprime.ttap.adapter.TransactionsAdapter;
+import com.centerprime.ttap.api.ApiUtils;
 import com.centerprime.ttap.databinding.FragmentTokenBinding;
 import com.centerprime.ttap.databinding.FragmentWalletBinding;
 import com.centerprime.ttap.di.ViewModelFactory;
 import com.centerprime.ttap.models.Transaction;
+import com.centerprime.ttap.ui.MainActivity;
 import com.centerprime.ttap.ui.ReceiveActivity;
 import com.centerprime.ttap.ui.SendActivity;
 import com.centerprime.ttap.ui.viewmodel.EthereumVM;
 import com.centerprime.ttap.util.PreferencesUtil;
+import com.centerprime.ttap.web3.EthManager;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -52,13 +56,14 @@ public class TokenFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ((MyApp) getActivity().getApplication()).getAppComponent().inject(this);
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_token, container, false);
         View view = binding.getRoot();
-        ethereumVM = ViewModelProviders.of(getActivity(), viewModelFactory).get(EthereumVM.class);
+        ethereumVM = ViewModelProviders.of(this, viewModelFactory).get(EthereumVM.class);
         ethereumVM.transactions().observe(getActivity(), this::items);
         binding.swipeRefreshLayout.setRefreshing(true);
 
-        walletAddress = "0x" + preferencesUtil.getWalletAddress();
+        walletAddress = preferencesUtil.getWalletAddress();
 
         binding.receive.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), ReceiveActivity.class));
@@ -101,6 +106,18 @@ public class TokenFragment extends Fragment {
             }
         });
 
+        adapter = new TransactionsAdapter(walletAddress, getActivity(), new TransactionsAdapter.EmptyViewListener() {
+            @Override
+            public void showItems(boolean isEmpty) {
+                binding.recyclerView.setVisibility(isEmpty ? View.GONE : View.VISIBLE);
+                binding.emptyView.setVisibility(isEmpty ? View.VISIBLE : View.GONE);
+            }
+        });
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
+        binding.recyclerView.setAdapter(adapter);
+        loadData();
+        binding.swipeRefreshLayout.setOnRefreshListener(this::loadData);
+
 
 
         return view;
@@ -110,21 +127,16 @@ public class TokenFragment extends Fragment {
     public void checkBalance() {
 
         EthManager ethManager = EthManager.getInstance();
-        //ethManager.init("https://mainnet.infura.io/v3/a396c3461ac048a59f389c7778f06689"); // mainnet infura
-        ethManager.init("https://ropsten.infura.io/v3/a396c3461ac048a59f389c7778f06689"); // infura for ropsten testnet
 
+        ethManager.init(ApiUtils.getInfura());
 
-        ethManager.balanceInEth(walletAddress, getActivity())
+        ethManager.getTokenBalance(walletAddress, "", ApiUtils.getContractAddress(), getActivity())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(balance -> {
-
-
-
+                    binding.tokenAmount.setText(balance.toString());
                 }, error -> {
-                    /**
-                     * if function fails error can be caught in this block
-                     */
+
                     Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     System.out.println(error.getMessage());
                 });

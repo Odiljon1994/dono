@@ -58,6 +58,7 @@ public class EthereumVM extends BaseVM {
                     }
 
                 }, error -> {
+                    System.out.println("*error");
                     System.out.println(error.getMessage());
                 }));
     }

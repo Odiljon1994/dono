@@ -13,13 +13,34 @@ import okhttp3.OkHttpClient;
 
 public class ApiUtils {
 
-   // private static final String etherScan = "https://api.etherscan.io/api/"; // for mainnet
-    private static final String etherScan = "https://api-ropsten.etherscan.io/api/"; // for ropsten testnet
+    private static boolean isMainnet = false;
 
-
+    private static final String etherScan = "https://api.etherscan.io/api/"; // for mainnet
 
     public static String getBaseServerUrl() {
-        return etherScan;
+        if (isMainnet) {
+            return etherScan;
+        } else {
+            return "https://api-ropsten.etherscan.io/api/";
+        }
+    }
+
+    public static String getInfura() {
+        if (isMainnet) {
+            return "https://mainnet.infura.io/v3/a396c3461ac048a59f389c7778f06689";
+        } else {
+            return "https://ropsten.infura.io/v3/a396c3461ac048a59f389c7778f06689";
+        }
+    }
+
+
+    public static String getContractAddress() {
+        if (isMainnet) {
+            return "0x34752c974c3afb37a4eb7d8489c4d8e4117e92ff";
+        } else {
+           // return "0x110a13FC3efE6A245B50102D2d79B3E76125Ae83";
+            return "0xe021ef6f5a6c18bac762975b915574c6128a31ea";
+        }
     }
 
     public static OkHttpClient.Builder configureClient(final OkHttpClient.Builder builder) {
