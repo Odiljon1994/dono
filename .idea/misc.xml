@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/layout/activity_receive.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_save_qrcode.xml" value="0.25226449275362317" />
         <entry key="app/src/main/res/layout/activity_send.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.18161094224924013" />
         <entry key="app/src/main/res/layout/activity_verify_sending.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_wallet.xml" value="0.335" />

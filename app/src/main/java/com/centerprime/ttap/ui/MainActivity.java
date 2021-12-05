@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import com.centerprime.ttap.R;
 import com.centerprime.ttap.databinding.ActivityMainBinding;
 import com.centerprime.ttap.ui.fragments.MainFragment;
+import com.centerprime.ttap.ui.fragments.SettingsFragment;
 import com.centerprime.ttap.ui.fragments.WalletFragment;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
                         break;
                     case R.id.lock:
-
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();
                         break;
                 }
 
