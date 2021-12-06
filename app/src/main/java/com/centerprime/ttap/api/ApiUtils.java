@@ -27,9 +27,9 @@ public class ApiUtils {
 
     public static String getInfura() {
         if (isMainnet) {
-            return "https://mainnet.infura.io/v3/a396c3461ac048a59f389c7778f06689";
+            return "https://mainnet.infura.io/v3/7c36e7f5656d4384bbcb2cbaf67ad699";
         } else {
-            return "https://ropsten.infura.io/v3/a396c3461ac048a59f389c7778f06689";
+            return "https://ropsten.infura.io/v3/7c36e7f5656d4384bbcb2cbaf67ad699";
         }
     }
 

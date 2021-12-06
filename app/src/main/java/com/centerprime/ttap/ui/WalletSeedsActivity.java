@@ -34,19 +34,7 @@ public class WalletSeedsActivity extends AppCompatActivity {
 
         binding.backBtn.setOnClickListener(v -> finish());
 
-        EthManager ethManager = EthManager.getInstance();
-        ethManager.init("https://mainnet.infura.io/v3/7c36e7f5656d4384bbcb2cbaf67ad699");
-
-
         binding.seeds.setText(preferencesUtil.getMnemonic());
-
-//        ethManager.exportKeyStore(preferencesUtil.getWalletAddress(), WalletSeedsActivity.this)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(walletAddress -> {
-//                    binding.seeds.setText(walletAddress);
-//
-//                });
 
         binding.okBtn.setOnClickListener(v -> {
             Intent intent = new Intent(WalletSeedsActivity.this, SaveQrCodeActivity.class);

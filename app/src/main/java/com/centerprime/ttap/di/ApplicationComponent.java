@@ -1,7 +1,10 @@
 package com.centerprime.ttap.di;
 
 import com.centerprime.ttap.MyApp;
+import com.centerprime.ttap.ui.BackUpQrCodeActivity;
+import com.centerprime.ttap.ui.BackUpSeedsActivity;
 import com.centerprime.ttap.ui.OtpActivity;
+import com.centerprime.ttap.ui.OtpExportKeysActivity;
 import com.centerprime.ttap.ui.ReceiveActivity;
 import com.centerprime.ttap.ui.SaveQrCodeActivity;
 import com.centerprime.ttap.ui.SendActivity;
@@ -38,6 +41,9 @@ public interface ApplicationComponent {
     void inject(VerifySendingActivity fragment);
     void inject(SendOtpActivity fragment);
     void inject(SaveQrCodeActivity activity);
+    void inject(OtpExportKeysActivity activity);
+    void inject(BackUpQrCodeActivity activity);
+    void inject(BackUpSeedsActivity activity);
 
 
     @Component.Builder

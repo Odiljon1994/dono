@@ -27,6 +27,7 @@
             android:text="6자리 비밀번호를\n입력해주세요."/>
 
         <TextView
+            android:id="@+id/firstLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="지갑 로그인 및 코인을"
@@ -47,6 +48,7 @@
             android:background="@color/white">
 
             <TextView
+                android:id="@+id/secondLineStart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
@@ -56,6 +58,7 @@
                 android:text="보낼 때 "/>
 
             <TextView
+                android:id="@+id/secondLineBlue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
@@ -64,6 +67,7 @@
                 android:includeFontPadding="false"
                 android:text="6자리 비밀번호"/>
             <TextView
+                android:id="@+id/secondLineEnd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
