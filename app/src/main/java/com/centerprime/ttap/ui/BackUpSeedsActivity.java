@@ -57,8 +57,6 @@ public class BackUpSeedsActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(BackUpSeedsActivity.this, MainActivity.class);
 
-                    preferencesUtil.saveIsRegistered(true);
-
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     dialog.dismiss();

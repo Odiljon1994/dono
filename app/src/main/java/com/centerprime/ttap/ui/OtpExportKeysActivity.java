@@ -43,7 +43,7 @@ public class OtpExportKeysActivity extends AppCompatActivity {
                     } else if (type.equals("seeds")) {
                         startActivity(new Intent(OtpExportKeysActivity.this, BackUpSeedsActivity.class));
                     } else if (type.equals("privateKey")) {
-
+                        startActivity(new Intent(OtpExportKeysActivity.this, ExportPrivatekeyActivity.class));
                     }
 
                 } else {

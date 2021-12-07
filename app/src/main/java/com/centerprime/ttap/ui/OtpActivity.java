@@ -81,6 +81,7 @@ public class OtpActivity extends AppCompatActivity {
                         MnemonicWallet mnemonicWallet = ethManager.createWalletWithMnemonic();
                         preferencesUtil.saveWalletAddress(mnemonicWallet.getWalletAddress());
                         preferencesUtil.saveMnemonic(mnemonicWallet.getMnemonic());
+                        preferencesUtil.savePrivateKey(mnemonicWallet.getPrivateKey());
 
                         ethManager.importFromPrivateKey(mnemonicWallet.getPrivateKey(), OtpActivity.this)
                                 .subscribeOn(Schedulers.io())
