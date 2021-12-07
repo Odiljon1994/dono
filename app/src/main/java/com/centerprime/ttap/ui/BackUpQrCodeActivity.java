@@ -33,8 +33,12 @@ public class BackUpQrCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ((MyApp) getApplication()).getAppComponent().inject(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_qrcode_backup);
+        binding.toolbar.backBtn.setOnClickListener(v -> finish());
+        binding.toolbar.title.setText("QR 코드 백업");
 
         createQrCode(preferencesUtil.getMnemonic());
+
+
     }
 
     public void createQrCode(String fullWallet) {

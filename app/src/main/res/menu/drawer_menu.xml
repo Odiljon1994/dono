@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group>
         <item android:id="@+id/mainPage"
             android:title="마이페이지"
             />
@@ -14,7 +14,7 @@
             android:title="주소록"
             />
         <item android:id="@+id/settings"
-            android:title="주소록"
+            android:title="설정"
             />
 
         <item

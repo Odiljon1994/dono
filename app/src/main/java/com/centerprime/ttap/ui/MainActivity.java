@@ -3,17 +3,21 @@ package com.centerprime.ttap.ui;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.centerprime.ttap.R;
 import com.centerprime.ttap.databinding.ActivityMainBinding;
+import com.centerprime.ttap.ui.fragments.AddressesBookFragment;
 import com.centerprime.ttap.ui.fragments.MainFragment;
 import com.centerprime.ttap.ui.fragments.SettingsFragment;
 import com.centerprime.ttap.ui.fragments.WalletFragment;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,19 +37,50 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.home:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment()).commit();
+                        binding.appBar.setVisibility(View.VISIBLE);
                         break;
                     case R.id.wallet:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WalletFragment()).commit();
+                        binding.appBar.setVisibility(View.VISIBLE);
 
                         break;
                     case R.id.lock:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();
+                        binding.appBar.setVisibility(View.VISIBLE);
                         break;
+
                 }
 
                 return true;
             }
         });
+
+
+        binding.navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.addressBook:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AddressesBookFragment()).commit();
+                        binding.drawerLayout.closeDrawer(GravityCompat.START);
+                        binding.appBar.setVisibility(View.GONE);
+                        break;
+
+                }
+
+                return true;
+
+            }
+        });
+
+    }
+    @Override
+    public void onBackPressed() {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
 
     }
 }
