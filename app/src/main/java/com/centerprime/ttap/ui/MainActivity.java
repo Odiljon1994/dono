@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.centerprime.ttap.R;
 import com.centerprime.ttap.databinding.ActivityMainBinding;
 import com.centerprime.ttap.ui.fragments.AddressesBookFragment;
 import com.centerprime.ttap.ui.fragments.MainFragment;
+import com.centerprime.ttap.ui.fragments.MainFragment2;
 import com.centerprime.ttap.ui.fragments.SettingsFragment;
 import com.centerprime.ttap.ui.fragments.WalletFragment;
 import com.google.android.material.navigation.NavigationBarView;
@@ -26,51 +28,50 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment2()).commit();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, binding.drawerLayout, binding.toolbar, R.string.navigation_open, R.string.navigation_close);
         binding.drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        binding.bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.home:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment()).commit();
-                        binding.appBar.setVisibility(View.VISIBLE);
-                        break;
-                    case R.id.wallet:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WalletFragment()).commit();
-                        binding.appBar.setVisibility(View.VISIBLE);
+        binding.bottomNavigation.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.home:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment2()).commit();
+                    binding.appBar.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.wallet:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WalletFragment()).commit();
+                    binding.appBar.setVisibility(View.VISIBLE);
 
-                        break;
-                    case R.id.lock:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();
-                        binding.appBar.setVisibility(View.VISIBLE);
-                        break;
+                    break;
+                case R.id.lock:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();
+                    binding.appBar.setVisibility(View.VISIBLE);
+                    break;
 
-                }
-
-                return true;
             }
+
+            return true;
         });
 
 
-        binding.navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.addressBook:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AddressesBookFragment()).commit();
-                        binding.drawerLayout.closeDrawer(GravityCompat.START);
-                        binding.appBar.setVisibility(View.GONE);
-                        break;
-
-                }
-
-                return true;
+        binding.navView.setNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.addressBook:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AddressesBookFragment()).commit();
+                    binding.drawerLayout.closeDrawer(GravityCompat.START);
+                    binding.appBar.setVisibility(View.GONE);
+                    break;
+                case R.id.directMessage:
+                    binding.drawerLayout.closeDrawer(GravityCompat.START);
+                    binding.appBar.setVisibility(View.VISIBLE);
+                    startActivity(new Intent(MainActivity.this, DirectQuestionActivity.class));
+                    break;
 
             }
+
+            return true;
+
         });
 
     }

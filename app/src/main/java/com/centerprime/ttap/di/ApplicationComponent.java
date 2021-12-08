@@ -14,6 +14,7 @@ import com.centerprime.ttap.ui.SplashActivity;
 import com.centerprime.ttap.ui.VerifySendingActivity;
 import com.centerprime.ttap.ui.WalletSeedsActivity;
 import com.centerprime.ttap.ui.fragments.MainFragment;
+import com.centerprime.ttap.ui.fragments.MainFragment2;
 import com.centerprime.ttap.ui.fragments.TokenFragment;
 import com.centerprime.ttap.ui.fragments.WalletFragment;
 
@@ -38,6 +39,7 @@ public interface ApplicationComponent {
     void inject(SendActivity activity);
     void inject(TokenFragment fragment);
     void inject(MainFragment fragment);
+    void inject(MainFragment2 fragment);
     void inject(WalletFragment fragment);
     void inject(VerifySendingActivity fragment);
     void inject(SendOtpActivity fragment);

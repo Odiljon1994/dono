@@ -26,5 +26,8 @@ public class WalletActivity extends AppCompatActivity {
 
         binding.createWallet.setOnClickListener(v -> startActivity(new Intent(this, OtpActivity.class)));
 
+        binding.terms.setOnClickListener(v -> startActivity(new Intent(WalletActivity.this, TermsOfUseActivity.class)));
+        binding.privacy.setOnClickListener(v -> startActivity(new Intent(WalletActivity.this, PrivacyPolicyActivity.class)));
+
     }
 }

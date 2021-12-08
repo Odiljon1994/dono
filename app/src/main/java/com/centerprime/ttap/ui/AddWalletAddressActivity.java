@@ -12,7 +12,6 @@ import com.centerprime.ttap.R;
 import com.centerprime.ttap.databinding.ActivityAddWalletaddressBinding;
 
 import org.web3j.crypto.WalletUtils;
-import org.web3j.protocol.Web3j;
 
 public class AddWalletAddressActivity extends AppCompatActivity {
 

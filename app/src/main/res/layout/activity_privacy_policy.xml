@@ -10,9 +10,36 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:orientation="vertical">
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/white"
+            android:clipToPadding="false"
+            >
+
+            <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="56dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="left|center"
+                android:padding="18dp"
+                android:src="@drawable/bback_button" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:src="@drawable/toolbar_logo"
+                android:layout_gravity="center" />
+
+            <ImageView
+                android:id="@+id/endImage"
+                android:layout_width="56dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="right|center"
+                android:padding="18dp"
+                />
+
+        </FrameLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -24,6 +51,57 @@
             android:fontFamily="@font/notosanskr_regular"
             android:textSize="30dp"
             android:text="이용 약관"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#999999"
+                android:textStyle="bold"
+                android:fontFamily="@font/notosanskr_regular"
+                android:includeFontPadding="false"
+                android:textSize="10dp"
+                android:layout_marginStart="18dp"
+                android:text="2021.11.25 12:12"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ver 1.2"
+                android:textSize="10dp"
+                android:layout_marginStart="5dp"
+                android:textColor="#43B0DD"/>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:textSize="10dp"
+            android:text="그들의 보내는 앞이 쓸쓸하랴? 소담스러운 청춘에서만 아니더면, 충분히 전인
+방지하는 것이다. 끓는 있을 품고 이상의 철환하였는가? 구할 얼마나 과실이 이상
+따뜻한 이상의 우리 때문이다. 못할 충분히 더운지라 그것을 영원히 되려니와,
+밝은 것이다. 끝에 않는 위하여서, 있는 소담스러운 작고 밝은 청춘에서만 가치를 끓는다.
+예가 보이는 우리의 우리 예수는 청춘의 봄날의 운다. 가치를 가는 피가 이상이
+그들의 우리의 이것이다. 만천하의 황금시대의 설산에서 쓸쓸한 부패뿐이다. 거친
+봄바람을 안고, 웅대한 날카로우나 듣기만 이상을 앞이 많이 철환하였는가? VT 전인 주는 청춘 싶이 군영과 만천하의 듣는다. 동력은 되려니와, 끝에 쓸쓸하랴?
+두손을 열락의 천지는 천하를 때문이다. 위하여, 힘차게 뛰노는 용기가 설산에서
+자신과 아니다. 실현에 그들은 별과 그들은 같지 되는 황금시대다. 열락의 힘차게 든
+행복스럽고 아름다우냐? 생의 대고, 위하여 발휘하기 얼마나 사랑의 쓸쓸하랴?
+실현에 커다란 방지하는 그림자는 힘차게 약동하다. 품고 피가 속에서 원질이 속잎나고,
+무엇을 것이다. 영원히 따뜻한 공자는 열락의 우리의 귀는 영락과 약동하다.VT 같이, 길을 속잎나고, 그들의 얼음과 미묘한 것이다. "
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"/>
 
 
     </LinearLayout>

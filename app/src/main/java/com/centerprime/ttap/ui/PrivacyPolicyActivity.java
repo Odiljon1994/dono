@@ -18,6 +18,6 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_privacy_policy);
 
-        binding.toolbar.backBtn.setOnClickListener(v -> finish());
+        binding.backBtn.setOnClickListener(v -> finish());
     }
 }
