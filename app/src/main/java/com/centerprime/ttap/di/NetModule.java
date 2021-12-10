@@ -1,5 +1,6 @@
 package com.centerprime.ttap.di;
 
+import com.centerprime.ttap.api.Api;
 import com.centerprime.ttap.api.ApiUtils;
 import com.centerprime.ttap.api.EtherscanAPI;
 import com.google.gson.FieldNamingPolicy;
@@ -27,6 +28,7 @@ public class NetModule {
     }
 
 
+    // EtherScan API
 
     @Provides
     @Singleton
@@ -43,14 +45,44 @@ public class NetModule {
         return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl(ApiUtils.getBaseServerUrl())
+                .baseUrl(ApiUtils.getEtherscanUrl())
                 .client(okHttpClient)
                 .build();
     }
 
     @Provides
     @Singleton
-    EtherscanAPI provideBaseApi(@Named("etherScan") Retrofit retrofit) {
+    EtherscanAPI provideEtherScanApi(@Named("etherScan") Retrofit retrofit) {
         return retrofit.create(EtherscanAPI.class);
+    }
+
+
+
+    // BaseServer API
+
+    @Provides
+    @Singleton
+    @Named("baseAPI")
+    OkHttpClient provideOkHttpClient2() {
+        OkHttpClient.Builder client = new OkHttpClient.Builder();
+        return client.build();
+    }
+
+    @Provides
+    @Singleton
+    @Named("baseAPI")
+    Retrofit provideBaseRetrofit2(Gson gson, @Named("baseAPI") OkHttpClient okHttpClient) {
+        return new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .baseUrl(ApiUtils.getBaseUrl())
+                .client(okHttpClient)
+                .build();
+    }
+
+    @Provides
+    @Singleton
+    Api provideBaseApi(@Named("baseAPI") Retrofit retrofit) {
+        return retrofit.create(Api.class);
     }
 }

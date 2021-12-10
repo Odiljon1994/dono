@@ -1,42 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
-    android:orientation="vertical"
+    android:layout_height="170dp"
     android:background="@color/white"
-    android:padding="16dp"
-    >
+    android:orientation="vertical"
+    android:padding="16dp">
 
 
     <ImageView
-        android:layout_marginTop="20dp"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:src="@drawable/drawer_logo"/>
+        android:layout_marginTop="20dp"
+        android:src="@drawable/drawer_logo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Wallet Address"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/clientId"
-        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
-        android:textStyle="bold"
-        android:textColor="@color/black"
         android:layout_height="wrap_content"
-        android:text="고객번호: 20210667784"/>
+        android:textColor="#999999"
+        android:textSize="10dp"
+        android:textStyle="bold" />
+
     <View
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
     <TextView
-        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
-        android:textStyle="bold"
-        android:textColor="@color/black"
         android:layout_height="wrap_content"
-        android:text="TTAP Wallet"/>
-
-
-
+        android:layout_marginTop="10dp"
+        android:text="TTAP Wallet"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
 
 
 </LinearLayout>

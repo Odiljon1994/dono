@@ -6,7 +6,11 @@
         <entry key="app/src/main/res/layout/activity_add_walletaddress.xml" value="0.2866847826086957" />
         <entry key="app/src/main/res/layout/activity_direct_question.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_export_privatekey.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_faq.xml" value="0.27309782608695654" />
+        <entry key="app/src/main/res/layout/activity_faq_body.xml" value="0.27309782608695654" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21739130434782608" />
+        <entry key="app/src/main/res/layout/activity_notification.xml" value="0.27309782608695654" />
+        <entry key="app/src/main/res/layout/activity_notification_body.xml" value="0.27309782608695654" />
         <entry key="app/src/main/res/layout/activity_otp.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_privacy_policy.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_qrcode_backup.xml" value="0.25" />
@@ -33,6 +37,8 @@
         <entry key="app/src/main/res/layout/fragment_wallet.xml" value="0.28020833333333334" />
         <entry key="app/src/main/res/layout/item_addresses_book.xml" value="0.335" />
         <entry key="app/src/main/res/layout/item_eth_transaction.xml" value="0.25677083333333334" />
+        <entry key="app/src/main/res/layout/item_faq.xml" value="0.27309782608695654" />
+        <entry key="app/src/main/res/layout/item_notification.xml" value="0.27309782608695654" />
         <entry key="app/src/main/res/layout/navigation_header.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/privacy_policy_activity.xml" value="0.21739130434782608" />
         <entry key="app/src/main/res/layout/terms_of_use_activity.xml" value="0.21739130434782608" />

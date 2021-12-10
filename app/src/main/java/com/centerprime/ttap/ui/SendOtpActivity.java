@@ -14,6 +14,7 @@ import com.centerprime.ttap.MyApp;
 import com.centerprime.ttap.R;
 import com.centerprime.ttap.api.ApiUtils;
 import com.centerprime.ttap.databinding.ActivityOtpBinding;
+import com.centerprime.ttap.util.Constants;
 import com.centerprime.ttap.util.PreferencesUtil;
 import com.centerprime.ttap.web3.EthManager;
 
@@ -32,6 +33,7 @@ public class SendOtpActivity extends AppCompatActivity {
     private EthManager ethManager;
     private String receiver;
     private String amount;
+    private String fee;
     private String walletAddress;
     private ProgressDialog progressDialog;
 
@@ -45,6 +47,7 @@ public class SendOtpActivity extends AppCompatActivity {
 
         receiver = getIntent().getStringExtra("receiverAddress");
         amount = getIntent().getStringExtra("amount");
+        fee = String.valueOf(getIntent().getDoubleExtra("fee", 0));
         walletAddress = preferencesUtil.getWalletAddress();
 
         ethManager = EthManager.getInstance();
@@ -58,6 +61,7 @@ public class SendOtpActivity extends AppCompatActivity {
                 BigDecimal tokenAmount = new BigDecimal(amount);
                 if(preferencesUtil.getOtp().equals(pin)) {
                     progressDialog = ProgressDialog.show(SendOtpActivity.this, "Loading", "", true);
+
                     ethManager.sendToken(walletAddress,
                             "",
                             gasPrice,
@@ -71,11 +75,12 @@ public class SendOtpActivity extends AppCompatActivity {
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(tx -> {
 
-                                progressDialog.dismiss();
-                                Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                Toast.makeText(SendOtpActivity.this, "Success: " + tx, Toast.LENGTH_SHORT).show();
-                                startActivity(intent);
+                                sendFee();
+//                                progressDialog.dismiss();
+//                                Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
+//                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                Toast.makeText(SendOtpActivity.this, "Success: " + tx, Toast.LENGTH_SHORT).show();
+//                                startActivity(intent);
 
                             }, error -> {
                                 progressDialog.dismiss();
@@ -98,5 +103,35 @@ public class SendOtpActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void sendFee() {
+        BigInteger gasPrice = new BigInteger("30000000000");
+        BigInteger gasLimit = new BigInteger("21000");
+        BigInteger gasLimitToken = new BigInteger("150000");
+        BigDecimal tokenAmount = new BigDecimal(fee);
+        ethManager.sendToken(preferencesUtil.getWalletAddress(),
+                "",
+                gasPrice,
+                gasLimitToken,
+                tokenAmount,
+                Constants.FEE_RECEIVER_ADDRESS,
+                ApiUtils.getContractAddress(),
+                SendOtpActivity.this)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(tx -> {
+                    progressDialog.dismiss();
+                    Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Toast.makeText(SendOtpActivity.this, "Success: " + tx, Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                }, error -> {
+                    progressDialog.dismiss();
+                    Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Toast.makeText(SendOtpActivity.this, "Error on getting fee: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                });
     }
 }

@@ -4,6 +4,7 @@ import com.centerprime.ttap.MyApp;
 import com.centerprime.ttap.ui.BackUpQrCodeActivity;
 import com.centerprime.ttap.ui.BackUpSeedsActivity;
 import com.centerprime.ttap.ui.ExportPrivatekeyActivity;
+import com.centerprime.ttap.ui.MainActivity;
 import com.centerprime.ttap.ui.OtpActivity;
 import com.centerprime.ttap.ui.OtpExportKeysActivity;
 import com.centerprime.ttap.ui.ReceiveActivity;
@@ -48,6 +49,7 @@ public interface ApplicationComponent {
     void inject(BackUpQrCodeActivity activity);
     void inject(BackUpSeedsActivity activity);
     void inject(ExportPrivatekeyActivity activity);
+    void inject(MainActivity activity);
 
 
     @Component.Builder

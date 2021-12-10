@@ -16,8 +16,11 @@ public class ApiUtils {
     private static boolean isMainnet = false;
 
     private static final String etherScan = "https://api.etherscan.io/api/"; // for mainnet
+    private static final String baseUrl = "http://3.34.99.232:3001";
 
-    public static String getBaseServerUrl() {
+    public static String getBaseUrl() {return baseUrl;}
+
+    public static String getEtherscanUrl() {
         if (isMainnet) {
             return etherScan;
         } else {
@@ -29,7 +32,7 @@ public class ApiUtils {
         if (isMainnet) {
             return "https://mainnet.infura.io/v3/7c36e7f5656d4384bbcb2cbaf67ad699";
         } else {
-            return "https://ropsten.infura.io/v3/7c36e7f5656d4384bbcb2cbaf67ad699";
+            return "https://ropsten.infura.io/v3/ebcfe32ac5ca498d87f8d8b8dce1567a";
         }
     }
 
