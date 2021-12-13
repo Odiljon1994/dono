@@ -1,11 +1,15 @@
 package com.centerprime.ttap.ui;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Paint;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 
 import com.centerprime.ttap.R;
@@ -18,6 +22,8 @@ public class WalletActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_wallet);
 
+        isReadStoragePermissionGranted();
+        isWriteStoragePermissionGranted();
         binding.privacy.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
         binding.terms.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
@@ -29,5 +35,43 @@ public class WalletActivity extends AppCompatActivity {
         binding.terms.setOnClickListener(v -> startActivity(new Intent(WalletActivity.this, TermsOfUseActivity.class)));
         binding.privacy.setOnClickListener(v -> startActivity(new Intent(WalletActivity.this, PrivacyPolicyActivity.class)));
 
+    }
+
+    public  boolean isReadStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                System.out.println("ok");
+                return true;
+            } else {
+
+                System.out.println("no");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 3);
+                return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            System.out.println("ok");
+            return true;
+        }
+    }
+
+    public  boolean isWriteStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                System.out.println("ok2");
+                return true;
+            } else {
+
+                System.out.println("no2");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
+                return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            System.out.println("ok2");
+            return true;
+        }
     }
 }

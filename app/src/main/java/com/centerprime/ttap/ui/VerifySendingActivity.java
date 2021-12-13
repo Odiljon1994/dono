@@ -32,6 +32,7 @@ public class VerifySendingActivity extends AppCompatActivity {
         amount = getIntent().getStringExtra("amount");
         fee = getIntent().getStringExtra("fee");
 
+        binding.fee.setText(fee);
         binding.amount.setText(amount);
         binding.toAddress.setText(receiver);
 
