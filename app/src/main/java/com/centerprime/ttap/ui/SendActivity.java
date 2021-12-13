@@ -1,6 +1,9 @@
 package com.centerprime.ttap.ui;
 
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Toast;
@@ -15,7 +18,10 @@ import com.centerprime.ttap.R;
 import com.centerprime.ttap.api.ApiUtils;
 import com.centerprime.ttap.databinding.ActivitySendBinding;
 import com.centerprime.ttap.di.ViewModelFactory;
+import com.centerprime.ttap.models.AddressesBookModel;
 import com.centerprime.ttap.models.CurrentFeeModel;
+import com.centerprime.ttap.ui.dialogs.AddressesBookDialog;
+import com.centerprime.ttap.ui.dialogs.DirectQuestionDialog;
 import com.centerprime.ttap.ui.viewmodel.CurrentFeeVM;
 import com.centerprime.ttap.util.PreferencesUtil;
 import com.centerprime.ttap.web3.EthManager;
@@ -59,7 +65,7 @@ public class SendActivity extends AppCompatActivity {
                 if (balance >= fee) {
                     Intent intent = new Intent(SendActivity.this, VerifySendingActivity.class);
                     intent.putExtra("receiverAddress", binding.receiverAddress.getText().toString());
-                    intent.putExtra("fee", fee);
+                    intent.putExtra("fee", String.valueOf(fee));
                     intent.putExtra("amount", binding.amount.getText().toString());
                     startActivity(intent);
                 } else {
@@ -72,6 +78,10 @@ public class SendActivity extends AppCompatActivity {
             } else if (TextUtils.isEmpty(binding.amount.getText().toString())) {
                 binding.errorMessage.setText("Please enter token amount");
             }
+        });
+
+        binding.addressBook.setOnClickListener(v -> {
+            showDialog();
         });
 
     }
@@ -95,6 +105,23 @@ public class SendActivity extends AppCompatActivity {
                     Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
                     System.out.println(error.getMessage());
                 });
+    }
+
+    public void showDialog() {
+        AddressesBookDialog addressesBookDialog = new AddressesBookDialog(this);
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+        alertBuilder.setView(addressesBookDialog);
+        AlertDialog dialog = alertBuilder.create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+        AddressesBookDialog.ClickListener clickListener = new AddressesBookDialog.ClickListener() {
+            @Override
+            public void onClick(AddressesBookModel model) {
+                dialog.dismiss();
+                binding.receiverAddress.setText(model.getWalletAddress());
+            }
+        };
+        addressesBookDialog.setClickListener(clickListener);
     }
 
 }

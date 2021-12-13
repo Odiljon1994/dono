@@ -20,6 +20,7 @@ public class VerifySendingActivity extends AppCompatActivity {
     private String amount;
     @Inject
     PreferencesUtil preferencesUtil;
+    private String fee = "0";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class VerifySendingActivity extends AppCompatActivity {
 
         receiver = getIntent().getStringExtra("receiverAddress");
         amount = getIntent().getStringExtra("amount");
+        fee = getIntent().getStringExtra("fee");
 
         binding.amount.setText(amount);
         binding.toAddress.setText(receiver);
@@ -41,6 +43,7 @@ public class VerifySendingActivity extends AppCompatActivity {
             Intent intent = new Intent(VerifySendingActivity.this, SendOtpActivity.class);
             intent.putExtra("receiverAddress", receiver);
             intent.putExtra("amount", amount);
+            intent.putExtra("fee", fee);
             startActivity(intent);
         });
 

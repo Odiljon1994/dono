@@ -47,7 +47,8 @@ public class SendOtpActivity extends AppCompatActivity {
 
         receiver = getIntent().getStringExtra("receiverAddress");
         amount = getIntent().getStringExtra("amount");
-        fee = String.valueOf(getIntent().getDoubleExtra("fee", 0));
+        //double getFee = getIntent().getDoubleExtra("fee", 0);
+        fee = getIntent().getStringExtra("fee");
         walletAddress = preferencesUtil.getWalletAddress();
 
         ethManager = EthManager.getInstance();

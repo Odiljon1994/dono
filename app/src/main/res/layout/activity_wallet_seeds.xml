@@ -91,7 +91,7 @@
             android:layout_marginBottom="30dp"
             android:backgroundTint="@color/colorPrimary"
             android:fontFamily="@font/notosanskr_regular"
-            android:text="새 지갑 생성"
+            android:text="백업 완료"
             android:textColor="@color/white"
             android:textSize="15dp" />
 

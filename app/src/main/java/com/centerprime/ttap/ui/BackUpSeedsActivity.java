@@ -14,6 +14,7 @@ import com.centerprime.ttap.MyApp;
 import com.centerprime.ttap.R;
 import com.centerprime.ttap.databinding.ActivityWalletSeedsBinding;
 import com.centerprime.ttap.ui.dialogs.ScreenSHotDialog;
+import com.centerprime.ttap.ui.dialogs.SeedBackupDialog;
 import com.centerprime.ttap.util.PreferencesUtil;
 
 import javax.inject.Inject;
@@ -40,14 +41,14 @@ public class BackUpSeedsActivity extends AppCompatActivity {
     }
 
     public void showDialog() {
-        ScreenSHotDialog screenSHotDialog = new ScreenSHotDialog(this);
+        SeedBackupDialog seedBackupDialog = new SeedBackupDialog(this);
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
-        alertBuilder.setView(screenSHotDialog);
+        alertBuilder.setView(seedBackupDialog);
         AlertDialog dialog = alertBuilder.create();
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
 
-        ScreenSHotDialog.ClickListener clickListener = new ScreenSHotDialog.ClickListener() {
+        SeedBackupDialog.ClickListener clickListener = new SeedBackupDialog.ClickListener() {
             @Override
             public void onClickOk() {
 //                if (!isConfirmed) {
@@ -55,12 +56,12 @@ public class BackUpSeedsActivity extends AppCompatActivity {
 //                    isConfirmed = true;
 //                } else {
 
-                    Intent intent = new Intent(BackUpSeedsActivity.this, MainActivity.class);
+                Intent intent = new Intent(BackUpSeedsActivity.this, MainActivity.class);
 
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                    dialog.dismiss();
-             //   }
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                dialog.dismiss();
+                //   }
 
             }
 
@@ -69,6 +70,6 @@ public class BackUpSeedsActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         };
-        screenSHotDialog.setClickListener(clickListener);
+        seedBackupDialog.setClickListener(clickListener);
     }
 }

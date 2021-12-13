@@ -90,7 +90,12 @@ public class MainActivity extends AppCompatActivity {
                     binding.appBar.setVisibility(View.VISIBLE);
                     startActivity(new Intent(MainActivity.this, FaqActivity.class));
                     break;
-
+                case R.id.mainPage:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WalletFragment()).commit();
+                    binding.appBar.setVisibility(View.VISIBLE);
+                    binding.bottomNavigation.setSelectedItemId(R.id.wallet);
+                    binding.drawerLayout.closeDrawer(GravityCompat.START);
+                    break;
             }
 
             return true;

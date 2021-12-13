@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.centerprime.ttap.R;
 import com.centerprime.ttap.databinding.ItemAddressesBookBinding;
 import com.centerprime.ttap.models.AddressesBookModel;
+import com.centerprime.ttap.models.FaqModel;
+import com.centerprime.ttap.ui.dialogs.ScreenSHotDialog;
 
 import java.util.List;
 
@@ -18,6 +20,7 @@ public class AddressesBookAdapter extends RecyclerView.Adapter<AddressesBookAdap
 
     private List<AddressesBookModel> items;
     private Context context;
+    private ClickListener clickListener;
 
     public AddressesBookAdapter(List<AddressesBookModel> items, Context context) {
         this.items = items;
@@ -43,6 +46,10 @@ public class AddressesBookAdapter extends RecyclerView.Adapter<AddressesBookAdap
         return items.size();
     }
 
+    public void setClickListener(ClickListener clickListener) {
+        this.clickListener = clickListener;
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
 
         ItemAddressesBookBinding binding;
@@ -55,6 +62,11 @@ public class AddressesBookAdapter extends RecyclerView.Adapter<AddressesBookAdap
         void bind(AddressesBookModel model) {
             binding.walletAddress.setText(model.getWalletAddress());
             binding.name.setText(model.getName());
+            binding.getRoot().setOnClickListener(v -> {clickListener.onClick(model);});
         }
+    }
+
+    public interface ClickListener {
+        void onClick(AddressesBookModel model);
     }
 }

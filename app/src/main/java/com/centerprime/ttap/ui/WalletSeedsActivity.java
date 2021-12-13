@@ -1,6 +1,9 @@
 package com.centerprime.ttap.ui;
 
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.WindowManager;
 
@@ -11,6 +14,8 @@ import androidx.databinding.DataBindingUtil;
 import com.centerprime.ttap.MyApp;
 import com.centerprime.ttap.R;
 import com.centerprime.ttap.databinding.ActivityWalletSeedsBinding;
+import com.centerprime.ttap.ui.dialogs.ScreenSHotDialog;
+import com.centerprime.ttap.ui.dialogs.SeedBackupDialog;
 import com.centerprime.ttap.util.PreferencesUtil;
 import com.centerprime.ttap.web3.EthManager;
 
@@ -37,9 +42,44 @@ public class WalletSeedsActivity extends AppCompatActivity {
         binding.seeds.setText(preferencesUtil.getMnemonic());
 
         binding.okBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(WalletSeedsActivity.this, SaveQrCodeActivity.class);
-            intent.putExtra("seeds", binding.seeds.getText().toString());
-            startActivity(intent);
+
+            showDialog();
+//            Intent intent = new Intent(WalletSeedsActivity.this, SaveQrCodeActivity.class);
+//            intent.putExtra("seeds", binding.seeds.getText().toString());
+//            startActivity(intent);
         });
+    }
+
+    public void showDialog() {
+        SeedBackupDialog seedBackupDialog = new SeedBackupDialog(this);
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+        alertBuilder.setView(seedBackupDialog);
+        AlertDialog dialog = alertBuilder.create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+
+        SeedBackupDialog.ClickListener clickListener = new SeedBackupDialog.ClickListener() {
+            @Override
+            public void onClickOk() {
+//                if (!isConfirmed) {
+//                    screenSHotDialog.confirmScreenShot();
+//                    isConfirmed = true;
+//                } else {
+
+                Intent intent = new Intent(WalletSeedsActivity.this, MainActivity.class);
+                preferencesUtil.saveIsRegistered(true);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                dialog.dismiss();
+                //   }
+
+            }
+
+            @Override
+            public void onClickNo() {
+                dialog.dismiss();
+            }
+        };
+        seedBackupDialog.setClickListener(clickListener);
     }
 }

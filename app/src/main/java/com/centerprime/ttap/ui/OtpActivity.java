@@ -68,48 +68,88 @@ public class OtpActivity extends AppCompatActivity {
             @Override
             public void onComplete(String pin) {
 
-                if (!isRepeated) {
-                    OTP = pin;
-                    isRepeated = true;
+                if (OTP.equals("")) {
+                    if (!hasConsecutiveCharacters(pin)) {
+                        OTP = pin;
+                        binding.error.setText("");
+                        binding.pinLockView.resetPinLockView();
+                        binding.otpStatus.setText("다시 한번 더\n입력해 주세요.");
+                    } else {
+                        binding.pinLockView.resetPinLockView();
+                        binding.error.setText("비밀번호를 확인해주세요.");
+                    }
+                } else if (OTP.equals(pin)) {
+                    preferencesUtil.saveOtp(pin);
+
+                    MnemonicWallet mnemonicWallet = ethManager.createWalletWithMnemonic();
+                    preferencesUtil.saveWalletAddress(mnemonicWallet.getWalletAddress());
+                    preferencesUtil.saveMnemonic(mnemonicWallet.getMnemonic());
+                    preferencesUtil.savePrivateKey(mnemonicWallet.getPrivateKey());
+
+                    ethManager.importFromPrivateKey(mnemonicWallet.getPrivateKey(), OtpActivity.this)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(walletAddress -> {
+                                System.out.println(walletAddress);
+                                //showDialog();
+                                startActivity(new Intent(OtpActivity.this, WalletSeedsActivity.class));
+
+                            });
+                } else if (!OTP.equals("") && !OTP.equals(pin)) {
+                    OTP = "";
+                    binding.error.setText("입력한 비밀번호가 다릅니다.");
                     binding.pinLockView.resetPinLockView();
-                    binding.otpStatus.setText("다시 한번 더\n입력해 주세요.");
-                } else {
-                    if (OTP.equals(pin)) {
-                        System.out.println(pin);
-                        preferencesUtil.saveOtp(pin);
+                    binding.otpStatus.setText("6자리 비밀번호를\n입력해주세요.");
+                }
 
-                        MnemonicWallet mnemonicWallet = ethManager.createWalletWithMnemonic();
-                        preferencesUtil.saveWalletAddress(mnemonicWallet.getWalletAddress());
-                        preferencesUtil.saveMnemonic(mnemonicWallet.getMnemonic());
-                        preferencesUtil.savePrivateKey(mnemonicWallet.getPrivateKey());
 
-                        ethManager.importFromPrivateKey(mnemonicWallet.getPrivateKey(), OtpActivity.this)
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(walletAddress -> {
-                                    System.out.println(walletAddress);
-                                    showDialog();
 
-                                });
 
-//                        ethManager.createWallet(pin, OtpActivity.this)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//                if (!isRepeated) {
+//                    OTP = pin;
+//                    isRepeated = true;
+//                    binding.pinLockView.resetPinLockView();
+//                    binding.otpStatus.setText("다시 한번 더\n입력해 주세요.");
+//                } else {
+//                    if (OTP.equals(pin)) {
+//                        System.out.println(pin);
+//                        preferencesUtil.saveOtp(pin);
+//
+//                        MnemonicWallet mnemonicWallet = ethManager.createWalletWithMnemonic();
+//                        preferencesUtil.saveWalletAddress(mnemonicWallet.getWalletAddress());
+//                        preferencesUtil.saveMnemonic(mnemonicWallet.getMnemonic());
+//                        preferencesUtil.savePrivateKey(mnemonicWallet.getPrivateKey());
+//
+//                        ethManager.importFromPrivateKey(mnemonicWallet.getPrivateKey(), OtpActivity.this)
 //                                .subscribeOn(Schedulers.io())
 //                                .observeOn(AndroidSchedulers.mainThread())
 //                                .subscribe(walletAddress -> {
-//                                    System.out.println(walletAddress.getAddress());
+//                                    System.out.println(walletAddress);
 //                                    showDialog();
-//                                    preferencesUtil.saveWalletAddress(walletAddress.getAddress());
 //
 //                                });
-
-
-                    } else {
-                        OTP = "";
-                        isRepeated = false;
-                        binding.pinLockView.resetPinLockView();
-                        binding.otpStatus.setText("6자리 비밀번호를\n입력해주세요.");
-                    }
-                }
+//                    } else {
+//                        OTP = "";
+//                        isRepeated = false;
+//                        binding.pinLockView.resetPinLockView();
+//                        binding.otpStatus.setText("6자리 비밀번호를\n입력해주세요.");
+//                    }
+//                }
 
             }
 
@@ -123,6 +163,17 @@ public class OtpActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public boolean hasConsecutiveCharacters(String pwd) {
+        String[] letter = pwd.split(""); // here you get each letter in to a string array
+
+        for (int i = 0; i < letter.length - 2; i++) {
+            if (letter[i].equals(letter[i + 1]) && letter[i + 1].equals(letter[i + 2])) {
+                return true; //return true as it has 3 consecutive same character
+            }
+        }
+        return false; //If you reach here that means there are no 3 consecutive characters therefore return false.
     }
 
 //    public void generateAddress() throws CipherException, IOException {

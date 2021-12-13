@@ -51,7 +51,24 @@ public class WalletFragment extends Fragment {
         });
 
         checkBalance();
+        checkEthBalance();
         binding.ttapAsset.setOnClickListener(v -> {
+            Fragment someFragment = new TokenFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, someFragment ); // give your fragment container id in first parameter
+            transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+            transaction.commit();
+        });
+
+        binding.ethAsset.setOnClickListener(v -> {
+            Fragment someFragment = new TokenFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, someFragment ); // give your fragment container id in first parameter
+            transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+            transaction.commit();
+        });
+
+        binding.bnb.setOnClickListener(v -> {
             Fragment someFragment = new TokenFragment();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, someFragment ); // give your fragment container id in first parameter
@@ -61,6 +78,23 @@ public class WalletFragment extends Fragment {
         return view;
 
     }
+
+    public void checkEthBalance() {
+
+        EthManager ethManager = EthManager.getInstance();
+        ethManager.init(ApiUtils.getInfura());
+
+        ethManager.balanceInEth(walletAddress, getActivity())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(balance -> {
+                    binding.amountEth.setText(balance.toString());
+                }, error -> {
+                    Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    System.out.println(error.getMessage());
+                });
+    }
+
 
     public void checkBalance() {
 
