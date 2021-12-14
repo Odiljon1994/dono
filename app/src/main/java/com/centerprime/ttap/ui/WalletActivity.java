@@ -15,6 +15,8 @@ import androidx.databinding.DataBindingUtil;
 import com.centerprime.ttap.R;
 import com.centerprime.ttap.databinding.ActivityWalletBinding;
 
+import jnr.ffi.annotations.In;
+
 public class WalletActivity extends AppCompatActivity {
     ActivityWalletBinding binding;
     @Override
@@ -31,6 +33,7 @@ public class WalletActivity extends AppCompatActivity {
         binding.privacy.setOnClickListener(v -> startActivity(new Intent(this, PrivacyPolicyActivity.class)));
 
         binding.createWallet.setOnClickListener(v -> startActivity(new Intent(this, OtpActivity.class)));
+        binding.importWallet.setOnClickListener(v -> startActivity(new Intent(this, ImportWalletActivity.class)));
 
         binding.terms.setOnClickListener(v -> startActivity(new Intent(WalletActivity.this, TermsOfUseActivity.class)));
         binding.privacy.setOnClickListener(v -> startActivity(new Intent(WalletActivity.this, PrivacyPolicyActivity.class)));

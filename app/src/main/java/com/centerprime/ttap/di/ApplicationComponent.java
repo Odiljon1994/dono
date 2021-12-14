@@ -4,11 +4,14 @@ import com.centerprime.ttap.MyApp;
 import com.centerprime.ttap.ui.BackUpQrCodeActivity;
 import com.centerprime.ttap.ui.BackUpSeedsActivity;
 import com.centerprime.ttap.ui.ExportPrivatekeyActivity;
+import com.centerprime.ttap.ui.ImportWalletActivity;
 import com.centerprime.ttap.ui.MainActivity;
 import com.centerprime.ttap.ui.OtpActivity;
 import com.centerprime.ttap.ui.OtpExportKeysActivity;
+import com.centerprime.ttap.ui.OtpImportWalletActivity;
 import com.centerprime.ttap.ui.ReceiveActivity;
 import com.centerprime.ttap.ui.SaveQrCodeActivity;
+import com.centerprime.ttap.ui.ScanQrCodeActivity;
 import com.centerprime.ttap.ui.SendActivity;
 import com.centerprime.ttap.ui.SendOtpActivity;
 import com.centerprime.ttap.ui.SplashActivity;
@@ -50,6 +53,9 @@ public interface ApplicationComponent {
     void inject(BackUpSeedsActivity activity);
     void inject(ExportPrivatekeyActivity activity);
     void inject(MainActivity activity);
+    void inject(ImportWalletActivity activity);
+    void inject(OtpImportWalletActivity activity);
+    void inject(ScanQrCodeActivity activity);
 
 
     @Component.Builder

@@ -164,6 +164,26 @@ public class EthManager {
         return new MnemonicWallet(mnemonic, privateKey, walletAddress);
     }
 
+    public MnemonicWallet importWalletByMnemonic(String mnemonic) {
+        String privateKey;
+        String walletAddress;
+
+        Bip32ECKeyPair masterKeypair = Bip32ECKeyPair.generateKeyPair(MnemonicUtils.generateSeed(mnemonic, null));
+
+        int[] path = {44 | Bip32ECKeyPair.HARDENED_BIT, 60 | Bip32ECKeyPair.HARDENED_BIT, 0 | Bip32ECKeyPair.HARDENED_BIT, 0,0};
+        Bip32ECKeyPair x = Bip32ECKeyPair.deriveKeyPair(masterKeypair, path);
+
+        Credentials credentials = Credentials.create(x);
+        System.out.println("Wallet address: " + credentials.getAddress());
+        System.out.println("Private key: " + credentials.getEcKeyPair().getPrivateKey());
+        System.out.println("Private key: " + Numeric.toHexStringWithPrefix(credentials.getEcKeyPair().getPrivateKey()));
+
+        privateKey = Numeric.toHexStringWithPrefix(credentials.getEcKeyPair().getPrivateKey());
+        walletAddress = credentials.getAddress();
+
+        return new MnemonicWallet(mnemonic, privateKey, walletAddress);
+    }
+
     /**
      * Get Keystore by wallet address
      */
