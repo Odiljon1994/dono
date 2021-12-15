@@ -4,9 +4,12 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.centerprime.ttap.api.EtherscanAPI;
+import com.centerprime.ttap.ui.viewmodel.CoinMarketCapVM;
 import com.centerprime.ttap.ui.viewmodel.CurrentFeeVM;
+import com.centerprime.ttap.ui.viewmodel.DirectQuestionVM;
 import com.centerprime.ttap.ui.viewmodel.EtherScanVM;
 import com.centerprime.ttap.ui.viewmodel.EthereumVM;
+import com.centerprime.ttap.ui.viewmodel.PostWalletAddressVM;
 
 import dagger.Binds;
 import dagger.Module;
@@ -31,5 +34,20 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(EtherScanVM.class)
     abstract ViewModel bindEtherScanVM(EtherScanVM etherScanVM);
+
+//    @Binds
+//    @IntoMap
+//    @ViewModelKey(CoinMarketCapVM.class)
+//    abstract ViewModel bindCoinMarketCapVM(CoinMarketCapVM coinMarketCapVM);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PostWalletAddressVM.class)
+    abstract ViewModel bindPostWalletAddressVM(PostWalletAddressVM postWalletAddressVM);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DirectQuestionVM.class)
+    abstract ViewModel bindDirectQuestionVM(DirectQuestionVM directQuestionVM);
 
 }

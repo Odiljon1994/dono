@@ -3,6 +3,7 @@ package com.centerprime.ttap.di;
 import com.centerprime.ttap.MyApp;
 import com.centerprime.ttap.ui.BackUpQrCodeActivity;
 import com.centerprime.ttap.ui.BackUpSeedsActivity;
+import com.centerprime.ttap.ui.DirectQuestionActivity;
 import com.centerprime.ttap.ui.ExportPrivatekeyActivity;
 import com.centerprime.ttap.ui.ImportWalletActivity;
 import com.centerprime.ttap.ui.MainActivity;
@@ -16,6 +17,7 @@ import com.centerprime.ttap.ui.SendActivity;
 import com.centerprime.ttap.ui.SendOtpActivity;
 import com.centerprime.ttap.ui.SplashActivity;
 import com.centerprime.ttap.ui.VerifySendingActivity;
+import com.centerprime.ttap.ui.WalletCreatedActivity;
 import com.centerprime.ttap.ui.WalletImportedActivity;
 import com.centerprime.ttap.ui.WalletSeedsActivity;
 import com.centerprime.ttap.ui.fragments.MainFragment;
@@ -58,6 +60,8 @@ public interface ApplicationComponent {
     void inject(OtpImportWalletActivity activity);
     void inject(ScanQrCodeActivity activity);
     void inject(WalletImportedActivity activity);
+    void inject(WalletCreatedActivity activity);
+    void inject(DirectQuestionActivity activity);
 
 
     @Component.Builder

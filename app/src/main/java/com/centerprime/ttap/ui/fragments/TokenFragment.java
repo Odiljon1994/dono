@@ -71,6 +71,7 @@ public class TokenFragment extends Fragment {
             binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.bnb_icon));
         }
 
+
         ethereumVM = ViewModelProviders.of(this, viewModelFactory).get(EthereumVM.class);
         ethereumVM.transactions().observe(getActivity(), this::items);
         binding.swipeRefreshLayout.setRefreshing(true);

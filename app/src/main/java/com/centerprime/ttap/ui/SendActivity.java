@@ -48,11 +48,8 @@ public class SendActivity extends AppCompatActivity {
     String tokenName = "";
     String contractAddress = "";
 
-
     @Inject
     PreferencesUtil preferencesUtil;
-
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
