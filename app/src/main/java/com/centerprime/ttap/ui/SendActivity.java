@@ -145,9 +145,9 @@ public class SendActivity extends AppCompatActivity {
 
 
             } else if (TextUtils.isEmpty(binding.receiverAddress.getText().toString())) {
-                binding.errorMessage.setText("Please enter receiver address");
+                binding.errorMessage.setText("주소와 금액을 먼저 입력해주세요.");
             } else if (TextUtils.isEmpty(binding.amount.getText().toString())) {
-                binding.errorMessage.setText("Please enter token amount");
+                binding.errorMessage.setText("주소와 금액을 먼저 입력해주세요.");
             }
         });
 

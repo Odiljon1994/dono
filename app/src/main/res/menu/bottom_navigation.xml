@@ -15,5 +15,5 @@
         android:id="@+id/lock"
         android:enabled="true"
         android:icon="@drawable/lockup_bottom"
-        android:title="Lockup"/>
+        android:title="Setting"/>
 </menu>

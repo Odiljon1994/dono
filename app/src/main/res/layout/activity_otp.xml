@@ -24,13 +24,25 @@
             android:textSize="34dp"
             android:layout_marginTop="10dp"
             android:textColor="@color/black"
-            android:text="6자리 비밀번호를\n입력해주세요."/>
+            android:text="6자리\n비밀번호"/>
+
+        <TextView
+            android:id="@+id/onSendingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:visibility="gone"
+            android:layout_marginEnd="18dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:text="네트워크 상태에 따라 전송 완료까지 시간이\n
+소요될 수 있습니다. 거래내역을 통해 확인해주세요."/>
 
         <TextView
             android:id="@+id/firstLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="지갑 로그인 및 코인을"
+            android:text="지갑 로그인 및 가상 자산을 보낼 때"
             android:textSize="15dp"
             android:textColor="@color/black"
             android:fontFamily="@font/notosanskr_regular"
@@ -65,7 +77,7 @@
                 android:textColor="#43B0DD"
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
-                android:text="6자리 비밀번호"/>
+                android:text="비밀번호(6자리)"/>
             <TextView
                 android:id="@+id/secondLineEnd"
                 android:layout_width="wrap_content"
@@ -74,7 +86,7 @@
                 android:textColor="@color/black"
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
-                android:text="가 사용됩니다"/>
+                android:text="입니다."/>
 
         </LinearLayout>
 
@@ -101,8 +113,7 @@
             android:layout_gravity="center"
             android:textSize="12dp"
             android:gravity="center"
-            android:text="연속되는 숫자 3자리, 동일한 숫자 3자리는\n
-비밀번호로 사용할 수 없습니다."/>
+            android:text=""/>
 
         <View
             android:layout_width="0dp"

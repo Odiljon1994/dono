@@ -33,7 +33,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TTAP Wallet"
+                android:text="Wallet"
                 android:gravity="center"
                 android:textStyle="bold"
                 android:textSize="15dp"
@@ -48,14 +48,14 @@
                 android:textSize="15dp"
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
-                android:text="이 사용자의 사진에"/>
+                android:text="이 사용자 앨범을"/>
 
         </LinearLayout>
         <TextView
             android:id="@+id/result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="추가하려고 합니다."
+            android:text="사용합니다"
             android:layout_marginTop="2dp"
             android:textSize="15dp"
             android:layout_marginBottom="20dp"
@@ -88,7 +88,7 @@
             android:orientation="horizontal">
             <TextView
                 android:id="@+id/noBtn"
-                android:text="허용안함"
+                android:text="허용 안함"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_weight="1"

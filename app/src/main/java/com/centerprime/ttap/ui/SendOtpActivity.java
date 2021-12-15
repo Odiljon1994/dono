@@ -3,6 +3,7 @@ package com.centerprime.ttap.ui;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -67,7 +68,10 @@ public class SendOtpActivity extends AppCompatActivity {
                 if(preferencesUtil.getOtp().equals(pin)) {
                     progressDialog = ProgressDialog.show(SendOtpActivity.this, "Loading", "", true);
 
+                    binding.otpStatus.setText("출금 요청이\n완료되었습니다.");
+                    binding.onSendingText.setVisibility(View.VISIBLE);
                     if (tokenName.equals("ETH")) {
+
                         ethManager.sendEther(walletAddress, "", gasPrice, gasLimit, tokenAmount, receiver, SendOtpActivity.this)
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
@@ -113,7 +117,7 @@ public class SendOtpActivity extends AppCompatActivity {
 
                 } else {
                     binding.pinLockView.resetPinLockView();
-                    Toast.makeText(SendOtpActivity.this, "Password error", Toast.LENGTH_SHORT).show();
+                    binding.error.setText("비밀번호를 확인해주세요.");
                 }
 
             }

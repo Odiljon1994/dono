@@ -65,7 +65,11 @@ public class TokenFragment extends Fragment {
         tokenName = getArguments().getString("tokenName");
         contractAddress = getArguments().getString("contractAddress");
         binding.tokenName.setText(tokenName);
-
+        if (tokenName.equals("ETH")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.eth_icon));
+        } else if (tokenName.equals("BNB")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.bnb_icon));
+        }
 
         ethereumVM = ViewModelProviders.of(this, viewModelFactory).get(EthereumVM.class);
         ethereumVM.transactions().observe(getActivity(), this::items);

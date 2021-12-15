@@ -3,7 +3,9 @@ package com.centerprime.ttap.di;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.centerprime.ttap.api.EtherscanAPI;
 import com.centerprime.ttap.ui.viewmodel.CurrentFeeVM;
+import com.centerprime.ttap.ui.viewmodel.EtherScanVM;
 import com.centerprime.ttap.ui.viewmodel.EthereumVM;
 
 import dagger.Binds;
@@ -24,5 +26,10 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(CurrentFeeVM.class)
     abstract ViewModel bindCurrentFeeVm(CurrentFeeVM currentFeeVM);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(EtherScanVM.class)
+    abstract ViewModel bindEtherScanVM(EtherScanVM etherScanVM);
 
 }

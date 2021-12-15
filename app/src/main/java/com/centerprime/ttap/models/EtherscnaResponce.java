@@ -11,7 +11,7 @@ public class EtherscnaResponce {
     @SerializedName("message")
     String message;
     @SerializedName("result")
-    List<Transaction> result;
+    List<TransactionsModel> result;
 
     public String getStatus() {
         return status;
@@ -29,11 +29,11 @@ public class EtherscnaResponce {
         this.message = message;
     }
 
-    public List<Transaction> getResult() {
+    public List<TransactionsModel> getResult() {
         return result;
     }
 
-    public void setResult(List<Transaction> result) {
+    public void setResult(List<TransactionsModel> result) {
         this.result = result;
     }
 }

@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.centerprime.ttap.api.EtherscanAPI;
 import com.centerprime.ttap.models.Transaction;
+import com.centerprime.ttap.models.TransactionsModel;
 
 
 import java.util.ArrayList;
@@ -20,6 +21,8 @@ import io.reactivex.schedulers.Schedulers;
 public class EthereumVM extends BaseVM {
     EtherscanAPI etherscanAPI;
     private MutableLiveData<List<Transaction>> transactions = new MutableLiveData<>();
+
+
 
     Context context;
 

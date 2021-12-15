@@ -36,6 +36,7 @@ public class ReceiveActivity extends AppCompatActivity {
         ((MyApp) getApplication()).getAppComponent().inject(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_receive);
 
+        binding.toolbar.title.setText("입금");
 
         binding.toolbar.backBtn.setOnClickListener(v -> finish());
         binding.walletAddress.setText(preferencesUtil.getWalletAddress());

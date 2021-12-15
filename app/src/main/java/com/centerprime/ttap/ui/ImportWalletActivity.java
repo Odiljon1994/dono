@@ -26,6 +26,7 @@ public class ImportWalletActivity extends AppCompatActivity {
     @Inject
     PreferencesUtil preferencesUtil;
 
+    String seeds = "";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +36,9 @@ public class ImportWalletActivity extends AppCompatActivity {
         EthManager ethManager = EthManager.getInstance();
         ethManager.init(ApiUtils.getInfura());
 
-        String seeds = getIntent().getStringExtra("seeds");
-        if (!seeds.equals("") && seeds != null) {
-            binding.seeds.setText(seeds);
-        }
+        seeds = getIntent().getStringExtra("seeds");
+
+        binding.seeds.setText(seeds);
 
         binding.importBtn.setOnClickListener(v -> {
             String[] pairs = binding.seeds.getText().toString().split(" ");

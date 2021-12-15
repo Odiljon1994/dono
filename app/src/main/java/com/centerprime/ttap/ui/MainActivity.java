@@ -7,6 +7,7 @@ import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -69,39 +70,94 @@ public class MainActivity extends AppCompatActivity {
         TextView navUsername = headerView.findViewById(R.id.clientId);
         navUsername.setText(preferencesUtil.getWalletAddress());
 
-        binding.navView.setNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.addressBook:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AddressesBookFragment()).commit();
-                    binding.drawerLayout.closeDrawer(GravityCompat.START);
-                    binding.appBar.setVisibility(View.GONE);
-                    break;
-                case R.id.directMessage:
-                    binding.drawerLayout.closeDrawer(GravityCompat.START);
-                    binding.appBar.setVisibility(View.VISIBLE);
-                    startActivity(new Intent(MainActivity.this, DirectQuestionActivity.class));
-                    break;
-                case R.id.notice:
-                    binding.drawerLayout.closeDrawer(GravityCompat.START);
-                    binding.appBar.setVisibility(View.VISIBLE);
-                    startActivity(new Intent(MainActivity.this, NotificationActivity.class));
-                    break;
-                case R.id.faq:
-                    binding.drawerLayout.closeDrawer(GravityCompat.START);
-                    binding.appBar.setVisibility(View.VISIBLE);
-                    startActivity(new Intent(MainActivity.this, FaqActivity.class));
-                    break;
-                case R.id.mainPage:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WalletFragment()).commit();
-                    binding.appBar.setVisibility(View.VISIBLE);
-                    binding.bottomNavigation.setSelectedItemId(R.id.wallet);
-                    binding.drawerLayout.closeDrawer(GravityCompat.START);
-                    break;
-            }
+        TextView myPage = headerView.findViewById(R.id.myPage);
+        TextView addressBook = headerView.findViewById(R.id.addressBook);
+        TextView settings = headerView.findViewById(R.id.settings);
+        TextView notice = headerView.findViewById(R.id.notice);
+        TextView faq = headerView.findViewById(R.id.faq);
+        TextView directMessage = headerView.findViewById(R.id.directMessage);
+        TextView terms = headerView.findViewById(R.id.terms);
+        TextView privacy = headerView.findViewById(R.id.privacy);
+        TextView version = headerView.findViewById(R.id.version);
 
-            return true;
+        terms.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+        privacy.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+
+        myPage.setOnClickListener(v -> {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WalletFragment()).commit();
+            binding.appBar.setVisibility(View.VISIBLE);
+            binding.bottomNavigation.setSelectedItemId(R.id.wallet);
+            binding.drawerLayout.closeDrawer(GravityCompat.START);
+        });
+        addressBook.setOnClickListener(v -> {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AddressesBookFragment()).commit();
+            binding.drawerLayout.closeDrawer(GravityCompat.START);
+            binding.appBar.setVisibility(View.GONE);
+        });
+        settings.setOnClickListener(v -> {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();
+            binding.appBar.setVisibility(View.VISIBLE);
+            binding.drawerLayout.closeDrawer(GravityCompat.START);
+            binding.bottomNavigation.setSelectedItemId(R.id.lock);
+        });
+        notice.setOnClickListener(v -> {
+            binding.drawerLayout.closeDrawer(GravityCompat.START);
+            binding.appBar.setVisibility(View.VISIBLE);
+            startActivity(new Intent(MainActivity.this, NotificationActivity.class));
+        });
+        faq.setOnClickListener(v -> {
+            binding.drawerLayout.closeDrawer(GravityCompat.START);
+            binding.appBar.setVisibility(View.VISIBLE);
+            startActivity(new Intent(MainActivity.this, FaqActivity.class));
+        });
+        directMessage.setOnClickListener(v -> {
+            binding.drawerLayout.closeDrawer(GravityCompat.START);
+            binding.appBar.setVisibility(View.VISIBLE);
+            startActivity(new Intent(MainActivity.this, DirectQuestionActivity.class));
+        });
+        terms.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, TermsOfUseActivity.class));
+        });
+        privacy.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, PrivacyPolicyActivity.class));
+        });
+        version.setOnClickListener(v -> {
 
         });
+
+//        binding.navView.setNavigationItemSelectedListener(item -> {
+//            switch (item.getItemId()) {
+//                case R.id.addressBook:
+//                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AddressesBookFragment()).commit();
+//                    binding.drawerLayout.closeDrawer(GravityCompat.START);
+//                    binding.appBar.setVisibility(View.GONE);
+//                    break;
+//                case R.id.directMessage:
+//                    binding.drawerLayout.closeDrawer(GravityCompat.START);
+//                    binding.appBar.setVisibility(View.VISIBLE);
+//                    startActivity(new Intent(MainActivity.this, DirectQuestionActivity.class));
+//                    break;
+//                case R.id.notice:
+//                    binding.drawerLayout.closeDrawer(GravityCompat.START);
+//                    binding.appBar.setVisibility(View.VISIBLE);
+//                    startActivity(new Intent(MainActivity.this, NotificationActivity.class));
+//                    break;
+//                case R.id.faq:
+//                    binding.drawerLayout.closeDrawer(GravityCompat.START);
+//                    binding.appBar.setVisibility(View.VISIBLE);
+//                    startActivity(new Intent(MainActivity.this, FaqActivity.class));
+//                    break;
+//                case R.id.mainPage:
+//                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WalletFragment()).commit();
+//                    binding.appBar.setVisibility(View.VISIBLE);
+//                    binding.bottomNavigation.setSelectedItemId(R.id.wallet);
+//                    binding.drawerLayout.closeDrawer(GravityCompat.START);
+//                    break;
+//            }
+//
+//            return true;
+//
+//        });
 
     }
     @Override

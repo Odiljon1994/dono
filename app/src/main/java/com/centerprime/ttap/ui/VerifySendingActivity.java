@@ -30,6 +30,7 @@ public class VerifySendingActivity extends AppCompatActivity {
         ((MyApp) getApplication()).getAppComponent().inject(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_verify_sending);
 
+        
         receiver = getIntent().getStringExtra("receiverAddress");
         amount = getIntent().getStringExtra("amount");
         fee = getIntent().getStringExtra("fee");

@@ -66,9 +66,9 @@ public class WalletSeedsActivity extends AppCompatActivity {
 //                    isConfirmed = true;
 //                } else {
 
-                Intent intent = new Intent(WalletSeedsActivity.this, MainActivity.class);
+                Intent intent = new Intent(WalletSeedsActivity.this, WalletCreatedActivity.class);
                 preferencesUtil.saveIsRegistered(true);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+              //  intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 dialog.dismiss();
                 //   }

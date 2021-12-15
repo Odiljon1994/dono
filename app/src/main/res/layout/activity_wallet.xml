@@ -12,11 +12,11 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="230dp"
-            android:layout_height="95dp"
+            android:layout_width="130dp"
+            android:layout_height="155dp"
             android:layout_gravity="center"
             android:layout_marginTop="100dp"
-            android:src="@drawable/ttap_logo" />
+            android:src="@drawable/wallet_import" />
 
 
         <View
@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
-                android:text="관한 동의가 장동으로 이루어집니다"
+                android:text="관한 동의가 장동으로 이루어집니다."
                 android:textColor="@color/black" />
 
         </LinearLayout>

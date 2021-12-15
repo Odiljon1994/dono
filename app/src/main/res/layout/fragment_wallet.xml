@@ -8,39 +8,17 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:background="@color/grayColor"
+            android:background="@color/white"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/notosanskr_regular"
-                    android:includeFontPadding="false"
-                    android:text="TTAP"
-                    android:textColor="@color/black"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1" />
-
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -49,7 +27,7 @@
 
                 <TextView
                     android:id="@+id/walletAddress"
-                    android:layout_width="220dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="18dp"
                     android:ellipsize="middle"
@@ -57,7 +35,7 @@
                     android:includeFontPadding="false"
                     android:singleLine="true"
                     android:text="0x19f5cf38c2fas12df3c4389f78b0cfc5"
-                    android:textColor="@color/black"
+                    android:textColor="#999999"
                     android:textSize="14dp"
                     android:textStyle="bold" />
 
@@ -69,42 +47,6 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="18dp"
                     android:background="@drawable/copy_btn" />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="18dp"
-                android:text="지갑 로그인 및 코인을 보낼 때 6자리 비밀번호가 사용됩니다. 비밀번호 분실 시\n재발급 절차가 없어 가상자산이 유실 될 수 있으니 주의 바랍니다."
-                android:textColor="#121212"
-                android:textSize="10dp" />
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="18dp"
-                    android:maxLines="1"
-                    android:src="@drawable/keyss" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="18dp"
-                    android:text="프라이빗키 보기"
-                    android:textColor="@color/black"
-                    android:textSize="10dp" />
 
             </LinearLayout>
 

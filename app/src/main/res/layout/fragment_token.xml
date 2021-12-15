@@ -16,7 +16,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:layout_marginEnd="18dp">
+            android:layout_marginEnd="18dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="18dp"
+                android:src="@drawable/ttap_coin_logo" />
             <TextView
                 android:id="@+id/tokenName"
                 android:layout_width="wrap_content"
@@ -28,7 +37,7 @@
                 android:textColor="@color/black"
                 android:textSize="20dp"
 
-                android:layout_marginStart="18dp"/>
+                android:layout_marginStart="10dp"/>
 
             <View
                 android:layout_width="0dp"

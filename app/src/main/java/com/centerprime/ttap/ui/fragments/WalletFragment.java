@@ -52,6 +52,8 @@ public class WalletFragment extends Fragment {
 
         checkBalance();
         checkEthBalance();
+        checkBalanceBnb();
+
         binding.ttapAsset.setOnClickListener(v -> {
             Fragment someFragment = new TokenFragment();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -89,7 +91,7 @@ public class WalletFragment extends Fragment {
 
             Bundle bundle = new Bundle();
             bundle.putString("tokenName", "BNB");
-            bundle.putString("contractAddress", "0xB8c77482e45F1F44dE1745F52C74426C631bDD52");
+            bundle.putString("contractAddress", ApiUtils.getBnbContractAddress());
             someFragment.setArguments(bundle);
 
             transaction.commit();
@@ -136,7 +138,7 @@ public class WalletFragment extends Fragment {
         EthManager ethManager = EthManager.getInstance();
         ethManager.init(ApiUtils.getInfura());
 
-        ethManager.getTokenBalance(walletAddress, "", "0xB8c77482e45F1F44dE1745F52C74426C631bDD52", getActivity())
+        ethManager.getTokenBalance(walletAddress, "", ApiUtils.getBnbContractAddress(), getActivity())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(balance -> {

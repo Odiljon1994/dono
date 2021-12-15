@@ -70,7 +70,7 @@ public class OtpActivity extends AppCompatActivity {
                         OTP = pin;
                         binding.error.setText("");
                         binding.pinLockView.resetPinLockView();
-                        binding.otpStatus.setText("다시 한번 더\n입력해 주세요.");
+                        binding.otpStatus.setText("다시 한번\n입력해 주세요.");
                     } else {
                         binding.pinLockView.resetPinLockView();
                         binding.error.setText("비밀번호를 확인해주세요.");
