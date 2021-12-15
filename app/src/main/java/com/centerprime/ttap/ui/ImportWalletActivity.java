@@ -35,6 +35,11 @@ public class ImportWalletActivity extends AppCompatActivity {
         EthManager ethManager = EthManager.getInstance();
         ethManager.init(ApiUtils.getInfura());
 
+        String seeds = getIntent().getStringExtra("seeds");
+        if (!seeds.equals("") && seeds != null) {
+            binding.seeds.setText(seeds);
+        }
+
         binding.importBtn.setOnClickListener(v -> {
             String[] pairs = binding.seeds.getText().toString().split(" ");
             if (!TextUtils.isEmpty(binding.seeds.getText().toString()) && pairs.length >= 12) {
@@ -64,12 +69,6 @@ public class ImportWalletActivity extends AppCompatActivity {
             } else if (pairs.length < 12) {
                 binding.error.setText("구문이 옳지 않습니다. minimum 12 words");
             }
-
-
-
-
-
-
         });
     }
 }

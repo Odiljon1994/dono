@@ -20,12 +20,13 @@
         <entry key="app/src/main/res/layout/activity_save_qrcode.xml" value="0.25226449275362317" />
         <entry key="app/src/main/res/layout/activity_scan_qrcode.xml" value="0.25317028985507245" />
         <entry key="app/src/main/res/layout/activity_seeds_backup.xml" value="0.19635416666666666" />
-        <entry key="app/src/main/res/layout/activity_send.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_send.xml" value="0.33899989814409187" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.18161094224924013" />
         <entry key="app/src/main/res/layout/activity_terms_of_use.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_verify_sending.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_wallet.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_wallet_import_type.xml" value="0.26313405797101447" />
         <entry key="app/src/main/res/layout/activity_wallet_imported.xml" value="0.25317028985507245" />
         <entry key="app/src/main/res/layout/activity_wallet_seeds.xml" value="0.25" />
         <entry key="app/src/main/res/layout/base_dialog.xml" value="0.18802083333333333" />

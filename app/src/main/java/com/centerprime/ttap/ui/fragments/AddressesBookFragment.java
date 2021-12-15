@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,6 +37,13 @@ public class AddressesBookFragment extends Fragment {
         View view = binding.getRoot();
         addressesBookDB = new AddressesBookDB(getActivity());
 
+        binding.backBtn.setOnClickListener(v -> {
+            Fragment someFragment = new MainFragment2();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, someFragment ); // give your fragment container id in first parameter
+            transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+            transaction.commit();
+        });
         List<AddressesBookModel> list = new ArrayList<>();
         Cursor cursor = addressesBookDB.getData();
 
@@ -46,6 +54,13 @@ public class AddressesBookFragment extends Fragment {
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
         adapter = new AddressesBookAdapter(list, getActivity());
         binding.recyclerView.setAdapter(adapter);
+        AddressesBookAdapter.ClickListener clickListener = new AddressesBookAdapter.ClickListener() {
+            @Override
+            public void onClick(AddressesBookModel model) {
+
+            }
+        };
+        adapter.setClickListener(clickListener);
 
         binding.addBtn.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), AddWalletAddressActivity.class));

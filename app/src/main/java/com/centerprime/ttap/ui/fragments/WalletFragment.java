@@ -57,6 +57,13 @@ public class WalletFragment extends Fragment {
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, someFragment ); // give your fragment container id in first parameter
             transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+
+            Bundle bundle = new Bundle();
+            bundle.putString("tokenName", "TTAP");
+            bundle.putString("contractAddress", ApiUtils.getContractAddress());
+            someFragment.setArguments(bundle);
+
+
             transaction.commit();
         });
 
@@ -65,6 +72,12 @@ public class WalletFragment extends Fragment {
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, someFragment ); // give your fragment container id in first parameter
             transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+
+            Bundle bundle = new Bundle();
+            bundle.putString("tokenName", "ETH");
+            bundle.putString("contractAddress", preferencesUtil.getWalletAddress());
+            someFragment.setArguments(bundle);
+
             transaction.commit();
         });
 
@@ -73,6 +86,12 @@ public class WalletFragment extends Fragment {
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, someFragment ); // give your fragment container id in first parameter
             transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+
+            Bundle bundle = new Bundle();
+            bundle.putString("tokenName", "BNB");
+            bundle.putString("contractAddress", "0xB8c77482e45F1F44dE1745F52C74426C631bDD52");
+            someFragment.setArguments(bundle);
+
             transaction.commit();
         });
         return view;
@@ -106,6 +125,22 @@ public class WalletFragment extends Fragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(balance -> {
                     binding.amountTtap.setText(balance.toString());
+                }, error -> {
+                    Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    System.out.println(error.getMessage());
+                });
+    }
+
+    public void checkBalanceBnb() {
+
+        EthManager ethManager = EthManager.getInstance();
+        ethManager.init(ApiUtils.getInfura());
+
+        ethManager.getTokenBalance(walletAddress, "", "0xB8c77482e45F1F44dE1745F52C74426C631bDD52", getActivity())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(balance -> {
+                    binding.amountBnb.setText(balance.toString());
                 }, error -> {
                     Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     System.out.println(error.getMessage());

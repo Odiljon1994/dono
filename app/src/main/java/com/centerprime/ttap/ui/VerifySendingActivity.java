@@ -18,6 +18,8 @@ public class VerifySendingActivity extends AppCompatActivity {
     ActivityVerifySendingBinding binding;
     private String receiver;
     private String amount;
+    private String tokenName;
+    private String contractAddress;
     @Inject
     PreferencesUtil preferencesUtil;
     private String fee = "0";
@@ -31,6 +33,16 @@ public class VerifySendingActivity extends AppCompatActivity {
         receiver = getIntent().getStringExtra("receiverAddress");
         amount = getIntent().getStringExtra("amount");
         fee = getIntent().getStringExtra("fee");
+        tokenName = getIntent().getStringExtra("tokenName");
+        contractAddress = getIntent().getStringExtra("contractAddress");
+
+        if (tokenName.equals("ETH")) {
+            binding.logo.setImageDrawable(getDrawable(R.drawable.eth_icon));
+            binding.cymbol.setText("ETH");
+        } else if (tokenName.equals("BNB")) {
+            binding.logo.setImageDrawable(getDrawable(R.drawable.bnb_icon));
+            binding.cymbol.setText("BNB");
+        }
 
         binding.fee.setText(fee);
         binding.amount.setText(amount);
@@ -45,6 +57,8 @@ public class VerifySendingActivity extends AppCompatActivity {
             intent.putExtra("receiverAddress", receiver);
             intent.putExtra("amount", amount);
             intent.putExtra("fee", fee);
+            intent.putExtra("tokenName", tokenName);
+            intent.putExtra("contractAddress", contractAddress);
             startActivity(intent);
         });
 

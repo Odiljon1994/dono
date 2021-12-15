@@ -7,9 +7,6 @@
         <item android:id="@+id/mainPage"
             android:title="마이페이지"
             />
-        <item android:id="@+id/walletManaging"
-            android:title="지갑관리하기"
-            />
         <item android:id="@+id/addressBook"
             android:title="주소록"
             />

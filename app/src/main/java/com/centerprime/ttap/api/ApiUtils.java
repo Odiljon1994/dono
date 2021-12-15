@@ -46,6 +46,16 @@ public class ApiUtils {
         }
     }
 
+
+    public static String getBnbContractAddress() {
+        if (isMainnet) {
+            return "0xB8c77482e45F1F44dE1745F52C74426C631bDD52";
+        } else {
+
+            return "0x625e7c977cebab5734316574a6d0dc9e53ac0057";
+        }
+    }
+
     public static OkHttpClient.Builder configureClient(final OkHttpClient.Builder builder) {
 
         final TrustManager[] certs = new TrustManager[]{new X509TrustManager() {

@@ -51,6 +51,8 @@ public class TokenFragment extends Fragment {
     ViewModelFactory viewModelFactory;
     private TransactionsAdapter adapter;
     private String walletAddress;
+    String tokenName = "";
+    String contractAddress = "";
 
     private EthereumVM ethereumVM;
     @Nullable
@@ -59,6 +61,12 @@ public class TokenFragment extends Fragment {
         ((MyApp) getActivity().getApplication()).getAppComponent().inject(this);
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_token, container, false);
         View view = binding.getRoot();
+
+        tokenName = getArguments().getString("tokenName");
+        contractAddress = getArguments().getString("contractAddress");
+        binding.tokenName.setText(tokenName);
+
+
         ethereumVM = ViewModelProviders.of(this, viewModelFactory).get(EthereumVM.class);
         ethereumVM.transactions().observe(getActivity(), this::items);
         binding.swipeRefreshLayout.setRefreshing(true);
@@ -69,7 +77,10 @@ public class TokenFragment extends Fragment {
             startActivity(new Intent(getActivity(), ReceiveActivity.class));
         });
         binding.send.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), SendActivity.class));
+            Intent intent = new Intent(getActivity(), SendActivity.class);
+            intent.putExtra("tokenName", tokenName);
+            intent.putExtra("contractAddress", contractAddress);
+            startActivity(intent);
         });
 
         tabLayout = binding.tabLayout;
@@ -130,16 +141,30 @@ public class TokenFragment extends Fragment {
 
         ethManager.init(ApiUtils.getInfura());
 
-        ethManager.getTokenBalance(walletAddress, "", ApiUtils.getContractAddress(), getActivity())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(balance -> {
-                    binding.tokenAmount.setText(balance.toString());
-                }, error -> {
+        if (contractAddress.toLowerCase().equals(preferencesUtil.getWalletAddress().toLowerCase())) {
+            ethManager.balanceInEth(preferencesUtil.getWalletAddress(), getActivity())
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(balance -> {
+                        binding.tokenAmount.setText(balance.toString());
+                    }, error -> {
 
-                    Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                    System.out.println(error.getMessage());
-                });
+                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        System.out.println(error.getMessage());
+                    });
+        } else {
+            ethManager.getTokenBalance(walletAddress, "", contractAddress, getActivity())
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(balance -> {
+                        binding.tokenAmount.setText(balance.toString());
+                    }, error -> {
+
+                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        System.out.println(error.getMessage());
+                    });
+        }
+
     }
 
     public void loadData() {

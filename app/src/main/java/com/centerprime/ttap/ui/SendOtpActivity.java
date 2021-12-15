@@ -34,6 +34,8 @@ public class SendOtpActivity extends AppCompatActivity {
     private String receiver;
     private String amount;
     private String fee;
+    private String tokenName;
+    private String contractAddress;
     private String walletAddress;
     private ProgressDialog progressDialog;
 
@@ -47,6 +49,8 @@ public class SendOtpActivity extends AppCompatActivity {
 
         receiver = getIntent().getStringExtra("receiverAddress");
         amount = getIntent().getStringExtra("amount");
+        tokenName = getIntent().getStringExtra("tokenName");
+        contractAddress = getIntent().getStringExtra("contractAddress");
         //double getFee = getIntent().getDoubleExtra("fee", 0);
         fee = getIntent().getStringExtra("fee");
         walletAddress = preferencesUtil.getWalletAddress();
@@ -63,30 +67,50 @@ public class SendOtpActivity extends AppCompatActivity {
                 if(preferencesUtil.getOtp().equals(pin)) {
                     progressDialog = ProgressDialog.show(SendOtpActivity.this, "Loading", "", true);
 
-                    ethManager.sendToken(walletAddress,
-                            "",
-                            gasPrice,
-                            gasLimitToken,
-                            tokenAmount,
-                            receiver,
-                            ApiUtils.getContractAddress(),
-                            SendOtpActivity.this)
+                    if (tokenName.equals("ETH")) {
+                        ethManager.sendEther(walletAddress, "", gasPrice, gasLimit, tokenAmount, receiver, SendOtpActivity.this)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(tx -> {
 
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(tx -> {
-
-                                sendFee();
+                                    sendFee();
 //                                progressDialog.dismiss();
 //                                Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
 //                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 //                                Toast.makeText(SendOtpActivity.this, "Success: " + tx, Toast.LENGTH_SHORT).show();
 //                                startActivity(intent);
 
-                            }, error -> {
-                                progressDialog.dismiss();
-                                Toast.makeText(SendOtpActivity.this, "error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-                            });
+                                }, error -> {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(SendOtpActivity.this, "error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                                });
+                    } else {
+                        ethManager.sendToken(walletAddress,
+                                "",
+                                gasPrice,
+                                gasLimitToken,
+                                tokenAmount,
+                                receiver,
+                                contractAddress,
+                                SendOtpActivity.this)
+
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(tx -> {
+
+                                    sendFee();
+//                                progressDialog.dismiss();
+//                                Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
+//                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                Toast.makeText(SendOtpActivity.this, "Success: " + tx, Toast.LENGTH_SHORT).show();
+//                                startActivity(intent);
+
+                                }, error -> {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(SendOtpActivity.this, "error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                                });
+                    }
+
                 } else {
                     binding.pinLockView.resetPinLockView();
                     Toast.makeText(SendOtpActivity.this, "Password error", Toast.LENGTH_SHORT).show();
