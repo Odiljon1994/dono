@@ -7,6 +7,7 @@ import com.centerprime.ttap.ui.DirectQuestionActivity;
 import com.centerprime.ttap.ui.ExportPrivatekeyActivity;
 import com.centerprime.ttap.ui.ImportWalletActivity;
 import com.centerprime.ttap.ui.MainActivity;
+import com.centerprime.ttap.ui.NotificationActivity;
 import com.centerprime.ttap.ui.OtpActivity;
 import com.centerprime.ttap.ui.OtpExportKeysActivity;
 import com.centerprime.ttap.ui.OtpImportWalletActivity;
@@ -62,6 +63,7 @@ public interface ApplicationComponent {
     void inject(WalletImportedActivity activity);
     void inject(WalletCreatedActivity activity);
     void inject(DirectQuestionActivity activity);
+    void inject(NotificationActivity activity);
 
 
     @Component.Builder

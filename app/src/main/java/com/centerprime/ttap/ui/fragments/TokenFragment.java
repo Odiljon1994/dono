@@ -128,6 +128,11 @@ public class TokenFragment extends Fragment {
                 binding.recyclerView.setVisibility(isEmpty ? View.GONE : View.VISIBLE);
                 binding.emptyView.setVisibility(isEmpty ? View.VISIBLE : View.GONE);
             }
+
+            @Override
+            public void onClick(Transaction transaction) {
+
+            }
         });
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
         binding.recyclerView.setAdapter(adapter);

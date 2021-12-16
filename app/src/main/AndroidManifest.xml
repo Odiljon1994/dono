@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
 
 
     <application
@@ -85,6 +86,8 @@
         <activity
             android:name=".ui.SendOtpActivity"
             android:exported="true"
+            tools:replace="android:screenOrientation"
+            android:stateNotNeeded="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 

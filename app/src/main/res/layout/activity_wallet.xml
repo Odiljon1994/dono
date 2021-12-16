@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
-                android:text="관한 동의가 장동으로 이루어집니다."
+                android:text="관한 동의가 자동으로 이루어집니다."
                 android:textColor="@color/black" />
 
         </LinearLayout>

@@ -72,11 +72,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:layout_marginTop="20dp"
+            android:gravity="center"
             android:layout_marginEnd="18dp"
-            android:text="※ TTAP Wallet에서는 시드 구문을 보관하지 않기 때문에\n
-     분실 및 유출로 인한 손해를 책임지지 않습니다."
+            android:text="*TTAP Wallet은 고객의 시드 구문을 보관하지 않습니다.\n
+시드 구문 분실 및 유실로 인해 발생하는 문제에 대해 책임지지 않습니다."
             android:textColor="#999999"
-            android:textSize="14dp" />
+            android:textSize="12dp" />
 
         <View
             android:layout_width="1dp"

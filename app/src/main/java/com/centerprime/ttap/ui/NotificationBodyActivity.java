@@ -22,5 +22,6 @@ public class NotificationBodyActivity extends AppCompatActivity {
         binding.text.setText("공지사항");
         binding.title.setText(getIntent().getStringExtra("title"));
         binding.date.setText(getIntent().getStringExtra("date"));
+        binding.content.setText(getIntent().getStringExtra("content"));
     }
 }

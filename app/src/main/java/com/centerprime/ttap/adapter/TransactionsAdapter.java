@@ -100,9 +100,9 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
                 amount = amount.substring(0, 5);
             }
             if(walletAddress.toLowerCase().equals(transaction.getFrom().toLowerCase()) && transaction.getIsError().equals("0")) {
-                binding.amont.setTextColor(Color.parseColor("#00a65e"));
+                binding.amont.setTextColor(Color.parseColor("#43B0DD"));
             } else if (!walletAddress.toLowerCase().equals(transaction.getFrom().toLowerCase()) && transaction.getIsError().equals("0")){
-                binding.amont.setTextColor(Color.parseColor("#445aff"));
+                binding.amont.setTextColor(Color.parseColor("#DD4343"));
             } else {
                 binding.amont.setTextColor(Color.RED);
             }
@@ -111,6 +111,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
             binding.amont.setText(amount.toString());
             binding.txId.setText(transaction.getHash());
 
+            binding.getRoot().setOnClickListener(v -> emptyViewListener.onClick(transaction));
 
 //            binding.date.setText(transaction.getDate());
 //            binding.amont.setText(transaction.getAmount());
@@ -119,5 +120,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
     }
     public interface EmptyViewListener {
         void showItems(boolean isEmpty);
+        void onClick(Transaction transaction);
     }
+
 }

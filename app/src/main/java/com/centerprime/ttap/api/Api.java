@@ -3,6 +3,7 @@ package com.centerprime.ttap.api;
 import com.centerprime.ttap.models.CurrentFeeModel;
 import com.centerprime.ttap.models.DirectQuestionReqModel;
 import com.centerprime.ttap.models.DirectQuestionResModel;
+import com.centerprime.ttap.models.NotificationModel;
 import com.centerprime.ttap.models.PostWalletAddressReqModel;
 import com.centerprime.ttap.models.PostWalletAddressResModel;
 
@@ -21,4 +22,8 @@ public interface Api {
 
     @POST("/sendMail")
     Single<DirectQuestionResModel> directQuestion(@Body DirectQuestionReqModel directQuestionReqModel);
+
+
+    @GET("/getEvents")
+    Single<NotificationModel> getNotifications();
 }

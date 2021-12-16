@@ -9,6 +9,7 @@ import com.centerprime.ttap.ui.viewmodel.CurrentFeeVM;
 import com.centerprime.ttap.ui.viewmodel.DirectQuestionVM;
 import com.centerprime.ttap.ui.viewmodel.EtherScanVM;
 import com.centerprime.ttap.ui.viewmodel.EthereumVM;
+import com.centerprime.ttap.ui.viewmodel.NotificationVM;
 import com.centerprime.ttap.ui.viewmodel.PostWalletAddressVM;
 
 import dagger.Binds;
@@ -49,5 +50,10 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(DirectQuestionVM.class)
     abstract ViewModel bindDirectQuestionVM(DirectQuestionVM directQuestionVM);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(NotificationVM.class)
+    abstract ViewModel bindNotificationVM(NotificationVM notificationVM);
 
 }

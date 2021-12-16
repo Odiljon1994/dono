@@ -1,6 +1,10 @@
 package com.centerprime.ttap.models;
 
 public class NotificationsModel {
+
+
+
+
     private String title;
     private String date;
 
