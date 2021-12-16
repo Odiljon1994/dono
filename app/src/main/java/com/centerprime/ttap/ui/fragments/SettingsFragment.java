@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.centerprime.ttap.R;
 import com.centerprime.ttap.databinding.FragmentSettingsBinding;
+import com.centerprime.ttap.ui.LockAppActivity;
 import com.centerprime.ttap.ui.OtpExportKeysActivity;
 
 public class SettingsFragment extends Fragment {
@@ -38,7 +39,7 @@ public class SettingsFragment extends Fragment {
         });
 
         binding.lockTheWallet.setOnClickListener(v -> {
-
+            startActivity(new Intent(getActivity(), LockAppActivity.class));
         });
 
         return view;

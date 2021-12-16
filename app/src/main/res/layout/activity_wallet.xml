@@ -16,7 +16,7 @@
             android:layout_height="155dp"
             android:layout_gravity="center"
             android:layout_marginTop="100dp"
-            android:src="@drawable/wallet_import" />
+            android:src="@drawable/new_app_logo" />
 
 
         <View

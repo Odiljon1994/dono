@@ -99,13 +99,13 @@ public class TokenFragment extends Fragment {
             public void onTabSelected(TabLayout.Tab tab) {
                 switch (tabLayout.getSelectedTabPosition()) {
                     case 0: // ALL
-
+                        adapter.setItems(allTransactionList);
                         break;
                     case 1: // SENT
-
+                        adapter.setItems(sendTransactionList);
                         break;
                     case 2: // RECEIVED
-
+                        adapter.setItems(receiveTransactionList);
                         break;
 
                 }
@@ -195,6 +195,10 @@ public class TokenFragment extends Fragment {
     public void items(List<Transaction> items) {
 
         allTransactionList = items;
+        receiveTransactionList = new ArrayList<>();
+        sendTransactionList = new ArrayList<>();
+
+
 
         adapter.setItems(allTransactionList);
         binding.swipeRefreshLayout.setRefreshing(false);

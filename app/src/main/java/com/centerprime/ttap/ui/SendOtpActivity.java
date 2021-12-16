@@ -9,12 +9,18 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.andrognito.pinlockview.PinLockListener;
 import com.centerprime.ttap.MyApp;
 import com.centerprime.ttap.R;
 import com.centerprime.ttap.api.ApiUtils;
 import com.centerprime.ttap.databinding.ActivityOtpBinding;
+import com.centerprime.ttap.di.ViewModelFactory;
+import com.centerprime.ttap.models.NotificationModel;
+import com.centerprime.ttap.models.PostTransactionResModel;
+import com.centerprime.ttap.ui.viewmodel.NotificationVM;
+import com.centerprime.ttap.ui.viewmodel.PostTransactionVM;
 import com.centerprime.ttap.util.Constants;
 import com.centerprime.ttap.util.PreferencesUtil;
 import com.centerprime.ttap.web3.EthManager;
@@ -39,13 +45,19 @@ public class SendOtpActivity extends AppCompatActivity {
     private String contractAddress;
     private String walletAddress;
     private ProgressDialog progressDialog;
+    private PostTransactionVM postTransactionVM;
+    @Inject
+    ViewModelFactory viewModelFactory;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((MyApp) getApplication()).getAppComponent().inject(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_otp);
+        postTransactionVM = ViewModelProviders.of(this, viewModelFactory).get(PostTransactionVM.class);
         binding.pinLockView.attachIndicatorDots(binding.indicatorDots);
+        postTransactionVM.item().observe(this, this::items);
+        postTransactionVM.errorMessage().observe(this, this::onError);
         System.out.println(preferencesUtil.getOtp());
 
         receiver = getIntent().getStringExtra("receiverAddress");
@@ -151,6 +163,7 @@ public class SendOtpActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(tx -> {
                     progressDialog.dismiss();
+                    postTransactionVM.postTransaction();
                     Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     Toast.makeText(SendOtpActivity.this, "Success: " + tx, Toast.LENGTH_SHORT).show();
@@ -162,5 +175,15 @@ public class SendOtpActivity extends AppCompatActivity {
                     Toast.makeText(SendOtpActivity.this, "Error on getting fee: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                 });
+    }
+
+    public void items(PostTransactionResModel model) {
+        System.out.println("*****");
+        System.out.println(model.getStatus());
+        System.out.println("*****");
+
+    }
+    public void onError(String error) {
+
     }
 }

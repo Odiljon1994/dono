@@ -2,6 +2,7 @@ package com.centerprime.ttap.di;
 
 import com.centerprime.ttap.api.Api;
 import com.centerprime.ttap.api.ApiUtils;
+import com.centerprime.ttap.api.CoinMarketCapAPI;
 import com.centerprime.ttap.api.EtherscanAPI;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -84,5 +85,34 @@ public class NetModule {
     @Singleton
     Api provideBaseApi(@Named("baseAPI") Retrofit retrofit) {
         return retrofit.create(Api.class);
+    }
+
+
+    // CoinMarketCap API
+
+    @Provides
+    @Singleton
+    @Named("coinMarketCapApi")
+    OkHttpClient provideOkHttpClient3() {
+        OkHttpClient.Builder client = new OkHttpClient.Builder();
+        return client.build();
+    }
+
+    @Provides
+    @Singleton
+    @Named("coinMarketCapApi")
+    Retrofit provideBaseRetrofit3(Gson gson, @Named("coinMarketCapApi") OkHttpClient okHttpClient) {
+        return new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .baseUrl(ApiUtils.getCoinMarketCap())
+                .client(okHttpClient)
+                .build();
+    }
+
+    @Provides
+    @Singleton
+    CoinMarketCapAPI provideCoinMarketCapApi(@Named("coinMarketCapApi") Retrofit retrofit) {
+        return retrofit.create(CoinMarketCapAPI.class);
     }
 }

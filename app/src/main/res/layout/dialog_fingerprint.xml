@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="65dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/dialog_fingerprint" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosanskr_regular"
+            android:includeFontPadding="false"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:text="등록된 기기의"
+            android:textColor="@color/black"
+            android:textSize="15dp" />
+
+
+        <TextView
+            android:id="@+id/result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/notosanskr_regular"
+            android:includeFontPadding="false"
+            android:text="생체인식 정보를 불러옵니다"
+            android:textColor="@color/black"
+            android:textSize="15dp" />
+
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="15dp"
+            android:gravity="center"
+            android:text="*불러온 생체인식 정보는 \n지갑연결을 위해서만 사용됩니다"
+            android:textColor="#121212"
+            android:textSize="14dp"
+            android:textStyle="normal" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/okBtn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:fontFamily="@font/notosanskr_regular"
+                android:gravity="center"
+                android:text="동의"
+                android:textColor="@color/white"
+                android:textSize="17dp"
+
+                />
+
+            <TextView
+                android:id="@+id/noBtn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:background="#999999"
+                android:fontFamily="@font/notosanskr_regular"
+                android:gravity="center"
+                android:text="반대"
+                android:textColor="@color/white"
+                android:textSize="17dp"
+
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

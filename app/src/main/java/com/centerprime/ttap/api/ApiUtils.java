@@ -17,8 +17,10 @@ public class ApiUtils {
 
     private static final String etherScan = "https://api.etherscan.io/api/"; // for mainnet
     private static final String baseUrl = "http://3.34.99.232:3001";
+    private static final String coinMarketCap = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/";
 
     public static String getBaseUrl() {return baseUrl;}
+    public static String getCoinMarketCap() {return coinMarketCap;}
 
     public static String getEtherscanUrl() {
         if (isMainnet) {

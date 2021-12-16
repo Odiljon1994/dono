@@ -119,12 +119,13 @@
                     android:textSize="15dp" />
 
                 <TextView
+                    android:id="@+id/ttapKrw"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
-                    android:text="0 KRW"
+                    android:text=""
                     android:textColor="#999999"
                     android:textSize="12dp" />
 
@@ -185,12 +186,13 @@
                     android:textSize="15dp" />
 
                 <TextView
+                    android:id="@+id/ethKrw"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
-                    android:text="0 KRW"
+                    android:text=""
                     android:textColor="#999999"
                     android:textSize="12dp" />
 
@@ -252,12 +254,13 @@
                     android:textSize="15dp" />
 
                 <TextView
+                    android:id="@+id/bnbKrw"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
-                    android:text="0 KRW"
+                    android:text=""
                     android:textColor="#999999"
                     android:textSize="12dp" />
 
