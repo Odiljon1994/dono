@@ -12,6 +12,7 @@ public class PreferencesUtil {
     private static final String MNEMONIC = "MNEMONIC";
     private static final String PRIVATE_KEY = "PRIVATE_KEY";
     private static final String IS_REGISTERED = "IS_REGISTERED";
+    private static final String IS_APP_LOCKED = "IS_APP_LOCKED";
 
 
 
@@ -54,6 +55,13 @@ public class PreferencesUtil {
     }
     public boolean getIsRegistered() {
         return sharedPreferences.getBoolean(IS_REGISTERED, false);
+    }
+
+    public void saveIsAppLocked(boolean isAppLocked) {
+        sharedPreferences.edit().putBoolean(IS_APP_LOCKED, isAppLocked).apply();
+    }
+    public boolean getIsAppLocked() {
+        return sharedPreferences.getBoolean(IS_APP_LOCKED, false);
     }
 
 

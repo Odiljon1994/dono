@@ -53,6 +53,7 @@ public class TokenFragment extends Fragment {
     private String walletAddress;
     String tokenName = "";
     String contractAddress = "";
+    String amountInKrw = "";
 
     private EthereumVM ethereumVM;
     @Nullable
@@ -63,6 +64,7 @@ public class TokenFragment extends Fragment {
         View view = binding.getRoot();
 
         tokenName = getArguments().getString("tokenName");
+        amountInKrw = getArguments().getString("KRW");
         contractAddress = getArguments().getString("contractAddress");
         binding.tokenName.setText(tokenName);
         if (tokenName.equals("ETH")) {
@@ -70,6 +72,8 @@ public class TokenFragment extends Fragment {
         } else if (tokenName.equals("BNB")) {
             binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.bnb_icon));
         }
+
+        binding.amountInKrw.setText(amountInKrw + " KRW");
 
 
         ethereumVM = ViewModelProviders.of(this, viewModelFactory).get(EthereumVM.class);

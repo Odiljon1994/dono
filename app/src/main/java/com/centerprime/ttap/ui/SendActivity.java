@@ -30,6 +30,8 @@ import com.centerprime.ttap.web3.EthManager;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.web3j.crypto.WalletUtils;
+
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -126,9 +128,11 @@ public class SendActivity extends AppCompatActivity {
 
         binding.nextBtn.setOnClickListener(v -> {
             if (!TextUtils.isEmpty(binding.receiverAddress.getText().toString())
-                    && !TextUtils.isEmpty(binding.amount.getText().toString())) {
+                    && !TextUtils.isEmpty(binding.amount.getText().toString())
+                    && WalletUtils.isValidAddress(binding.receiverAddress.getText().toString())) {
 
-                if (balance >= fee) {
+                if (balance >= fee
+                        && Double.parseDouble(binding.totalAmount.getText().toString()) >= Double.parseDouble(binding.amount.getText().toString())) {
                     Intent intent = new Intent(SendActivity.this, VerifySendingActivity.class);
                     intent.putExtra("receiverAddress", binding.receiverAddress.getText().toString());
                     intent.putExtra("fee", String.valueOf(fee));
@@ -136,11 +140,15 @@ public class SendActivity extends AppCompatActivity {
                     intent.putExtra("contractAddress", contractAddress);
                     intent.putExtra("amount", binding.amount.getText().toString());
                     startActivity(intent);
-                } else {
+                } else if (balance < fee){
                     binding.errorMessage.setText("수수료 부족합니다");
+                } else if (Double.parseDouble(binding.totalAmount.getText().toString()) >= Double.parseDouble(binding.amount.getText().toString())) {
+                    binding.errorMessage.setText("잔액이 부족합니다");
                 }
 
 
+            } else if(!WalletUtils.isValidAddress(binding.receiverAddress.getText().toString())) {
+                binding.errorMessage.setText("Wallet address is not valid");
             } else if (TextUtils.isEmpty(binding.receiverAddress.getText().toString())) {
                 binding.errorMessage.setText("주소와 금액을 먼저 입력해주세요.");
             } else if (TextUtils.isEmpty(binding.amount.getText().toString())) {

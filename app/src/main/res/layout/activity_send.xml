@@ -39,23 +39,22 @@
                 android:layout_width="56dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="right|center"
-                android:src="@drawable/qr_code_icon"
                 android:padding="18dp"
-                 />
+                android:src="@drawable/qr_code_icon" />
         </FrameLayout>
 
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="18dp"-->
-<!--            android:fontFamily="@font/notosanskr_regular"-->
-<!--            android:includeFontPadding="false"-->
-<!--            android:text="입금"-->
-<!--            android:textColor="@color/black"-->
+        <!--        <TextView-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="18dp"-->
+        <!--            android:fontFamily="@font/notosanskr_regular"-->
+        <!--            android:includeFontPadding="false"-->
+        <!--            android:text="입금"-->
+        <!--            android:textColor="@color/black"-->
 
-<!--            android:textSize="30dp"-->
-<!--            android:textStyle="bold" />-->
+        <!--            android:textSize="30dp"-->
+        <!--            android:textStyle="bold" />-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -79,227 +78,226 @@
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
                 android:text="TTAP"
-                android:textStyle="bold"
-                android:textColor="#121212" />
+                android:textColor="#121212"
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
             <TextView
+                android:id="@+id/totalAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="18dp"
                 android:gravity="end"
                 android:text=""
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:id="@+id/totalAmount"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="5dp"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
                 android:text="출금주소"
-                android:textColor="@color/black"
-                android:layout_marginStart="18dp"/>
+                android:textColor="@color/black" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="8dp"
                 android:layout_marginStart="10dp"
-                android:textStyle="bold"
-                android:text="*잘못된 출금 주소를 입력하는 경우, 가상 자산 복구는 불가능합니다."/>
+                android:text="*잘못된 출금 주소를 입력하는 경우, 가상 자산 복구는 불가능합니다."
+                android:textSize="8dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginStart="18dp"
-            android:layout_marginEnd="18dp"
-            android:background="@drawable/frame_background"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="18dp"
+            android:background="@drawable/frame_background"
             android:gravity="center"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/receiverAddress"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="40dp"
-                android:hint="0x로 시작하는 주소를 입력해주세요."
-                android:textColorHint="#d2d2d2"
+                android:layout_weight="1"
+                android:background="@null"
                 android:ellipsize="middle"
-                android:textSize="12dp"
+                android:hint="0x로 시작하는 주소를 입력해주세요."
+                android:paddingStart="10dp"
                 android:singleLine="true"
                 android:text=""
-                android:paddingStart="10dp"
+                android:textColorHint="#d2d2d2"
 
-                android:background="@null"/>
-
+                android:textSize="12dp" />
 
 
         </LinearLayout>
 
         <Button
             android:id="@+id/addressBook"
-            android:text="주소록"
-            android:layout_marginStart="18dp"
-            android:background="#f0f0f0"
-            android:layout_marginEnd="18dp"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="18dp"
+            android:background="#f0f0f0"
+            android:text="주소록" />
 
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="※ 출금 주소를 잘못 입력하면 가상자산 복구가 불가능합니다."-->
-<!--            android:layout_gravity="center"-->
-<!--            android:gravity="center"-->
-<!--            android:textColor="#999999"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:textSize="12dp"/>-->
+        <!--        <TextView-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="※ 출금 주소를 잘못 입력하면 가상자산 복구가 불가능합니다."-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:gravity="center"-->
+        <!--            android:textColor="#999999"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            android:textSize="12dp"/>-->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="금액"
-            android:fontFamily="@font/notosanskr_regular"
-            android:includeFontPadding="false"
-            android:textColor="@color/black"
             android:layout_marginStart="18dp"
             android:layout_marginTop="30dp"
-            android:textSize="15dp"/>
+            android:fontFamily="@font/notosanskr_regular"
+            android:includeFontPadding="false"
+            android:text="금액"
+            android:textColor="@color/black"
+            android:textSize="15dp" />
 
         <LinearLayout
-            android:layout_marginStart="18dp"
-            android:layout_marginEnd="18dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/frame_background"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="18dp"
+            android:background="@drawable/frame_background"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/amount"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="수량을 입력해주세요."
                 android:inputType="numberDecimal"
                 android:paddingStart="10dp"
-                android:layout_gravity="center"
-                android:hint="TTAP 수량을 입력해주세요."
-                android:textSize="14dp"
                 android:textColorHint="#d2d2d2"
-                android:layout_weight="1"
-                android:background="@null"/>
+                android:textSize="14dp" />
+
             <TextView
                 android:id="@+id/cymbol"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TTAP"
                 android:layout_gravity="center"
                 android:layout_marginEnd="10dp"
-                android:textColor="@color/black"
                 android:fontFamily="@font/poppins_regular"
-                android:includeFontPadding="false"/>
+                android:includeFontPadding="false"
+                android:text="TTAP"
+                android:textColor="@color/black" />
+
             <TextView
                 android:id="@+id/max"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Max"
-                android:textSize="12dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
                 android:layout_gravity="center"
-                android:textColor="#43B0DD"
+                android:layout_marginEnd="10dp"
                 android:fontFamily="@font/poppins_regular"
                 android:includeFontPadding="false"
-                android:layout_marginEnd="10dp"/>
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="Max"
+                android:textColor="#43B0DD"
+                android:textSize="12dp" />
 
         </LinearLayout>
 
         <TextView
             android:id="@+id/balance"
-            android:layout_marginStart="18dp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/notosanskr_regular"
-            android:includeFontPadding="false"
-            android:textSize="15dp"
-            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="잔액 : "/>
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/notosanskr_regular"
+            android:includeFontPadding="false"
+            android:text="잔액 : "
+            android:textColor="@color/black"
+            android:textSize="15dp" />
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/lines"/>
+            android:src="@drawable/lines" />
 
         <TextView
             android:id="@+id/fee"
-            android:layout_marginStart="18dp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/notosanskr_regular"
-            android:includeFontPadding="false"
-            android:textSize="15dp"
-            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="수수료 :"/>
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/notosanskr_regular"
+            android:includeFontPadding="false"
+            android:text="수수료 :"
+            android:textColor="@color/black"
+            android:textSize="15dp" />
 
         <TextView
             android:id="@+id/currentFee"
-            android:layout_marginStart="18dp"
-            android:textColor="#253D85"
-            android:fontFamily="@font/notosanskr_regular"
-            android:includeFontPadding="false"
-            android:textSize="12dp"
-            android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""/>
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/notosanskr_regular"
+            android:includeFontPadding="false"
+            android:text=""
+            android:textColor="#253D85"
+            android:textSize="12dp" />
 
         <View
             android:layout_width="1dp"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/errorMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
             android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:layout_marginEnd="18dp"
-            android:textColor="#ff0000"/>
+            android:textColor="#ff0000" />
 
 
         <Button
             android:id="@+id/nextBtn"
-            android:layout_marginStart="18dp"
-            android:layout_marginEnd="18dp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="40dp"
             android:background="@color/colorPrimary"
             android:text="다음"
-            android:textColor="@color/white"
-            android:layout_marginBottom="40dp"
-            />
+            android:textColor="@color/white" />
     </LinearLayout>
 </layout>

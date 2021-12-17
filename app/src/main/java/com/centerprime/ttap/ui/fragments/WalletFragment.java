@@ -80,8 +80,10 @@ public class WalletFragment extends Fragment {
             transaction.replace(R.id.fragment_container, someFragment ); // give your fragment container id in first parameter
             transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
 
+            String ttapKrw = String.format("%,.2f", tokens.get(2).getAmountInKrw());
             Bundle bundle = new Bundle();
             bundle.putString("tokenName", "TTAP");
+            bundle.putString("KRW", ttapKrw);
             bundle.putString("contractAddress", ApiUtils.getContractAddress());
             someFragment.setArguments(bundle);
 
@@ -95,8 +97,10 @@ public class WalletFragment extends Fragment {
             transaction.replace(R.id.fragment_container, someFragment ); // give your fragment container id in first parameter
             transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
 
+            String ethKrw = String.format("%,.2f", tokens.get(0).getAmountInKrw());
             Bundle bundle = new Bundle();
             bundle.putString("tokenName", "ETH");
+            bundle.putString("KRW", ethKrw);
             bundle.putString("contractAddress", preferencesUtil.getWalletAddress());
             someFragment.setArguments(bundle);
 
@@ -109,8 +113,10 @@ public class WalletFragment extends Fragment {
             transaction.replace(R.id.fragment_container, someFragment ); // give your fragment container id in first parameter
             transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
 
+            String bnbKrw = String.format("%,.2f", tokens.get(1).getAmountInKrw());
             Bundle bundle = new Bundle();
             bundle.putString("tokenName", "BNB");
+            bundle.putString("KRW", bnbKrw);
             bundle.putString("contractAddress", ApiUtils.getBnbContractAddress());
             someFragment.setArguments(bundle);
 

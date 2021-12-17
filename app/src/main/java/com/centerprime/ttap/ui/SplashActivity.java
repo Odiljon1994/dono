@@ -46,7 +46,10 @@ public class SplashActivity extends AppCompatActivity {
 
             if (!preferencesUtil.getIsRegistered()) {
                 startActivity(new Intent(SplashActivity.this, WalletActivity.class));
-            } else {
+            } else if (preferencesUtil.getIsAppLocked()) {
+                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+            }
+            else {
                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
             }
             finish();

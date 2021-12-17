@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Wallet Address"
+        android:text="지갑 주소"
         android:textColor="@color/black"
         android:textSize="14dp"
         android:textStyle="bold" />
@@ -37,7 +37,7 @@
         android:textSize="18dp"
         android:fontFamily="@font/notosanskr_regular"
         android:includeFontPadding="false"
-        android:text="Wallet"
+        android:text="지갑"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
