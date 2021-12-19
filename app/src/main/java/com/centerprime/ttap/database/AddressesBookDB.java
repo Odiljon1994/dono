@@ -9,6 +9,8 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.centerprime.ttap.models.AddressesBookModel;
+
 public class AddressesBookDB extends SQLiteOpenHelper {
     private static final String TAG = "DatabaseAddressesBook";
     private static final String TABLE_NAME = "addresses_book";
@@ -63,4 +65,13 @@ public class AddressesBookDB extends SQLiteOpenHelper {
         String query = "DELETE FROM " + TABLE_NAME;
         db.execSQL(query);
     }
+
+    public void deleteRow(AddressesBookModel model) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME, "ID" + " = ?",
+                new String[] { String.valueOf(model.getID()) });
+        db.close();
+    }
+
 }

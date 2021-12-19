@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil;
 import com.centerprime.ttap.R;
 import com.centerprime.ttap.database.AddressesBookDB;
 import com.centerprime.ttap.databinding.ActivityAddWalletaddressBinding;
+import com.centerprime.ttap.ui.fragments.AddressesBookFragment;
 
 import org.web3j.crypto.WalletUtils;
 
@@ -45,6 +46,10 @@ public class AddWalletAddressActivity extends AppCompatActivity {
                     boolean insertData = addressesBookDB.addData(binding.name.getText().toString(), binding.walletAddress.getText().toString());
 
                     if (insertData) {
+//                        AddressesBookFragment.getDataFromDB();
+//                        AddressesBookFragment.adapter.notifyDataSetChanged();
+//                        finish();
+
                         Intent intent = new Intent(AddWalletAddressActivity.this, MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);

@@ -137,7 +137,7 @@ public class OtpActivity extends AppCompatActivity {
             public void onClick() {
 
                 if (!isDoubleClicked) {
-                    baseDialog.changeText();
+                    baseDialog.changeText("시드 구문을 공유하거나 타 기기에\n저장할 경우 가상자산이 유출될 수 있습니다.");
                     isDoubleClicked = true;
                 } else {
 

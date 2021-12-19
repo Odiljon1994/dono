@@ -8,9 +8,11 @@ import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
 import android.graphics.Paint;
+import android.os.BaseBundle;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +25,7 @@ import com.centerprime.ttap.ui.fragments.MainFragment2;
 import com.centerprime.ttap.ui.fragments.SettingsFragment;
 import com.centerprime.ttap.ui.fragments.WalletFragment;
 import com.centerprime.ttap.util.PreferencesUtil;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -31,6 +34,7 @@ import javax.inject.Inject;
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
+    public static AppBarLayout appBarLayout;
 
     @Inject
     PreferencesUtil preferencesUtil;
@@ -44,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         binding.drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        appBarLayout = findViewById(R.id.appBar);
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.home:

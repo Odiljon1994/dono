@@ -34,11 +34,13 @@ public class BaseDialog extends FrameLayout {
         this.clickListener = clickListener;
     }
 
-    public void changeText() {
+    public void changeText(String text) {
 
         binding.image.setImageDrawable(context.getDrawable(R.drawable.wallet_checked));
-        binding.message.setText("시드 구문을 공유하거나 타 기기에\n저장할 경우 가상자산이 유출될 수 있습니다.");
+        binding.message.setText(text);
     }
+
+
 
     public interface ClickListener {
         default void onClick() {

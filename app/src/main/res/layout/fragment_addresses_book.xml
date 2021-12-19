@@ -49,7 +49,29 @@
                 android:layout_gravity="right|center"
                 />
 
+            <ImageView
+                android:id="@+id/deleteBtn"
+                android:layout_width="56dp"
+                android:visibility="gone"
+                android:layout_height="match_parent"
+                android:layout_gravity="right|center"
+                android:padding="18dp"
+                android:src="@drawable/delete_btn" />
+
         </FrameLayout>
+
+        <TextView
+            android:id="@+id/selectAddresses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="8dp"
+            android:paddingTop="3dp"
+            android:textColor="#DD4343"
+            android:paddingBottom="3dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="선택"/>
 
         <View
             android:layout_width="match_parent"
@@ -57,14 +79,28 @@
             android:layout_marginTop="10dp"
             android:background="#F0F0F0"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_marginBottom="5dp"
-            tools:listitem="@layout/item_addresses_book"
-            />
+            android:layout_marginBottom="5dp">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_addresses_book"
+                />
+
+            <TextView
+                android:id="@+id/noData"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="No addresses saved..."/>
+        </FrameLayout>
+
+
 
 
     </LinearLayout>

@@ -75,7 +75,8 @@ public class WalletFragment extends Fragment {
         checkBalanceBnb();
 
         binding.ttapAsset.setOnClickListener(v -> {
-            Fragment someFragment = new TokenFragment();
+           // Fragment someFragment = new TokenFragment();
+            Fragment someFragment = new TokensFragment();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, someFragment ); // give your fragment container id in first parameter
             transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
@@ -92,7 +93,8 @@ public class WalletFragment extends Fragment {
         });
 
         binding.ethAsset.setOnClickListener(v -> {
-            Fragment someFragment = new TokenFragment();
+            // Fragment someFragment = new TokenFragment();
+            Fragment someFragment = new TokensFragment();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, someFragment ); // give your fragment container id in first parameter
             transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
@@ -108,7 +110,8 @@ public class WalletFragment extends Fragment {
         });
 
         binding.bnb.setOnClickListener(v -> {
-            Fragment someFragment = new TokenFragment();
+            // Fragment someFragment = new TokenFragment();
+            Fragment someFragment = new TokensFragment();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, someFragment ); // give your fragment container id in first parameter
             transaction.addToBackStack(null);  // if written, this transaction will be added to backstack

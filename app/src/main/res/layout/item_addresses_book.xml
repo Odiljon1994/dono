@@ -1,45 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/name"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="18dp"
-            android:fontFamily="@font/notosanskr_regular"
-            android:includeFontPadding="false"
-            android:maxLines="1"
-            android:text="곽성원"
-            android:textColor="@color/black"
-            android:textSize="14dp" />
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/walletAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="18dp"
-            android:ellipsize="middle"
-            android:fontFamily="@font/notosanskr_regular"
-            android:includeFontPadding="false"
-            android:maxLines="1"
-            android:text="0xea674fdde714fd979de3edf0f56aa9716b898ec8"
-            android:textColor="#999999"
-            android:textSize="10dp"
-            android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="18dp"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="곽성원"
+                    android:textColor="@color/black"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/walletAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="18dp"
+                    android:ellipsize="middle"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:includeFontPadding="false"
+                    android:text="0xea674fdde714fd979de3edf0f56aa9716b898ec8"
+                    android:textColor="#999999"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:visibility="invisible"
+                android:layout_gravity="center"/>
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"

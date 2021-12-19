@@ -40,9 +40,13 @@ public class AddressesBookDialog extends FrameLayout {
         Cursor cursor = addressesBookDB.getData();
 
         while (cursor.moveToNext()) {
-            list.add(new AddressesBookModel(cursor.getString(1), cursor.getString(2)));
+            list.add(new AddressesBookModel(cursor.getInt(0), cursor.getString(1), cursor.getString(2), false));
         }
 
+        if (list.size() == 0) {
+            binding.recyclerView.setVisibility(GONE);
+            binding.noTransactions.setVisibility(VISIBLE);
+        }
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.VERTICAL, false));
         adapter = new AddressesBookAdapter(list, context);
         binding.recyclerView.setAdapter(adapter);

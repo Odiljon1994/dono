@@ -2,6 +2,7 @@ package com.centerprime.ttap.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import com.centerprime.ttap.models.AddressesBookModel;
 import com.centerprime.ttap.models.FaqModel;
 import com.centerprime.ttap.ui.dialogs.ScreenSHotDialog;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AddressesBookAdapter extends RecyclerView.Adapter<AddressesBookAdapter.ViewHolder>{
@@ -60,10 +62,31 @@ public class AddressesBookAdapter extends RecyclerView.Adapter<AddressesBookAdap
         }
 
         void bind(AddressesBookModel model) {
+            if (model.isChecked()) {
+                binding.checkbox.setVisibility(View.VISIBLE);
+            }
             binding.walletAddress.setText(model.getWalletAddress());
             binding.name.setText(model.getName());
             binding.getRoot().setOnClickListener(v -> {clickListener.onClick(model);});
+
+            binding.checkbox.setOnClickListener(v -> {
+                if (binding.checkbox.isChecked()) {
+                    model.setChecked(false);
+                } else {
+                    model.setChecked(true);
+                }
+            });
         }
+    }
+
+    public List<AddressesBookModel> getCheckedAddresses() {
+        List<AddressesBookModel> models = new ArrayList<>();
+        for (int i = 0; i < items.size(); i++) {
+            if (!items.get(i).isChecked()) {
+                models.add(items.get(i));
+            }
+        }
+        return  models;
     }
 
     public interface ClickListener {
