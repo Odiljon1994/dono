@@ -36,6 +36,8 @@ public class MainFragment2 extends Fragment {
         View view = binding.getRoot();
 
         walletAddress = preferencesUtil.getWalletAddress();
+        binding.progressBar.getProgress();
+
         checkBalance();
 
         return view;
@@ -51,8 +53,9 @@ public class MainFragment2 extends Fragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(balance -> {
                     binding.amount.setText(balance.toString());
+                    binding.progressBar.setVisibility(View.GONE);
                 }, error -> {
-
+                    binding.progressBar.setVisibility(View.GONE);
                     Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     System.out.println(error.getMessage());
                 });

@@ -73,6 +73,7 @@ public class TokensFragment extends Fragment {
         tokenName = getArguments().getString("tokenName");
         amountInKrw = getArguments().getString("KRW");
         contractAddress = getArguments().getString("contractAddress");
+        walletAddress = preferencesUtil.getWalletAddress();
         binding.tokenName.setText(tokenName);
         if (tokenName.equals("ETH")) {
             binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.eth_icon));
@@ -136,10 +137,10 @@ public class TokensFragment extends Fragment {
                     case 0: // ALL
                         adapter.setItems(allTransactionList);
                         break;
-                    case 1: // SENT
+                    case 1: // RECEIVED
                         adapter.setItems(receiveTransactionList);
                         break;
-                    case 2: // RECEIVED
+                    case 2: // SEND
                         adapter.setItems(sendTransactionList);
                         break;
 
@@ -188,8 +189,11 @@ public class TokensFragment extends Fragment {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(balance -> {
                         binding.tokenAmount.setText(balance.toString());
+                        binding.progressBar.setVisibility(View.GONE);
+                        binding.tokenAmount.setVisibility(View.VISIBLE);
                     }, error -> {
-
+                        binding.progressBar.setVisibility(View.GONE);
+                        binding.tokenAmount.setVisibility(View.VISIBLE);
                         Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
                         System.out.println(error.getMessage());
                     });
@@ -199,8 +203,12 @@ public class TokensFragment extends Fragment {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(balance -> {
                         binding.tokenAmount.setText(balance.toString());
+                        binding.progressBar.setVisibility(View.GONE);
+                        binding.tokenAmount.setVisibility(View.VISIBLE);
                     }, error -> {
 
+                        binding.progressBar.setVisibility(View.GONE);
+                        binding.tokenAmount.setVisibility(View.VISIBLE);
                         Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
                         System.out.println(error.getMessage());
                     });

@@ -139,6 +139,8 @@ public class WalletFragment extends Fragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(balance -> {
                     binding.amountEth.setText(balance.toString());
+                    binding.progressBarEth.setVisibility(View.GONE);
+                    binding.amountEth.setVisibility(View.VISIBLE);
                     tokens.get(0).setTokenAmount(Double.parseDouble(balance.toString()));
                     tokenCount++;
                     if (tokenCount == tokens.size()) {
@@ -146,6 +148,8 @@ public class WalletFragment extends Fragment {
                     }
                 }, error -> {
                     Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    binding.progressBarEth.setVisibility(View.GONE);
+                    binding.amountEth.setVisibility(View.VISIBLE);
                     System.out.println(error.getMessage());
                     tokenCount++;
                     if (tokenCount == tokens.size()) {
@@ -165,6 +169,8 @@ public class WalletFragment extends Fragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(balance -> {
                     binding.amountTtap.setText(balance.toString());
+                    binding.progressBarTtap.setVisibility(View.GONE);
+                    binding.amountTtap.setVisibility(View.VISIBLE);
                     tokens.get(2).setTokenAmount(Double.parseDouble(balance.toString()));
                     tokenCount++;
                     if (tokenCount == tokens.size()) {
@@ -173,6 +179,8 @@ public class WalletFragment extends Fragment {
                 }, error -> {
                     Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     System.out.println(error.getMessage());
+                    binding.progressBarTtap.setVisibility(View.GONE);
+                    binding.amountTtap.setVisibility(View.VISIBLE);
                     tokenCount++;
                     if (tokenCount == tokens.size()) {
                         coinMarketCapVM.getPrices(tokens);
@@ -190,6 +198,8 @@ public class WalletFragment extends Fragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(balance -> {
                     binding.amountBnb.setText(balance.toString());
+                    binding.progressBarBnb.setVisibility(View.GONE);
+                    binding.amountBnb.setVisibility(View.VISIBLE);
                     tokens.get(1).setTokenAmount(Double.parseDouble(balance.toString()));
                     tokenCount++;
                     if (tokenCount == tokens.size()) {
@@ -199,6 +209,8 @@ public class WalletFragment extends Fragment {
                     Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     System.out.println(error.getMessage());
                     tokenCount++;
+                    binding.progressBarBnb.setVisibility(View.GONE);
+                    binding.amountBnb.setVisibility(View.VISIBLE);
                     if (tokenCount == tokens.size()) {
                         coinMarketCapVM.getPrices(tokens);
                     }

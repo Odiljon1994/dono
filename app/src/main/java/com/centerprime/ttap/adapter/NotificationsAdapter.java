@@ -65,8 +65,11 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
 
         void bind(NotificationModel.Data model) {
 
+            String[] pairs = model.getCreated_at().split("T");
+
             binding.getRoot().setOnClickListener(v -> clickListener.onClick(model));
-            binding.date.setText(model.getCreated_at());
+            binding.date.setText(pairs[0] + " " + pairs[1].substring(0, 7));
+           // binding.date.setText(model.getCreated_at());
             binding.title.setText(model.getName());
         }
     }
