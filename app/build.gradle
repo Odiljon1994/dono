@@ -89,8 +89,6 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
 
-
-
     implementation 'com.droidninja:filepicker:2.2.5'
     implementation 'com.nbsp:materialfilepicker:1.9.1'
 
@@ -101,9 +99,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
 
     implementation group: 'commons-codec', name: 'commons-codec', version: '1.9'
-    //implementation "org.web3j:core:3.0.1-android"
-   // implementation ('org.web3j:core:4.8.7-android')
     implementation ('org.web3j:core:4.2.0-android')
 
-//    implementation 'com.github.centerprime:Ethereum-Client-SDK:1.2.0'
 }

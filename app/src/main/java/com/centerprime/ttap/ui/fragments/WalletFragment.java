@@ -58,7 +58,7 @@ public class WalletFragment extends Fragment {
 
 
         tokens.add(new Token("ETH", 0, 0));
-        tokens.add(new Token("BNB", 0, 0));
+      //  tokens.add(new Token("BNB", 0, 0));
         tokens.add(new Token("TTAP", 0, 0));
 
         walletAddress = preferencesUtil.getWalletAddress();
@@ -72,7 +72,7 @@ public class WalletFragment extends Fragment {
 
         checkBalance();
         checkEthBalance();
-        checkBalanceBnb();
+      //  checkBalanceBnb();
 
         binding.ttapAsset.setOnClickListener(v -> {
            // Fragment someFragment = new TokenFragment();
@@ -81,7 +81,7 @@ public class WalletFragment extends Fragment {
             transaction.replace(R.id.fragment_container, someFragment ); // give your fragment container id in first parameter
             transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
 
-            String ttapKrw = String.format("%,.2f", tokens.get(2).getAmountInKrw());
+            String ttapKrw = String.format("%,.2f", tokens.get(1).getAmountInKrw());
             Bundle bundle = new Bundle();
             bundle.putString("tokenName", "TTAP");
             bundle.putString("KRW", ttapKrw);
@@ -109,22 +109,22 @@ public class WalletFragment extends Fragment {
             transaction.commit();
         });
 
-        binding.bnb.setOnClickListener(v -> {
-            // Fragment someFragment = new TokenFragment();
-            Fragment someFragment = new TokensFragment();
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, someFragment ); // give your fragment container id in first parameter
-            transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
-
-            String bnbKrw = String.format("%,.2f", tokens.get(1).getAmountInKrw());
-            Bundle bundle = new Bundle();
-            bundle.putString("tokenName", "BNB");
-            bundle.putString("KRW", bnbKrw);
-            bundle.putString("contractAddress", ApiUtils.getBnbContractAddress());
-            someFragment.setArguments(bundle);
-
-            transaction.commit();
-        });
+//        binding.bnb.setOnClickListener(v -> {
+//            // Fragment someFragment = new TokenFragment();
+//            Fragment someFragment = new TokensFragment();
+//            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//            transaction.replace(R.id.fragment_container, someFragment ); // give your fragment container id in first parameter
+//            transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+//
+//            String bnbKrw = String.format("%,.2f", tokens.get(1).getAmountInKrw());
+//            Bundle bundle = new Bundle();
+//            bundle.putString("tokenName", "BNB");
+//            bundle.putString("KRW", bnbKrw);
+//            bundle.putString("contractAddress", ApiUtils.getBnbContractAddress());
+//            someFragment.setArguments(bundle);
+//
+//            transaction.commit();
+//        });
         return view;
 
     }
@@ -171,7 +171,7 @@ public class WalletFragment extends Fragment {
                     binding.amountTtap.setText(balance.toString());
                     binding.progressBarTtap.setVisibility(View.GONE);
                     binding.amountTtap.setVisibility(View.VISIBLE);
-                    tokens.get(2).setTokenAmount(Double.parseDouble(balance.toString()));
+                    tokens.get(1).setTokenAmount(Double.parseDouble(balance.toString()));
                     tokenCount++;
                     if (tokenCount == tokens.size()) {
                         coinMarketCapVM.getPrices(tokens);
@@ -188,43 +188,43 @@ public class WalletFragment extends Fragment {
                 });
     }
 
-    public void checkBalanceBnb() {
-
-        EthManager ethManager = EthManager.getInstance();
-        ethManager.init(ApiUtils.getInfura());
-
-        ethManager.getTokenBalance(walletAddress, "", ApiUtils.getBnbContractAddress(), getActivity())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(balance -> {
-                    binding.amountBnb.setText(balance.toString());
-                    binding.progressBarBnb.setVisibility(View.GONE);
-                    binding.amountBnb.setVisibility(View.VISIBLE);
-                    tokens.get(1).setTokenAmount(Double.parseDouble(balance.toString()));
-                    tokenCount++;
-                    if (tokenCount == tokens.size()) {
-                        coinMarketCapVM.getPrices(tokens);
-                    }
-                }, error -> {
-                    Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                    System.out.println(error.getMessage());
-                    tokenCount++;
-                    binding.progressBarBnb.setVisibility(View.GONE);
-                    binding.amountBnb.setVisibility(View.VISIBLE);
-                    if (tokenCount == tokens.size()) {
-                        coinMarketCapVM.getPrices(tokens);
-                    }
-                });
-    }
+//    public void checkBalanceBnb() {
+//
+//        EthManager ethManager = EthManager.getInstance();
+//        ethManager.init(ApiUtils.getInfura());
+//
+//        ethManager.getTokenBalance(walletAddress, "", ApiUtils.getBnbContractAddress(), getActivity())
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(balance -> {
+//                    binding.amountBnb.setText(balance.toString());
+//                    binding.progressBarBnb.setVisibility(View.GONE);
+//                    binding.amountBnb.setVisibility(View.VISIBLE);
+//                    tokens.get(1).setTokenAmount(Double.parseDouble(balance.toString()));
+//                    tokenCount++;
+//                    if (tokenCount == tokens.size()) {
+//                        coinMarketCapVM.getPrices(tokens);
+//                    }
+//                }, error -> {
+//                    Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+//                    System.out.println(error.getMessage());
+//                    tokenCount++;
+//                    binding.progressBarBnb.setVisibility(View.GONE);
+//                    binding.amountBnb.setVisibility(View.VISIBLE);
+//                    if (tokenCount == tokens.size()) {
+//                        coinMarketCapVM.getPrices(tokens);
+//                    }
+//                });
+//    }
 
     public void onResponseCoinMarketCap(List<Token> tokens) {
 
         String ethKrw = String.format("%,.2f", tokens.get(0).getAmountInKrw());
-        String bnbKrw = String.format("%,.2f", tokens.get(1).getAmountInKrw());
-        String ttapKrw = String.format("%,.2f", tokens.get(2).getAmountInKrw());
+        //String bnbKrw = String.format("%,.2f", tokens.get(1).getAmountInKrw());
+        String ttapKrw = String.format("%,.2f", tokens.get(1).getAmountInKrw());
         
         binding.ethKrw.setText(ethKrw + " KRW");
-        binding.bnbKrw.setText(bnbKrw + " KRW");
+       // binding.bnbKrw.setText(bnbKrw + " KRW");
         binding.ttapKrw.setText(ttapKrw + " KRW");
 
     }
