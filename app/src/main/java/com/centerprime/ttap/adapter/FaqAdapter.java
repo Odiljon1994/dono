@@ -11,18 +11,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.centerprime.ttap.R;
 import com.centerprime.ttap.databinding.ItemFaqBinding;
 import com.centerprime.ttap.models.FaqModel;
+import com.centerprime.ttap.models.NotificationModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.ViewHolder>{
 
     private Context context;
-    private List<FaqModel> items;
+    private List<FaqModel.FaqData> items;
     private ClickListener clickListener;
 
-    public FaqAdapter(Context context, List<FaqModel> items, ClickListener clickListener) {
+    public FaqAdapter(Context context, ClickListener clickListener) {
         this.context = context;
-        this.items = items;
+        this.items = new ArrayList<>();
         this.clickListener = clickListener;
     }
 
@@ -36,7 +38,7 @@ public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        FaqModel item = items.get(position);
+        FaqModel.FaqData item = items.get(position);
         holder.bind(item);
     }
 
@@ -54,14 +56,19 @@ public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.ViewHolder>{
             this.binding = itemView;
         }
 
-        void bind(FaqModel model) {
-            binding.faq.setText(model.getFaq());
+        void bind(FaqModel.FaqData model) {
+            binding.faqTitle.setText(model.getTitle());
 
             binding.getRoot().setOnClickListener(v -> clickListener.onClick(model));
         }
     }
 
+    public void setItems(List<FaqModel.FaqData> items) {
+        this.items = items;
+        notifyDataSetChanged();
+    }
+
     public interface ClickListener {
-        void onClick(FaqModel model);
+        void onClick(FaqModel.FaqData model);
     }
 }

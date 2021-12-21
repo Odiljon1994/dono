@@ -63,6 +63,7 @@
             android:background="#F0F0F0"/>
 
         <TextView
+            android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="18dp"

@@ -8,6 +8,8 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.concurrent.TimeUnit;
+
 import javax.inject.Named;
 import javax.inject.Singleton;
 
@@ -66,6 +68,8 @@ public class NetModule {
     @Named("baseAPI")
     OkHttpClient provideOkHttpClient2() {
         OkHttpClient.Builder client = new OkHttpClient.Builder();
+        client.connectTimeout(60, TimeUnit.SECONDS);
+        client.readTimeout(60, TimeUnit.SECONDS);
         return client.build();
     }
 
@@ -95,6 +99,8 @@ public class NetModule {
     @Named("coinMarketCapApi")
     OkHttpClient provideOkHttpClient3() {
         OkHttpClient.Builder client = new OkHttpClient.Builder();
+        client.connectTimeout(60, TimeUnit.SECONDS);
+        client.readTimeout(60, TimeUnit.SECONDS);
         return client.build();
     }
 

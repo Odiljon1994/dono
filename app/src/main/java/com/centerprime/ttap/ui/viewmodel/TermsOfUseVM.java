@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.centerprime.ttap.api.Api;
-import com.centerprime.ttap.models.FaqModel;
 import com.centerprime.ttap.models.PrivacyPolicyModel;
 
 import javax.inject.Inject;
@@ -14,14 +13,13 @@ import javax.inject.Inject;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class PrivacyPolicyVM extends BaseVM{
-
+public class TermsOfUseVM extends BaseVM{
     private Api api;
     private Context context;
     private MutableLiveData<PrivacyPolicyModel> privacyPolicyModelMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<String> onError = new MutableLiveData<>();
     @Inject
-    public PrivacyPolicyVM(Api api, Context context) {
+    public TermsOfUseVM(Api api, Context context) {
         this.api = api;
         this.context = context;
     }
@@ -34,9 +32,9 @@ public class PrivacyPolicyVM extends BaseVM{
         return onError;
     }
 
-    public void getPrivacyPolicy() {
+    public void getTermsOfUse() {
 
-        addToSubscribe(api.getPrivacyPolicy()
+        addToSubscribe(api.getTermsOfUse()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {

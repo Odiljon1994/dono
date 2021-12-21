@@ -1,5 +1,6 @@
 package com.centerprime.ttap.ui;
 
+import android.content.res.ObbInfo;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -19,5 +20,7 @@ public class FaqBodyActivity extends AppCompatActivity {
 
         binding.backBtn.setOnClickListener(v -> finish());
         binding.title.setText(getIntent().getStringExtra("title"));
+        binding.content.setText(getIntent().getStringExtra("content"));
+
     }
 }

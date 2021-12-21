@@ -57,7 +57,7 @@ public class SendOtpActivity extends AppCompatActivity {
         postTransactionVM = ViewModelProviders.of(this, viewModelFactory).get(PostTransactionVM.class);
         binding.pinLockView.attachIndicatorDots(binding.indicatorDots);
         postTransactionVM.item().observe(this, this::items);
-        postTransactionVM.errorMessage().observe(this, this::onError);
+        postTransactionVM.itemOnError().observe(this, this::onError);
         System.out.println(preferencesUtil.getOtp());
 
         receiver = getIntent().getStringExtra("receiverAddress");
@@ -163,7 +163,7 @@ public class SendOtpActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(tx -> {
                     progressDialog.dismiss();
-                    postTransactionVM.postTransaction();
+                    postTransactionVM.postTransaction(fee);
                     Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     Toast.makeText(SendOtpActivity.this, "Success: " + tx, Toast.LENGTH_SHORT).show();
@@ -181,9 +181,19 @@ public class SendOtpActivity extends AppCompatActivity {
         System.out.println("*****");
         System.out.println(model.getStatus());
         System.out.println("*****");
+//        Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+//        startActivity(intent);
 
     }
     public void onError(String error) {
-
+        System.out.println("*****");
+        System.out.println(error);
+        System.out.println("*****");
+//        Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//
+//        startActivity(intent);
     }
 }

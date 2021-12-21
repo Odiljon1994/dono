@@ -5,6 +5,7 @@ import com.centerprime.ttap.ui.BackUpQrCodeActivity;
 import com.centerprime.ttap.ui.BackUpSeedsActivity;
 import com.centerprime.ttap.ui.DirectQuestionActivity;
 import com.centerprime.ttap.ui.ExportPrivatekeyActivity;
+import com.centerprime.ttap.ui.FaqActivity;
 import com.centerprime.ttap.ui.ImportWalletActivity;
 import com.centerprime.ttap.ui.LockAppActivity;
 import com.centerprime.ttap.ui.LockOtpActivity;
@@ -14,12 +15,14 @@ import com.centerprime.ttap.ui.NotificationActivity;
 import com.centerprime.ttap.ui.OtpActivity;
 import com.centerprime.ttap.ui.OtpExportKeysActivity;
 import com.centerprime.ttap.ui.OtpImportWalletActivity;
+import com.centerprime.ttap.ui.PrivacyPolicyActivity;
 import com.centerprime.ttap.ui.ReceiveActivity;
 import com.centerprime.ttap.ui.SaveQrCodeActivity;
 import com.centerprime.ttap.ui.ScanQrCodeActivity;
 import com.centerprime.ttap.ui.SendActivity;
 import com.centerprime.ttap.ui.SendOtpActivity;
 import com.centerprime.ttap.ui.SplashActivity;
+import com.centerprime.ttap.ui.TermsOfUseActivity;
 import com.centerprime.ttap.ui.VerifySendingActivity;
 import com.centerprime.ttap.ui.WalletCreatedActivity;
 import com.centerprime.ttap.ui.WalletImportedActivity;
@@ -72,6 +75,9 @@ public interface ApplicationComponent {
     void inject(LoginOTPActivity activity);
     void inject(LockOtpActivity activity);
     void inject(TokensFragment fragment);
+    void inject(FaqActivity activity);
+    void inject(PrivacyPolicyActivity activity);
+    void inject(TermsOfUseActivity activity);
 
 
     @Component.Builder

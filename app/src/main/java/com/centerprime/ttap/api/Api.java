@@ -3,10 +3,13 @@ package com.centerprime.ttap.api;
 import com.centerprime.ttap.models.CurrentFeeModel;
 import com.centerprime.ttap.models.DirectQuestionReqModel;
 import com.centerprime.ttap.models.DirectQuestionResModel;
+import com.centerprime.ttap.models.FaqModel;
 import com.centerprime.ttap.models.NotificationModel;
+import com.centerprime.ttap.models.PostTransactionReqModel;
 import com.centerprime.ttap.models.PostTransactionResModel;
 import com.centerprime.ttap.models.PostWalletAddressReqModel;
 import com.centerprime.ttap.models.PostWalletAddressResModel;
+import com.centerprime.ttap.models.PrivacyPolicyModel;
 
 import io.reactivex.Single;
 import retrofit2.http.Body;
@@ -29,6 +32,15 @@ public interface Api {
     Single<NotificationModel> getNotifications();
 
     @POST("/createTransaction")
-    Single<PostTransactionResModel> postTransaction();
+    Single<PostTransactionResModel> postTransaction(@Body PostTransactionReqModel postTransactionReqModel);
+
+    @GET("/getFaq")
+    Single<FaqModel> getFaq();
+
+    @GET("/versionListPrivacy")
+    Single<PrivacyPolicyModel> getPrivacyPolicy();
+
+    @GET("/versionListTerm")
+    Single<PrivacyPolicyModel> getTermsOfUse();
 
 }

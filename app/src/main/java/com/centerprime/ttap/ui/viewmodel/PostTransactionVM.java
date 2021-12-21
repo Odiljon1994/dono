@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.centerprime.ttap.api.Api;
 import com.centerprime.ttap.models.NotificationModel;
+import com.centerprime.ttap.models.PostTransactionReqModel;
 import com.centerprime.ttap.models.PostTransactionResModel;
 
 import javax.inject.Inject;
@@ -36,13 +37,17 @@ public class PostTransactionVM extends BaseVM{
         return onError;
     }
 
-    public void postTransaction() {
+    public void postTransaction(String fee) {
 
-        addToSubscribe(api.postTransaction()
+        PostTransactionReqModel postTransactionReqModel = new PostTransactionReqModel();
+        postTransactionReqModel.setFee(fee);
+
+        addToSubscribe(api.postTransaction(postTransactionReqModel)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {
 
+                    System.out.println();
                     postTransactionResModelMutableLiveData.postValue(response);
 
                 }, error -> {

@@ -4,19 +4,20 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class FaqModel {
+public class PrivacyPolicyModel {
+
     @SerializedName("code")
     private int code;
     @SerializedName("data")
-    private List<FaqData> data;
+    private List<PrivacyPolicyData> data;
     @SerializedName("message")
     private String message;
 
-    public List<FaqData> getData() {
+    public List<PrivacyPolicyData> getData() {
         return data;
     }
 
-    public void setData(List<FaqData> data) {
+    public void setData(List<PrivacyPolicyData> data) {
         this.data = data;
     }
 
@@ -40,24 +41,20 @@ public class FaqModel {
 
 
 
-    public class FaqData {
+    public class PrivacyPolicyData {
         @SerializedName("id")
         private int id;
-        @SerializedName("title")
-        private String title;
+        @SerializedName("version")
+        private String version;
         @SerializedName("content")
         private String content;
-        @SerializedName("created_at")
-        private String created_at;
-        @SerializedName("updated_at")
-        private String updated_at;
 
-        public FaqData(int id, String title, String content, String created_at, String updated_at) {
+
+        public PrivacyPolicyData(int id, String title, String content) {
             this.id = id;
-            this.title = title;
+            this.version = title;
             this.content = content;
-            this.created_at = created_at;
-            this.updated_at = updated_at;
+
         }
 
         public int getId() {
@@ -68,12 +65,12 @@ public class FaqModel {
             this.id = id;
         }
 
-        public String getTitle() {
-            return title;
+        public String getVersion() {
+            return version;
         }
 
-        public void setTitle(String title) {
-            this.title = title;
+        public void setVersion(String version) {
+            this.version = version;
         }
 
         public String getContent() {
@@ -84,20 +81,5 @@ public class FaqModel {
             this.content = content;
         }
 
-        public String getCreated_at() {
-            return created_at;
-        }
-
-        public void setCreated_at(String created_at) {
-            this.created_at = created_at;
-        }
-
-        public String getUpdated_at() {
-            return updated_at;
-        }
-
-        public void setUpdated_at(String updated_at) {
-            this.updated_at = updated_at;
-        }
     }
 }

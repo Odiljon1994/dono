@@ -9,9 +9,12 @@ import com.centerprime.ttap.ui.viewmodel.CurrentFeeVM;
 import com.centerprime.ttap.ui.viewmodel.DirectQuestionVM;
 import com.centerprime.ttap.ui.viewmodel.EtherScanVM;
 import com.centerprime.ttap.ui.viewmodel.EthereumVM;
+import com.centerprime.ttap.ui.viewmodel.FaqVM;
 import com.centerprime.ttap.ui.viewmodel.NotificationVM;
 import com.centerprime.ttap.ui.viewmodel.PostTransactionVM;
 import com.centerprime.ttap.ui.viewmodel.PostWalletAddressVM;
+import com.centerprime.ttap.ui.viewmodel.PrivacyPolicyVM;
+import com.centerprime.ttap.ui.viewmodel.TermsOfUseVM;
 
 import dagger.Binds;
 import dagger.Module;
@@ -61,5 +64,20 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(CoinMarketCapVM.class)
     abstract ViewModel bindCoinMarketCapVM(CoinMarketCapVM coinMarketCapVM);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FaqVM.class)
+    abstract ViewModel bindFaqVM(FaqVM faqVM);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PrivacyPolicyVM.class)
+    abstract ViewModel bindPrivacyPolicy(PrivacyPolicyVM privacyPolicyVM);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(TermsOfUseVM.class)
+    abstract ViewModel bindTermsOfUse(TermsOfUseVM termsOfUseVM);
 
 }
