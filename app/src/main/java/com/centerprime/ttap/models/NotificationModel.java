@@ -27,7 +27,7 @@ public class NotificationModel {
         this.data = data;
     }
 
-    public class Data {
+    public static class Data {
         @SerializedName("id")
         private int id;
         @SerializedName("name")
@@ -40,6 +40,15 @@ public class NotificationModel {
         private String updated_at;
         @SerializedName("created_at")
         private String created_at;
+
+        public Data(int id, String name, String type, String content, String updated_at, String created_at) {
+            this.id = id;
+            this.name = name;
+            this.type = type;
+            this.content = content;
+            this.updated_at = updated_at;
+            this.created_at = created_at;
+        }
 
         public int getId() {
             return id;

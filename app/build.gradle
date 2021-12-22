@@ -100,5 +100,5 @@ dependencies {
 
     implementation group: 'commons-codec', name: 'commons-codec', version: '1.9'
     implementation ('org.web3j:core:4.2.0-android')
-
+    implementation 'com.tomer:fadingtextview:2.6'
 }

@@ -29,6 +29,7 @@ import com.centerprime.ttap.ui.WalletImportedActivity;
 import com.centerprime.ttap.ui.WalletSeedsActivity;
 import com.centerprime.ttap.ui.fragments.MainFragment;
 import com.centerprime.ttap.ui.fragments.MainFragment2;
+import com.centerprime.ttap.ui.fragments.MainFragment3;
 import com.centerprime.ttap.ui.fragments.TokenFragment;
 import com.centerprime.ttap.ui.fragments.TokensFragment;
 import com.centerprime.ttap.ui.fragments.WalletFragment;
@@ -78,6 +79,7 @@ public interface ApplicationComponent {
     void inject(FaqActivity activity);
     void inject(PrivacyPolicyActivity activity);
     void inject(TermsOfUseActivity activity);
+    void inject(MainFragment3 fragment3);
 
 
     @Component.Builder

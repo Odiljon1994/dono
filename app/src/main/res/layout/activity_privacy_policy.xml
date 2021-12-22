@@ -70,13 +70,13 @@
                 android:includeFontPadding="false"
                 android:textSize="10dp"
                 android:layout_marginStart="18dp"
-                android:text="2021.11.25 12:12"/>
+                android:text=""/>
 
             <TextView
                 android:id="@+id/version"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ver 1.2"
+                android:text=""
                 android:textSize="10dp"
                 android:layout_marginStart="5dp"
                 android:textColor="#43B0DD"/>

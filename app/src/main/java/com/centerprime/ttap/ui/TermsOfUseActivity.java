@@ -53,6 +53,9 @@ public class TermsOfUseActivity extends AppCompatActivity {
         if (model.getCode() == 200) {
             binding.content.setText(model.getData().get(0).getContent());
             binding.version.setText(model.getData().get(0).getVersion());
+            String date = model.getData().get(0).getCreated_at();
+            String[] pairs = date.split("T");
+            binding.date.setText(pairs[0] + " " + pairs[1].substring(0, 5));
         }
 
 

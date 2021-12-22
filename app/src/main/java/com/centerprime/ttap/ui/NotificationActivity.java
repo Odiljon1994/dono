@@ -54,11 +54,6 @@ public class NotificationActivity extends AppCompatActivity {
 
         notificationVM.getNotifications();
         progressDialog = ProgressDialog.show(this, "", "데이터 불러오는 중…", true);
-//        List<NotificationsModel> list = new ArrayList<>();
-//        list.add(new NotificationsModel("[공지] TTAP Wallet 출시!", "2021.11.19"));
-//        list.add(new NotificationsModel("[긴급] 에어드랍", "2021.11.19"));
-//        list.add(new NotificationsModel("[공지] TTAP Wallet 출시! 이벤트", "2021.11.19"));
-//        list.add(new NotificationsModel("[공지] 출시 임박", "2021.11.19"));
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         notificationsAdapter = new NotificationsAdapter(this, item -> {

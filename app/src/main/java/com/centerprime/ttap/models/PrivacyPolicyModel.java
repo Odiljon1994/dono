@@ -48,13 +48,33 @@ public class PrivacyPolicyModel {
         private String version;
         @SerializedName("content")
         private String content;
+        @SerializedName("updated_at")
+        private String updated_at;
+        @SerializedName("created_at")
+        private String created_at;
 
+        public String getUpdated_at() {
+            return updated_at;
+        }
 
-        public PrivacyPolicyData(int id, String title, String content) {
+        public void setUpdated_at(String updated_at) {
+            this.updated_at = updated_at;
+        }
+
+        public String getCreated_at() {
+            return created_at;
+        }
+
+        public void setCreated_at(String created_at) {
+            this.created_at = created_at;
+        }
+
+        public PrivacyPolicyData(int id, String version, String content, String updated_at, String created_at) {
             this.id = id;
-            this.version = title;
+            this.version = version;
             this.content = content;
-
+            this.updated_at = updated_at;
+            this.created_at = created_at;
         }
 
         public int getId() {

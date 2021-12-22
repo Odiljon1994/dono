@@ -22,6 +22,7 @@ import com.centerprime.ttap.databinding.ActivityMainBinding;
 import com.centerprime.ttap.ui.fragments.AddressesBookFragment;
 import com.centerprime.ttap.ui.fragments.MainFragment;
 import com.centerprime.ttap.ui.fragments.MainFragment2;
+import com.centerprime.ttap.ui.fragments.MainFragment3;
 import com.centerprime.ttap.ui.fragments.SettingsFragment;
 import com.centerprime.ttap.ui.fragments.WalletFragment;
 import com.centerprime.ttap.util.PreferencesUtil;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ((MyApp) getApplication()).getAppComponent().inject(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment2()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment3()).commit();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, binding.drawerLayout, binding.toolbar, R.string.navigation_open, R.string.navigation_close);
         binding.drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.home:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment2()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment3()).commit();
                     binding.appBar.setVisibility(View.VISIBLE);
                     break;
                 case R.id.wallet:
