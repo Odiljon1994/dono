@@ -119,11 +119,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             binding.date.setText(dateToString);
             binding.getRoot().setOnClickListener(v -> clickListener.onClick(model));
 
-            System.out.println("***********");
-            System.out.println("Address: " + walletAddress);
-            System.out.println("From: " + model.getFrom());
-            System.out.println("***********");
-
             if(walletAddress.equalsIgnoreCase(model.getFrom())) {
                 binding.type.setTextColor(Color.parseColor("#DD4343"));
                 binding.type.setText("출금");

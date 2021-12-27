@@ -3,6 +3,7 @@ package com.centerprime.ttap.ui.fragments;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ import com.centerprime.ttap.databinding.FragmentMainBinding;
 import com.centerprime.ttap.databinding.FragmentWalletBinding;
 import com.centerprime.ttap.di.ViewModelFactory;
 import com.centerprime.ttap.models.Token;
+import com.centerprime.ttap.ui.AddTokenActivity;
 import com.centerprime.ttap.ui.viewmodel.CoinMarketCapVM;
 import com.centerprime.ttap.ui.viewmodel.NotificationVM;
 import com.centerprime.ttap.util.PreferencesUtil;
@@ -57,6 +59,7 @@ public class WalletFragment extends Fragment {
         View view = binding.getRoot();
 
 
+        binding.addToken.setOnClickListener(v -> startActivity(new Intent(getActivity(), AddTokenActivity.class)));
         tokens.add(new Token("ETH", 0, 0));
       //  tokens.add(new Token("BNB", 0, 0));
         tokens.add(new Token("TTAP", 0, 0));

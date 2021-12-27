@@ -50,7 +50,7 @@ public class VerifySendingActivity extends AppCompatActivity {
         binding.toAddress.setText(receiver);
 
         binding.backBtn.setOnClickListener(v -> finish());
-        binding.fromAddress.setText("0x" + preferencesUtil.getWalletAddress());
+        binding.fromAddress.setText(preferencesUtil.getWalletAddress());
         binding.endImage.setImageDrawable(getDrawable(R.drawable.qr_code_icon));
 
         binding.confirm.setOnClickListener(v -> {

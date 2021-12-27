@@ -33,6 +33,7 @@ public class ImportWalletActivity extends AppCompatActivity {
         ((MyApp) getApplication()).getAppComponent().inject(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_import_wallet);
 
+        binding.backBtn.setOnClickListener(v -> finish());
         EthManager ethManager = EthManager.getInstance();
         ethManager.init(ApiUtils.getInfura());
 

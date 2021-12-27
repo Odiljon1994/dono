@@ -47,7 +47,7 @@ public class ReceiveActivity extends AppCompatActivity {
             Toast.makeText(this, "Copied!", Toast.LENGTH_SHORT).show();
         });
 
-        createQrCode("0x" + preferencesUtil.getWalletAddress());
+        createQrCode(preferencesUtil.getWalletAddress());
     }
 
     public void createQrCode(String fullWallet) {
