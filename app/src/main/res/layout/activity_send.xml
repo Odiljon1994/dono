@@ -67,7 +67,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="18dp"
-                android:src="@drawable/ttap_new_icon" />
+                android:src="@drawable/ttap_logo" />
 
             <TextView
                 android:id="@+id/cymbolHead"

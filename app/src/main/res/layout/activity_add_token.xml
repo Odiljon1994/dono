@@ -109,7 +109,7 @@
                 android:layout_height="22dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="40dp"
-                android:src="@drawable/bnb_icon" />
+                android:src="@drawable/ttap_logo" />
 
 
             <TextView
@@ -268,8 +268,9 @@
             android:id="@+id/next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/secondryColorPrimary"
+            android:background="@color/colorPrimary"
             android:text="다음"
+            android:textColor="@color/white"
             android:textSize="14dp"
             android:textStyle="bold"
             android:visibility="gone" />

@@ -25,6 +25,9 @@ import com.centerprime.ttap.util.Constants;
 import com.centerprime.ttap.util.PreferencesUtil;
 import com.centerprime.ttap.web3.EthManager;
 
+import org.web3j.crypto.WalletUtils;
+import org.web3j.protocol.Web3j;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
@@ -73,9 +76,11 @@ public class SendOtpActivity extends AppCompatActivity {
         binding.pinLockView.setPinLockListener(new PinLockListener() {
             @Override
             public void onComplete(String pin) {
-                BigInteger gasPrice = new BigInteger("30000000000");
+
+                BigInteger gasPrice = new BigInteger("4000000000");
+                BigInteger gasPriceToken = new BigInteger("7000000000");
                 BigInteger gasLimit = new BigInteger("21000");
-                BigInteger gasLimitToken = new BigInteger("150000");
+                BigInteger gasLimitToken = new BigInteger("120000");
                 BigDecimal tokenAmount = new BigDecimal(amount);
                 if(preferencesUtil.getOtp().equals(pin)) {
                     progressDialog = ProgressDialog.show(SendOtpActivity.this, "Loading", "", true);
@@ -83,6 +88,8 @@ public class SendOtpActivity extends AppCompatActivity {
                     binding.otpStatus.setText("출금 요청이\n완료되었습니다.");
                     binding.onSendingText.setVisibility(View.VISIBLE);
                     if (tokenName.equals("ETH")) {
+
+
 
                         ethManager.sendEther(walletAddress, "", gasPrice, gasLimit, tokenAmount, receiver, SendOtpActivity.this)
                                 .subscribeOn(Schedulers.io())
@@ -98,12 +105,13 @@ public class SendOtpActivity extends AppCompatActivity {
 
                                 }, error -> {
                                     progressDialog.dismiss();
+                                    System.out.println("error on sending eth: " + error.getMessage());
                                     Toast.makeText(SendOtpActivity.this, "error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                                 });
                     } else {
                         ethManager.sendToken(walletAddress,
                                 "",
-                                gasPrice,
+                                gasPriceToken,
                                 gasLimitToken,
                                 tokenAmount,
                                 receiver,
@@ -122,6 +130,7 @@ public class SendOtpActivity extends AppCompatActivity {
 //                                startActivity(intent);
 
                                 }, error -> {
+                                    System.out.println("error on sending token: " + error.getMessage());
                                     progressDialog.dismiss();
                                     Toast.makeText(SendOtpActivity.this, "error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                                 });
@@ -147,7 +156,7 @@ public class SendOtpActivity extends AppCompatActivity {
     }
 
     public void sendFee() {
-        BigInteger gasPrice = new BigInteger("30000000000");
+        BigInteger gasPrice = new BigInteger("40000000000");
         BigInteger gasLimit = new BigInteger("21000");
         BigInteger gasLimitToken = new BigInteger("150000");
         BigDecimal tokenAmount = new BigDecimal(fee);
@@ -169,6 +178,7 @@ public class SendOtpActivity extends AppCompatActivity {
                     Toast.makeText(SendOtpActivity.this, "Success: " + tx, Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                 }, error -> {
+                    System.out.println("Error on sending fee: " + error.getMessage());
                     progressDialog.dismiss();
                     Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

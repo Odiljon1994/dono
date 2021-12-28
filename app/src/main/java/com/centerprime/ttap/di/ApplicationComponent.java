@@ -34,6 +34,7 @@ import com.centerprime.ttap.ui.fragments.MainFragment3;
 import com.centerprime.ttap.ui.fragments.TokenFragment;
 import com.centerprime.ttap.ui.fragments.TokensFragment;
 import com.centerprime.ttap.ui.fragments.WalletFragment;
+import com.centerprime.ttap.ui.fragments.WalletFragment2;
 
 import javax.inject.Singleton;
 
@@ -82,6 +83,7 @@ public interface ApplicationComponent {
     void inject(TermsOfUseActivity activity);
     void inject(MainFragment3 fragment3);
     void inject(AddTokenActivity activity);
+    void inject(WalletFragment2 fragment2);
 
 
     @Component.Builder

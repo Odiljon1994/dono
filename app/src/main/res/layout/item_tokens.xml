@@ -8,71 +8,144 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/ttapAsset"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/tokenLogo"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="18dp"
-            android:src="@drawable/ttap_coin_logo" />
-
-        <TextView
-            android:id="@+id/tokenName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="10dp"
-            android:fontFamily="@font/notosanskr_regular"
-            android:includeFontPadding="false"
-            android:text="TTAP"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginEnd="18dp"
-            android:orientation="vertical">
-
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="@android:style/Widget.ProgressBar.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="visible" />
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/tokenLogo"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="18dp"
+                android:src="@drawable/ttap_coin_logo" />
 
             <TextView
-                android:id="@+id/amount"
+                android:id="@+id/tokenName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:fontFamily="@font/poppins_regular"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
-                android:text=""
+                android:text="TTAP"
                 android:textColor="@color/black"
-                android:textSize="15dp"
-                android:visibility="gone" />
+                android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/amountKrw"
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:fontFamily="@font/poppins_regular"
-                android:includeFontPadding="false"
-                android:text=""
-                android:textColor="#999999"
-                android:textSize="12dp" />
+                android:layout_gravity="center"
+                android:layout_marginEnd="18dp"
+                android:orientation="vertical">
 
+<!--                <ProgressBar-->
+<!--                    android:id="@+id/progressBar"-->
+<!--                    style="@android:style/Widget.ProgressBar.Small"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:visibility="visible" />-->
+
+                <TextView
+                    android:id="@+id/amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/amountKrw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
+                    android:text=""
+                    android:textColor="#999999"
+                    android:textSize="12dp" />
+
+            </LinearLayout>
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grayColor"/>
+<!--        <ImageView-->
+<!--            android:id="@+id/tokenLogo"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginStart="18dp"-->
+<!--            android:src="@drawable/ttap_coin_logo" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/tokenName"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:fontFamily="@font/notosanskr_regular"-->
+<!--            android:includeFontPadding="false"-->
+<!--            android:text="TTAP"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textStyle="bold" />-->
+
+<!--        <View-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:layout_weight="1" />-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginEnd="18dp"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <ProgressBar-->
+<!--                android:id="@+id/progressBar"-->
+<!--                style="@android:style/Widget.ProgressBar.Small"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:visibility="visible" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/amount"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="right"-->
+<!--                android:fontFamily="@font/poppins_regular"-->
+<!--                android:includeFontPadding="false"-->
+<!--                android:text=""-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="15dp"-->
+<!--                android:visibility="gone" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/amountKrw"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="right"-->
+<!--                android:fontFamily="@font/poppins_regular"-->
+<!--                android:includeFontPadding="false"-->
+<!--                android:text=""-->
+<!--                android:textColor="#999999"-->
+<!--                android:textSize="12dp" />-->
+
+<!--        </LinearLayout>-->
     </LinearLayout>
 </layout>

@@ -79,6 +79,64 @@ public class TokensFragment extends Fragment {
             binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.eth_icon));
         } else if (tokenName.equals("BNB")) {
             binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.bnb_icon));
+        } else if (tokenName.equals("USDT")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.usdt));
+        } else if (tokenName.equals("TTAP")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.ttap_new_icon));
+        } else if (tokenName.equals("DAI")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.dai));
+        } else if (tokenName.equals("LINK")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.link));
+        } else if (tokenName.equals("UNI")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.uni));
+        } else if (tokenName.equals("USDC")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.usdc));
+        } else if (tokenName.equals("WBTC")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.wbtc));
+        } else if (tokenName.equals("VEN")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.ven));
+        } else if (tokenName.equals("THETA")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.theta));
+        } else if (tokenName.equals("WFIL")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.wfil));
+        } else if (tokenName.equals("BUSD")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.busd));
+        } else if (tokenName.equals("OKB")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.okb));
+        } else if (tokenName.equals("CRO")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.cro));
+        } else if (tokenName.equals("cUSDC")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.cusdc));
+        } else if (tokenName.equals("HT")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.ht));
+        } else if (tokenName.equals("cETH")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.ceth));
+        } else if (tokenName.equals("MKR")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.mkr));
+        } else if (tokenName.equals("cDAI")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.cdai));
+        } else if (tokenName.equals("COMP")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.comp));
+        } else if (tokenName.equals("CHZ")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.chz));
+        } else if (tokenName.equals("ADA")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.ada));
+        } else if (tokenName.equals("DOGE")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.doge));
+        } else if (tokenName.equals("XRP")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.xrp));
+        } else if (tokenName.equals("BCH")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.bch));
+        } else if (tokenName.equals("LTC")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.ltc));
+        } else if (tokenName.equals("EOS")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.eos));
+        } else if (tokenName.equals("CAKE")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.cake));
+        } else if (tokenName.equals("BUSD-T")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.busdt));
+        } else if (tokenName.equals("YFI")) {
+            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.yfi));
         }
 
         binding.amountInKrw.setText(amountInKrw + " KRW");
@@ -170,7 +228,7 @@ public class TokensFragment extends Fragment {
 
         allTransactionList = new ArrayList<>();
 
-        progressDialog = ProgressDialog.show(getActivity(), "", "데이터 불러오는 중…", true);
+      //  progressDialog = ProgressDialog.show(getActivity(), "", "데이터 불러오는 중…", true);
         etherScanVM.getTransactions(preferencesUtil.getWalletAddress());
 
         binding.swipeRefreshLayout.setRefreshing(false);
@@ -218,7 +276,7 @@ public class TokensFragment extends Fragment {
 
     public void items(List<TransactionsModel> items) {
 
-        progressDialog.dismiss();
+      //  progressDialog.dismiss();
         allTransactionList = items;
         receiveTransactionList = new ArrayList<>();
         sendTransactionList = new ArrayList<>();

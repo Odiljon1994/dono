@@ -25,6 +25,7 @@ import com.centerprime.ttap.ui.fragments.MainFragment2;
 import com.centerprime.ttap.ui.fragments.MainFragment3;
 import com.centerprime.ttap.ui.fragments.SettingsFragment;
 import com.centerprime.ttap.ui.fragments.WalletFragment;
+import com.centerprime.ttap.ui.fragments.WalletFragment2;
 import com.centerprime.ttap.util.PreferencesUtil;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.navigation.NavigationBarView;
@@ -57,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
                     binding.appBar.setVisibility(View.VISIBLE);
                     break;
                 case R.id.wallet:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WalletFragment()).commit();
+                 //   getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WalletFragment()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WalletFragment2()).commit();
                     binding.appBar.setVisibility(View.VISIBLE);
 
                     break;

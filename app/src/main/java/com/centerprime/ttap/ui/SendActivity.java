@@ -72,6 +72,8 @@ public class SendActivity extends AppCompatActivity {
             integrator.initiateScan();
         });
 
+        binding.cymbolHead.setText(tokenName);
+        binding.cymbol.setText(tokenName);
 
         if (tokenName.equals("ETH")) {
             binding.logo.setImageDrawable(getDrawable(R.drawable.eth_icon));
@@ -81,7 +83,100 @@ public class SendActivity extends AppCompatActivity {
             binding.logo.setImageDrawable(getDrawable(R.drawable.bnb_icon));
             binding.cymbolHead.setText("BNB");
             binding.cymbol.setText("BNB");
+        } else if (tokenName.equals("USDT")) {
+            binding.logo.setImageDrawable(getDrawable(R.drawable.usdt));
+            binding.cymbolHead.setText("USDT");
+            binding.cymbol.setText("USDT");
+        } else if (tokenName.equals("TTAP")) {
+            binding.logo.setImageDrawable(getDrawable(R.drawable.ttap_new_icon));
+            binding.cymbolHead.setText("TTAP");
+            binding.cymbol.setText("TTAP");
+        } else if (tokenName.equals("DAI")) {
+            binding.logo.setImageDrawable(getDrawable(R.drawable.dai));
+            binding.cymbolHead.setText("DAI");
+            binding.cymbol.setText("DAI");
+        } else if (tokenName.equals("LINK")) {
+            binding.logo.setImageDrawable(getDrawable(R.drawable.link));
+            binding.cymbolHead.setText("LINK");
+            binding.cymbol.setText("LINK");
+        } else if (tokenName.equals("UNI")) {
+            binding.logo.setImageDrawable(getDrawable(R.drawable.uni));
+            binding.cymbolHead.setText("UNI");
+            binding.cymbol.setText("UNI");
+        } else if (tokenName.equals("USDC")) {
+            binding.logo.setImageDrawable(getDrawable(R.drawable.usdc));
+            binding.cymbolHead.setText("USDC");
+            binding.cymbol.setText("USDC");
+        } else if (tokenName.equals("WBTC")) {
+            binding.logo.setImageDrawable(getDrawable(R.drawable.wbtc));
+            binding.cymbolHead.setText("WBTC");
+            binding.cymbol.setText("WBTC");
+        } else if (tokenName.equals("VEN")) {
+            binding.logo.setImageDrawable(getDrawable(R.drawable.ven));
+            binding.cymbolHead.setText("VEN");
+            binding.cymbol.setText("VEN");
+        } else if (tokenName.equals("THETA")) {
+            binding.logo.setImageDrawable(getDrawable(R.drawable.theta));
+            binding.cymbolHead.setText("THETA");
+            binding.cymbol.setText("THETA");
+        } else if (tokenName.equals("WFIL")) {
+            binding.logo.setImageDrawable(getDrawable(R.drawable.wfil));
+            binding.cymbolHead.setText("WFIL");
+            binding.cymbol.setText("WFIL");
+        } else if (tokenName.equals("BUSD")) {
+            binding.logo.setImageDrawable(getDrawable(R.drawable.busd));
+            binding.cymbolHead.setText("BUSD");
+            binding.cymbol.setText("BUSD");
+        } else if (tokenName.equals("OKB")) {
+            binding.logo.setImageDrawable(getDrawable(R.drawable.okb));
+            binding.cymbolHead.setText("OKB");
+            binding.cymbol.setText("OKB");
+        } else if (tokenName.equals("CRO")) {
+            binding.logo.setImageDrawable(getDrawable(R.drawable.cro));
+            binding.cymbolHead.setText("CRO");
+            binding.cymbol.setText("CRO");
+        } else if (tokenName.equals("cUSDC")) {
+            binding.logo.setImageDrawable(getDrawable(R.drawable.cusdc));
+            binding.cymbolHead.setText("cUSDC");
+            binding.cymbol.setText("cUSDC");
         }
+
+
+//
+//                   else if (tokenSymbol.equals("HT")) {
+//            drawable = getActivity().getDrawable(R.drawable.ht);
+//        } else if (tokenSymbol.equals("cETH")) {
+//            drawable = getActivity().getDrawable(R.drawable.ceth);
+//        } else if (tokenSymbol.equals("MKR")) {
+//            drawable = getActivity().getDrawable(R.drawable.mkr);
+//        } else if (tokenSymbol.equals("cDAI")) {
+//            drawable = getActivity().getDrawable(R.drawable.cdai);
+//        } else if (tokenSymbol.equals("COMP")) {
+//            drawable = getActivity().getDrawable(R.drawable.comp);
+//        } else if (tokenSymbol.equals("CHZ")) {
+//            drawable = getActivity().getDrawable(R.drawable.chz);
+//        } else if (tokenSymbol.equals("ADA")) {
+//            drawable = getActivity().getDrawable(R.drawable.ada);
+//        } else if (tokenSymbol.equals("DOGE")) {
+//            drawable = getActivity().getDrawable(R.drawable.doge);
+//        } else if (tokenSymbol.equals("CHZ")) {
+//            drawable = getActivity().getDrawable(R.drawable.chz);
+//        } else if (tokenSymbol.equals("XRP")) {
+//            drawable = getActivity().getDrawable(R.drawable.xrp);
+//        } else if (tokenSymbol.equals("BCH")) {
+//            drawable = getActivity().getDrawable(R.drawable.bch);
+//        } else if (tokenSymbol.equals("LTC")) {
+//            drawable = getActivity().getDrawable(R.drawable.ltc);
+//        } else if (tokenSymbol.equals("EOS")) {
+//            drawable = getActivity().getDrawable(R.drawable.eos);
+//        } else if (tokenSymbol.equals("CAKE")) {
+//            drawable = getActivity().getDrawable(R.drawable.cake);
+//        } else if (tokenSymbol.equals("BUSD-T")) {
+//            drawable = getActivity().getDrawable(R.drawable.busdt);
+//        } else if (tokenSymbol.equals("YFI")) {
+//            drawable = getActivity().getDrawable(R.drawable.yfi);
+//        }
+
 
         binding.max.setOnClickListener(v -> {
 
@@ -183,8 +278,21 @@ public class SendActivity extends AppCompatActivity {
                         Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
                         System.out.println(error.getMessage());
                     });
-        } else if (tokenName.equals("BNB")) {
-            ethManager.getTokenBalance(walletAddress, "", ApiUtils.getBnbContractAddress(), this)
+        }
+//        else if (tokenName.equals("BNB")) {
+//            ethManager.getTokenBalance(walletAddress, "", ApiUtils.getBnbContractAddress(), this)
+//                    .subscribeOn(Schedulers.io())
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe(response -> {
+//                        binding.totalAmount.setText(response.toString());
+//                        totalAmount = Double.parseDouble(response.toString());
+//                    }, error -> {
+//                        Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
+//                        System.out.println(error.getMessage());
+//                    });
+//        }
+        else if (tokenName.equals("TTAP")) {
+            ethManager.getTokenBalance(walletAddress, "", ApiUtils.getContractAddress(), this)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(response -> {
@@ -194,8 +302,8 @@ public class SendActivity extends AppCompatActivity {
                         Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
                         System.out.println(error.getMessage());
                     });
-        } else if (tokenName.equals("TTAP")) {
-            ethManager.getTokenBalance(walletAddress, "", ApiUtils.getContractAddress(), this)
+        } else {
+            ethManager.getTokenBalance(walletAddress, "", contractAddress, this)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(response -> {

@@ -6,7 +6,12 @@ import android.provider.Settings;
 
 import com.google.gson.Gson;
 
+import org.web3j.abi.FunctionEncoder;
+import org.web3j.abi.TypeReference;
 import org.web3j.abi.datatypes.Address;
+import org.web3j.abi.datatypes.Bool;
+import org.web3j.abi.datatypes.Function;
+import org.web3j.abi.datatypes.Type;
 import org.web3j.abi.datatypes.generated.Uint256;
 import org.web3j.crypto.Bip32ECKeyPair;
 import org.web3j.crypto.CipherException;
@@ -15,8 +20,11 @@ import org.web3j.crypto.ECKeyPair;
 import org.web3j.crypto.MnemonicUtils;
 import org.web3j.crypto.RawTransaction;
 import org.web3j.crypto.TransactionEncoder;
+import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.DefaultBlockParameterName;
+import org.web3j.protocol.core.methods.request.Transaction;
+import org.web3j.protocol.core.methods.response.EthEstimateGas;
 import org.web3j.protocol.core.methods.response.EthGasPrice;
 import org.web3j.protocol.core.methods.response.EthGetTransactionCount;
 import org.web3j.protocol.core.methods.response.EthSendTransaction;
@@ -40,7 +48,9 @@ import java.math.BigInteger;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 import io.reactivex.Single;
@@ -107,6 +117,24 @@ public class EthManager {
             ex.printStackTrace();
         }
         return new BigInteger(Const.DEFAULT_GAS_PRICE);
+    }
+
+    public BigInteger getGasLimit(String senderAddress,
+                                  BigInteger nonce,
+                                  BigInteger gasPrice,
+                                  BigInteger gasLimit,
+                                  String contractAddress,
+                                  BigInteger value,
+                                  String data) {
+        try {
+            Transaction transaction = new Transaction(senderAddress, nonce, gasPrice, gasLimit, contractAddress, value, data);
+            EthEstimateGas estimateGas = web3j.ethEstimateGas(transaction).send();
+            return  estimateGas.getAmountUsed();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return new BigInteger(Const.DEFAULT_GAS_LIMIT);
     }
 
 
@@ -415,8 +443,10 @@ public class EthManager {
                     BigInteger nonce = getNonce(walletAddress);
                     BigDecimal weiValue = Convert.toWei(etherAmount, Convert.Unit.ETHER);
 
+                    BigInteger currentGasPrice = getGasPrice().add(new BigInteger("200000000"));
+
                     RawTransaction rawTransaction = RawTransaction.createEtherTransaction(
-                            nonce, gasPrice, gasLimit, to_Address, weiValue.toBigIntegerExact());
+                            nonce, currentGasPrice, gasLimit, to_Address, weiValue.toBigIntegerExact());
                     byte[] signedMessage = TransactionEncoder.signMessage(rawTransaction, credentials);
                     String hexValue = Numeric.toHexString(signedMessage);
 
@@ -440,6 +470,13 @@ public class EthManager {
                     return Single.just(transactionHash);
                 });
     }
+    private static String generateDataForTokenTransfer(String _to, BigInteger _amount) {
+        List<Type> params = Arrays.asList(new Address(_to), new Uint256(_amount));
+        List<TypeReference<?>> returnTypes = Arrays.asList(new TypeReference<Bool>() {
+        });
+        Function function = new Function("transfer", params, returnTypes);
+        return FunctionEncoder.encode(function);
+    }
 
 
 
@@ -458,7 +495,19 @@ public class EthManager {
                     TransactionReceiptProcessor transactionReceiptProcessor = new NoOpProcessor(web3j);
                     TransactionManager transactionManager = new RawTransactionManager(
                             web3j, credentials, isMainNet() ? ChainId.MAINNET : ChainId.ROPSTEN, transactionReceiptProcessor);
-                    Erc20TokenWrapper contract = Erc20TokenWrapper.load(tokenContractAddress, web3j, transactionManager, gasPrice, gasLimit);
+
+                    BigInteger nonce = getNonce(walletAddress);
+                    BigInteger currentGasPrice = getGasPrice().add(new BigInteger("200000000"));
+
+                 //   BigInteger decimalCount = contract.decimals().getValue();
+
+                    BigDecimal formattedAmount1 = BalanceUtils.amountByDecimal(tokenAmount, new BigDecimal(18));
+
+                    String data = generateDataForTokenTransfer(to_Address, formattedAmount1.toBigInteger());
+
+                    BigInteger currentGasLimit = getGasLimit(walletAddress, nonce, currentGasPrice, gasLimit, tokenContractAddress, BigInteger.ZERO, data);
+
+                    Erc20TokenWrapper contract = Erc20TokenWrapper.load(tokenContractAddress, web3j, transactionManager, currentGasPrice, currentGasLimit);
 
                     BigInteger decimalCount = contract.decimals().getValue();
 

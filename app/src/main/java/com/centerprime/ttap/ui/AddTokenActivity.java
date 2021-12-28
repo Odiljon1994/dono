@@ -23,6 +23,7 @@ import com.centerprime.ttap.api.ApiUtils;
 import com.centerprime.ttap.database.DatabaseMainnetToken;
 import com.centerprime.ttap.databinding.ActivityAddTokenBinding;
 import com.centerprime.ttap.models.ExistingTokenModel;
+import com.centerprime.ttap.ui.fragments.WalletFragment2;
 import com.centerprime.ttap.util.PreferencesUtil;
 import com.centerprime.ttap.web3.EthManager;
 
@@ -289,10 +290,12 @@ public class AddTokenActivity extends AppCompatActivity {
         if (isTokenExist) {
             Toast.makeText(this, "이미 추가된 토큰입니다.", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(AddTokenActivity.this, MainActivity.class));
+
         } else {
             boolean insetData = databaseMainnetToken.addData(tokenSymbol, tokenName, smartContractAddress);
             if (insetData) {
                 startActivity(new Intent(AddTokenActivity.this, MainActivity.class));
+
             } else {
                 Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
             }

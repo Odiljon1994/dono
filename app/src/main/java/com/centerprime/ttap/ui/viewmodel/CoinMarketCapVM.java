@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.centerprime.ttap.api.CoinMarketCapAPI;
 import com.centerprime.ttap.models.CurrentFeeModel;
 import com.centerprime.ttap.models.Token;
+import com.centerprime.ttap.models.TokensModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ public class CoinMarketCapVM extends BaseVM{
     private CoinMarketCapAPI coinMarketCapAPI;
     private Context context;
     private MutableLiveData<List<Token>> tokenMutableLiveData = new MutableLiveData<>();
+    private MutableLiveData<List<TokensModel>> tokenMutableLiveData2 = new MutableLiveData<>();
     private List<Token> model = new ArrayList<>();
 
     @Inject
@@ -31,6 +33,10 @@ public class CoinMarketCapVM extends BaseVM{
 
     public LiveData<List<Token>> item() {
         return tokenMutableLiveData;
+    }
+
+    public LiveData<List<TokensModel>> item2() {
+        return tokenMutableLiveData2;
     }
 
     public void getPrices(List<Token> tokens) {
@@ -53,6 +59,34 @@ public class CoinMarketCapVM extends BaseVM{
                     tokenMutableLiveData.postValue(tokens);
 
                  //   tokenMutableLiveData.postValue(response);
+
+                }, error -> {
+                    //onError.postValue(error.getMessage());
+                    System.out.println(error.getMessage());
+                }));
+    }
+
+
+    public void getPrices2(List<TokensModel> tokens) {
+
+        addToSubscribe(coinMarketCapAPI.getCoinPrices()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+
+                    for (int i = 0; i < tokens.size(); i++) {
+                        for (int j = 0; j < response.getData().size(); j++) {
+                            if (tokens.get(i).getTokenSymbol().equals(response.getData().get(j).getSymbol())) {
+                                Double tokenAmount = Double.parseDouble(tokens.get(i).getTokenAmount());
+                                Double tokenAmountInWon = tokenAmount * Double.parseDouble(response.getData().get(j).getQuote().getBnb().getPrice());
+                                tokens.get(i).setAmountInWon(String.format("%,.2f", tokenAmountInWon));
+                                break;
+                            }
+                        }
+                    }
+                    tokenMutableLiveData2.postValue(tokens);
+
+                    //   tokenMutableLiveData.postValue(response);
 
                 }, error -> {
                     //onError.postValue(error.getMessage());

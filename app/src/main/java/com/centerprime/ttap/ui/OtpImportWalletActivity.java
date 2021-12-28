@@ -1,6 +1,7 @@
 package com.centerprime.ttap.ui;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -10,6 +11,8 @@ import androidx.databinding.DataBindingUtil;
 import com.andrognito.pinlockview.PinLockListener;
 import com.centerprime.ttap.MyApp;
 import com.centerprime.ttap.R;
+import com.centerprime.ttap.api.ApiUtils;
+import com.centerprime.ttap.database.DatabaseMainnetToken;
 import com.centerprime.ttap.databinding.ActivityOtpBinding;
 import com.centerprime.ttap.util.PreferencesUtil;
 
@@ -26,6 +29,21 @@ public class OtpImportWalletActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ((MyApp) getApplication()).getAppComponent().inject(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_otp);
+
+        DatabaseMainnetToken databaseMainnetToken = new DatabaseMainnetToken(this);
+        boolean isTokenExist = false;
+
+        Cursor data = databaseMainnetToken.getData();
+
+        while (data.moveToNext()) {
+            String contractAddress = data.getString(1);
+            if (contractAddress.equals("TTAP")) {
+                isTokenExist = true;
+            }
+        }
+        if (!isTokenExist) {
+            boolean insetData = databaseMainnetToken.addData("TTAP", "TTAP", ApiUtils.getContractAddress());
+        }
 
         binding.toolbar.backBtn.setOnClickListener(v -> finish());
         binding.pinLockView.attachIndicatorDots(binding.indicatorDots);
