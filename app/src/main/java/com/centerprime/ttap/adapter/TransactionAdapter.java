@@ -92,8 +92,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             BigInteger tokenValue;
 
             String amount = amountBigDecimal.toString();
-            if (amount.toString().length() > 5) {
-                amount = amount.substring(0, 5);
+            if (amount.toString().length() > 8) {
+                amount = amount.substring(0, 8);
             }
 
             if (model.getTokenDecimal() != null) {

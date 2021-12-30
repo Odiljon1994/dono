@@ -443,7 +443,9 @@ public class EthManager {
                     BigInteger nonce = getNonce(walletAddress);
                     BigDecimal weiValue = Convert.toWei(etherAmount, Convert.Unit.ETHER);
 
-                    BigInteger currentGasPrice = getGasPrice().add(new BigInteger("200000000"));
+                    BigInteger currentGasPrice = getGasPrice().add(new BigInteger("4000000000"));
+
+                    System.out.println("** GasPrice Eth: " + currentGasPrice);
 
                     RawTransaction rawTransaction = RawTransaction.createEtherTransaction(
                             nonce, currentGasPrice, gasLimit, to_Address, weiValue.toBigIntegerExact());
@@ -497,7 +499,7 @@ public class EthManager {
                             web3j, credentials, isMainNet() ? ChainId.MAINNET : ChainId.ROPSTEN, transactionReceiptProcessor);
 
                     BigInteger nonce = getNonce(walletAddress);
-                    BigInteger currentGasPrice = getGasPrice().add(new BigInteger("200000000"));
+                    BigInteger currentGasPrice = getGasPrice().add(new BigInteger("8000000000"));
 
                  //   BigInteger decimalCount = contract.decimals().getValue();
 
@@ -506,6 +508,11 @@ public class EthManager {
                     String data = generateDataForTokenTransfer(to_Address, formattedAmount1.toBigInteger());
 
                     BigInteger currentGasLimit = getGasLimit(walletAddress, nonce, currentGasPrice, gasLimit, tokenContractAddress, BigInteger.ZERO, data);
+
+
+                    System.out.println("** GasPrice Token: " + currentGasPrice);
+                    System.out.println("** GasLimit Token: " + currentGasLimit);
+
 
                     Erc20TokenWrapper contract = Erc20TokenWrapper.load(tokenContractAddress, web3j, transactionManager, currentGasPrice, currentGasLimit);
 

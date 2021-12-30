@@ -140,6 +140,6 @@
         android:layout_height="35dp"
         android:textColor="@color/black"
         android:gravity="center|start"
-        android:text="앱 버전 0.0.0"/>
+        android:text="앱 버전 1.0"/>
 
 </LinearLayout>

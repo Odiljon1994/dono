@@ -70,7 +70,12 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
             binding.getRoot().setOnClickListener(v -> clickListener.onClick(model));
             binding.date.setText(pairs[0] + " " + pairs[1].substring(0, 5));
            // binding.date.setText(model.getCreated_at());
-            binding.title.setText(model.getName());
+            if (model.getType().equals("1")) {
+                binding.title.setText("[공지] " + model.getName());
+            } else if (model.getType().equals("2")) {
+                binding.title.setText("[이벤트] " + model.getName());
+            }
+
         }
     }
 

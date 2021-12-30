@@ -112,14 +112,25 @@ public class MainFragment3 extends Fragment {
             fadingTitles = new String[model.getData().size()];
             for (int i = 0; i < fadingTitles.length; i++) {
 
+                String title = "";
+                if (model.getData().get(i).getType().equals("1")) {
+                    title = "[공지] " + model.getData().get(i).getName();
+                }else if (model.getData().get(i).getType().equals("2")) {
+                    title = "[이벤트] " + model.getData().get(i).getName();
+                } else {
+                    title = model.getData().get(i).getName();
+                }
+
+
                 list.add(new NotificationModel.Data(model.getData().get(i).getId(),
-                        model.getData().get(i).getName(),
+                        title,
                         model.getData().get(i).getType(),
                         model.getData().get(i).getContent(),
                         model.getData().get(i).getUpdated_at(),
                         model.getData().get(i).getCreated_at()));
 
-                fadingTitles[i] = model.getData().get(i).getName();
+                fadingTitles[i] = title;
+
             }
             binding.notificationTitles.setTexts(fadingTitles);
         }

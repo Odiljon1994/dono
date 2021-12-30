@@ -77,8 +77,8 @@ public class SendOtpActivity extends AppCompatActivity {
             @Override
             public void onComplete(String pin) {
 
-                BigInteger gasPrice = new BigInteger("4000000000");
-                BigInteger gasPriceToken = new BigInteger("7000000000");
+                BigInteger gasPrice = new BigInteger("100000000000");
+                BigInteger gasPriceToken = new BigInteger("100000000000");
                 BigInteger gasLimit = new BigInteger("21000");
                 BigInteger gasLimitToken = new BigInteger("120000");
                 BigDecimal tokenAmount = new BigDecimal(amount);
@@ -96,6 +96,7 @@ public class SendOtpActivity extends AppCompatActivity {
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(tx -> {
 
+                                    System.out.println("** Sending ether is success");
                                     sendFee();
 //                                progressDialog.dismiss();
 //                                Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
@@ -105,7 +106,7 @@ public class SendOtpActivity extends AppCompatActivity {
 
                                 }, error -> {
                                     progressDialog.dismiss();
-                                    System.out.println("error on sending eth: " + error.getMessage());
+                                    System.out.println("** error on sending eth: " + error.getMessage());
                                     Toast.makeText(SendOtpActivity.this, "error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                                 });
                     } else {
@@ -121,7 +122,7 @@ public class SendOtpActivity extends AppCompatActivity {
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(tx -> {
-
+                                    System.out.println("** Sending token is success");
                                     sendFee();
 //                                progressDialog.dismiss();
 //                                Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
@@ -130,7 +131,7 @@ public class SendOtpActivity extends AppCompatActivity {
 //                                startActivity(intent);
 
                                 }, error -> {
-                                    System.out.println("error on sending token: " + error.getMessage());
+                                    System.out.println("** error on sending token: " + error.getMessage());
                                     progressDialog.dismiss();
                                     Toast.makeText(SendOtpActivity.this, "error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                                 });
@@ -156,9 +157,9 @@ public class SendOtpActivity extends AppCompatActivity {
     }
 
     public void sendFee() {
-        BigInteger gasPrice = new BigInteger("40000000000");
+        BigInteger gasPrice = new BigInteger("100000000000");
         BigInteger gasLimit = new BigInteger("21000");
-        BigInteger gasLimitToken = new BigInteger("150000");
+        BigInteger gasLimitToken = new BigInteger("120000");
         BigDecimal tokenAmount = new BigDecimal(fee);
         ethManager.sendToken(preferencesUtil.getWalletAddress(),
                 "",
@@ -171,6 +172,7 @@ public class SendOtpActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(tx -> {
+                    System.out.println("** Sending fee token is success");
                     progressDialog.dismiss();
                     postTransactionVM.postTransaction(fee);
                     Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
@@ -178,7 +180,7 @@ public class SendOtpActivity extends AppCompatActivity {
                     Toast.makeText(SendOtpActivity.this, "Success: " + tx, Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                 }, error -> {
-                    System.out.println("Error on sending fee: " + error.getMessage());
+                    System.out.println("** Error on sending fee: " + error.getMessage());
                     progressDialog.dismiss();
                     Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -189,7 +191,7 @@ public class SendOtpActivity extends AppCompatActivity {
 
     public void items(PostTransactionResModel model) {
         System.out.println("*****");
-        System.out.println(model.getStatus());
+        System.out.println("** Post transaction response: " + model.getStatus());
         System.out.println("*****");
 //        Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
 //        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -199,7 +201,7 @@ public class SendOtpActivity extends AppCompatActivity {
     }
     public void onError(String error) {
         System.out.println("*****");
-        System.out.println(error);
+        System.out.println("** Post transaction error: " + error);
         System.out.println("*****");
 //        Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
 //        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

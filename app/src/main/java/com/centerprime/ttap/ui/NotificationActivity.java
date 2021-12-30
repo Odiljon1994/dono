@@ -59,6 +59,13 @@ public class NotificationActivity extends AppCompatActivity {
         notificationsAdapter = new NotificationsAdapter(this, item -> {
             Intent intent = new Intent(NotificationActivity.this, NotificationBodyActivity.class);
             intent.putExtra("content", item.getContent());
+            if (item.getType().equals("1")) {
+                intent.putExtra("title", "[공지] " + item.getName());
+            } else if (item.getType().equals("2")) {
+                intent.putExtra("title", "[이벤트] " + item.getName());
+            } else {
+                intent.putExtra("title", item.getName());
+            }
             intent.putExtra("title", item.getName());
             intent.putExtra("date", item.getCreated_at());
             startActivity(intent);
