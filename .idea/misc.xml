@@ -28,7 +28,7 @@
         <entry key="app/src/main/res/layout/activity_terms_of_use.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_transaction_details.xml" value="0.291213768115942" />
         <entry key="app/src/main/res/layout/activity_verify_sending.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/activity_wallet.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_wallet.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_wallet_created.xml" value="0.27708333333333335" />
         <entry key="app/src/main/res/layout/activity_wallet_import_type.xml" value="0.26313405797101447" />
         <entry key="app/src/main/res/layout/activity_wallet_imported.xml" value="0.25317028985507245" />
