@@ -19,7 +19,7 @@
             android:layout_weight="1"
             android:scaleType="fitXY"
             android:adjustViewBounds="true"
-            android:src="@drawable/banner_first" />
+            android:src="@drawable/banner_faq" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -115,7 +115,7 @@
             android:scaleType="fitXY"
             android:adjustViewBounds="true"
             android:layout_weight="1"
-            android:src="@drawable/banner_second" />
+            android:src="@drawable/banner_ttap" />
 
         <ImageView
             android:id="@+id/banner_third"
@@ -124,7 +124,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:src="@drawable/banner_third" />
+            android:src="@drawable/banner_launching" />
 
         <ImageView
             android:id="@+id/banner_fourth"
@@ -133,7 +133,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:src="@drawable/banner_fourth" />
+            android:src="@drawable/banner_user_guide" />
 
         <ImageView
             android:id="@+id/banner_fifth"
@@ -142,6 +142,6 @@
             android:adjustViewBounds="true"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:src="@drawable/banner_fifth" />
+            android:src="@drawable/banner_new_year" />
     </LinearLayout>
 </layout>
