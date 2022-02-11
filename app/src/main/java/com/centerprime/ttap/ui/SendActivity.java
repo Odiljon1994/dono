@@ -237,7 +237,7 @@ public class SendActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else if (balance < fee){
                     binding.errorMessage.setText("수수료 부족합니다");
-                } else if (Double.parseDouble(binding.totalAmount.getText().toString()) >= Double.parseDouble(binding.amount.getText().toString())) {
+                } else if (Double.parseDouble(binding.totalAmount.getText().toString()) < Double.parseDouble(binding.amount.getText().toString())) {
                     binding.errorMessage.setText("잔액이 부족합니다");
                 }
 

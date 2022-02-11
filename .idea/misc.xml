@@ -33,6 +33,7 @@
         <entry key="app/src/main/res/layout/activity_wallet_import_type.xml" value="0.26313405797101447" />
         <entry key="app/src/main/res/layout/activity_wallet_imported.xml" value="0.25317028985507245" />
         <entry key="app/src/main/res/layout/activity_wallet_seeds.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_webview.xml" value="0.27445652173913043" />
         <entry key="app/src/main/res/layout/base_dialog.xml" value="0.18802083333333333" />
         <entry key="app/src/main/res/layout/dialog_addresses_book.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/dialog_base.xml" value="0.25" />

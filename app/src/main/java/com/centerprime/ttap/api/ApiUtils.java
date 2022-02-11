@@ -13,7 +13,7 @@ import okhttp3.OkHttpClient;
 
 public class ApiUtils {
 
-    private static boolean isMainnet = true;
+    private static boolean isMainnet = false;
 
     private static final String etherScan = "https://api.etherscan.io/api/"; // for mainnet
     private static final String baseUrl = "http://3.34.99.232:3001";

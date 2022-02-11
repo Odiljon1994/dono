@@ -1,5 +1,6 @@
 package com.centerprime.ttap.api;
 
+import com.centerprime.ttap.models.BannerListModel;
 import com.centerprime.ttap.models.CurrentFeeModel;
 import com.centerprime.ttap.models.DirectQuestionReqModel;
 import com.centerprime.ttap.models.DirectQuestionResModel;
@@ -42,5 +43,8 @@ public interface Api {
 
     @GET("/versionListTerm")
     Single<PrivacyPolicyModel> getTermsOfUse();
+
+    @GET("/bannerList")
+    Single<BannerListModel> getBannerList();
 
 }

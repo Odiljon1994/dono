@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.centerprime.ttap.api.EtherscanAPI;
+import com.centerprime.ttap.ui.viewmodel.BannersListVM;
 import com.centerprime.ttap.ui.viewmodel.CoinMarketCapVM;
 import com.centerprime.ttap.ui.viewmodel.CurrentFeeVM;
 import com.centerprime.ttap.ui.viewmodel.DirectQuestionVM;
@@ -79,5 +80,10 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(TermsOfUseVM.class)
     abstract ViewModel bindTermsOfUse(TermsOfUseVM termsOfUseVM);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(BannersListVM.class)
+    abstract ViewModel bindBannerList(BannersListVM bannersListVM);
 
 }

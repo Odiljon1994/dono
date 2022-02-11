@@ -2,6 +2,7 @@ package com.centerprime.ttap.ui.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,19 +15,25 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.bumptech.glide.Glide;
 import com.centerprime.ttap.MyApp;
 import com.centerprime.ttap.R;
 import com.centerprime.ttap.api.ApiUtils;
 import com.centerprime.ttap.databinding.FragmentMain2Binding;
 import com.centerprime.ttap.databinding.FragmentMain3Binding;
 import com.centerprime.ttap.di.ViewModelFactory;
+import com.centerprime.ttap.models.BannerListModel;
 import com.centerprime.ttap.models.NotificationModel;
 import com.centerprime.ttap.ui.NotificationActivity;
 import com.centerprime.ttap.ui.NotificationBodyActivity;
+import com.centerprime.ttap.ui.WebViewActivity;
+import com.centerprime.ttap.ui.viewmodel.BannersListVM;
 import com.centerprime.ttap.ui.viewmodel.NotificationVM;
 import com.centerprime.ttap.util.PreferencesUtil;
 import com.centerprime.ttap.web3.EthManager;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,8 +53,13 @@ public class MainFragment3 extends Fragment {
     ViewModelFactory viewModelFactory;
     private ProgressDialog progressDialog;
     NotificationVM notificationVM;
+    BannersListVM bannersListVM;
     private String[] fadingTitles;
     private List<NotificationModel.Data> list = new ArrayList<>();
+    private String firstBannerUrl = "";
+    private String secondBannerUrl = "";
+    private String thirdBannerUrl = "";
+    private  String fourthBannerUrl = "";
 
     @Nullable
     @Override
@@ -55,8 +67,11 @@ public class MainFragment3 extends Fragment {
         ((MyApp) getActivity().getApplication()).getAppComponent().inject(this);
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main3, container, false);
         notificationVM = ViewModelProviders.of(this, viewModelFactory).get(NotificationVM.class);
+        bannersListVM = ViewModelProviders.of(this, viewModelFactory).get(BannersListVM.class);
         notificationVM.item().observe(getActivity(), this::items);
         notificationVM.errorMessage().observe(getActivity(), this::onError);
+        bannersListVM.item().observe(getActivity(), this::bannersList);
+        bannersListVM.itemOnError().observe(getActivity(), this::onError);
         View view = binding.getRoot();
 
         binding.notificationTitles.setTexts(notificationTitles);
@@ -77,11 +92,71 @@ public class MainFragment3 extends Fragment {
 
         });
 
+        binding.firstBanner.setOnClickListener(v -> {
+            try {
+                URL url = new URL(firstBannerUrl);
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(firstBannerUrl));
+                startActivity(browserIntent);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+//            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ung4915.wixsite.com/wellet"));
+//            startActivity(browserIntent);
+//            Intent intent = new Intent(getActivity(), WebViewActivity.class);
+//            intent.putExtra("url", "https://ung4915.wixsite.com/wellet");
+//            startActivity(intent);
+        });
+        binding.bannerSecond.setOnClickListener(v -> {
+            try {
+                URL url = new URL(secondBannerUrl);
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(secondBannerUrl));
+                startActivity(browserIntent);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+//            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ung4915.wixsite.com/wellet/get-started"));
+//            startActivity(browserIntent);
+//            Intent intent = new Intent(getActivity(), WebViewActivity.class);
+//            intent.putExtra("url", "https://ung4915.wixsite.com/wellet/get-started");
+//            startActivity(intent);
+        });
+
+        binding.bannerThird.setOnClickListener(v -> {
+            try {
+                URL url = new URL(thirdBannerUrl);
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(thirdBannerUrl));
+                startActivity(browserIntent);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+//            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ung4915.wixsite.com/wellet"));
+//            startActivity(browserIntent);
+//            Intent intent = new Intent(getActivity(), WebViewActivity.class);
+//            intent.putExtra("url", "https://ung4915.wixsite.com/wellet");
+//            startActivity(intent);
+        });
+
+        binding.bannerFourth.setOnClickListener(v -> {
+            try {
+                URL url = new URL(fourthBannerUrl);
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(fourthBannerUrl));
+                startActivity(browserIntent);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+//            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ung4915.wixsite.com/wellet"));
+//            startActivity(browserIntent);
+//            Intent intent = new Intent(getActivity(), WebViewActivity.class);
+//            intent.putExtra("url", "https://ung4915.wixsite.com/wellet");
+//            startActivity(intent);
+        });
+
         walletAddress = preferencesUtil.getWalletAddress();
         binding.progressBar.getProgress();
 
         checkBalance();
         notificationVM.getNotifications();
+        bannersListVM.getBannerList();
 
         return view;
     }
@@ -104,6 +179,37 @@ public class MainFragment3 extends Fragment {
                 });
     }
 
+    public void bannersList(BannerListModel model) {
+        if (model.getCode() == 200) {
+            for (BannerListModel.BannerListData i : model.getData()) {
+                if (i.getPosition() == 1) {
+                    firstBannerUrl = i.getExternal_url();
+                    Glide.with(this)
+                            .load(i.getFile_url())
+                            .centerCrop()
+                            .into(binding.firstBanner);
+                } else if (i.getPosition() == 2) {
+                    secondBannerUrl = i.getExternal_url();
+                    Glide.with(this)
+                            .load(i.getFile_url())
+                            .centerCrop()
+                            .into(binding.bannerSecond);
+                } else if (i.getPosition() == 3) {
+                    thirdBannerUrl = i.getExternal_url();
+                    Glide.with(this)
+                            .load(i.getFile_url())
+                            .centerCrop()
+                            .into(binding.bannerThird);
+                } else if (i.getPosition() == 4) {
+                    fourthBannerUrl = i.getExternal_url();
+                    Glide.with(this)
+                            .load(i.getFile_url())
+                            .centerCrop()
+                            .into(binding.bannerFourth);
+                }
+            }
+        }
+    }
 
     public void items(NotificationModel model) {
 
