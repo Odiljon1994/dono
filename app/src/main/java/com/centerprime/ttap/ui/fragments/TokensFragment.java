@@ -55,9 +55,9 @@ public class TokensFragment extends Fragment {
     String amountInKrw = "";
     EtherScanVM etherScanVM;
     TabLayout tabLayout;
-    List<TransactionsModel> allTransactionList;
-    List<TransactionsModel> receiveTransactionList;
-    List<TransactionsModel> sendTransactionList;
+    List<TransactionsModel> allTransactionList = new ArrayList<>();
+    List<TransactionsModel> receiveTransactionList = new ArrayList<>();
+    List<TransactionsModel> sendTransactionList = new ArrayList<>();
     private ProgressDialog progressDialog;
     @Nullable
     @Override

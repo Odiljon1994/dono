@@ -174,7 +174,7 @@ public class MainFragment3 extends Fragment {
                     binding.progressBar.setVisibility(View.GONE);
                 }, error -> {
                     binding.progressBar.setVisibility(View.GONE);
-                    Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(this.getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     System.out.println(error.getMessage());
                 });
     }
