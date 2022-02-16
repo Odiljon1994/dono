@@ -111,39 +111,4 @@ public class ExistingTokensAdapter extends RecyclerView.Adapter<ExistingTokensAd
         void onClick(ExistingTokenModel tokenModel);
     }
 
-//    class CustomFilter extends Filter {
-//
-//        @Override
-//        protected FilterResults performFiltering(CharSequence constraint) {
-//            FilterResults results = new FilterResults();
-//            if (constraint != null && constraint.length() > 0) {
-//                ArrayList<ExistingTokenModel> filters = new ArrayList<>();
-//                constraint = constraint.toString().toUpperCase();
-//                for (int i = 0; i < allItems.size(); i++) {
-//                    if (allItems.get(i).getTokenName().toUpperCase().contains(constraint)) {
-//                        ExistingTokenModel model = new ExistingTokenModel(allItems.get(i).getLogo(),
-//                                allItems.get(i).getTokenName(),
-//                                allItems.get(i).getTokenSymbol(),
-//                                allItems.get(i).getContractAddress());
-//
-//                        filters.add(model);
-//
-//                    }
-//                }
-//                results.count = filters.size();
-//                results.values = filters;
-//
-//            } else {
-//                results.count = allItems.size();
-//                results.values = allItems;
-//            }
-//            return results;
-//        }
-//
-//        @Override
-//        protected void publishResults(CharSequence constraint, FilterResults results) {
-//            items = (ArrayList<ExistingTokenModel>) results.values;
-//            notifyDataSetChanged();
-//        }
-//    }
 }

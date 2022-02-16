@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.graphics.Paint;
@@ -23,6 +24,7 @@ import com.centerprime.ttap.ui.fragments.AddressesBookFragment;
 import com.centerprime.ttap.ui.fragments.MainFragment;
 import com.centerprime.ttap.ui.fragments.MainFragment2;
 import com.centerprime.ttap.ui.fragments.MainFragment3;
+import com.centerprime.ttap.ui.fragments.MainFragment4;
 import com.centerprime.ttap.ui.fragments.SettingsFragment;
 import com.centerprime.ttap.ui.fragments.WalletFragment;
 import com.centerprime.ttap.ui.fragments.WalletFragment2;
@@ -38,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     public static AppBarLayout appBarLayout;
 
+    //private MainFragment3 mainFragment3;
+    private MainFragment4 mainFragment3;
+    private WalletFragment2 walletFragment2;
+    private SettingsFragment settingsFragment;
     @Inject
     PreferencesUtil preferencesUtil;
     @Override
@@ -45,26 +51,43 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ((MyApp) getApplication()).getAppComponent().inject(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment3()).commit();
+
+
+        //mainFragment3 = new MainFragment3();
+        mainFragment3 = new MainFragment4();
+        walletFragment2 = new WalletFragment2();
+        settingsFragment = new SettingsFragment();
+
+        //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment3()).commit();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, binding.drawerLayout, binding.toolbar, R.string.navigation_open, R.string.navigation_close);
         binding.drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, mainFragment3).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, walletFragment2).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, settingsFragment).commit();
+
+
+        changeState(1);
 
         appBarLayout = findViewById(R.id.appBar);
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.home:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment3()).commit();
+                    changeState(1);
+                    //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment3()).commit();
                     binding.appBar.setVisibility(View.VISIBLE);
                     break;
                 case R.id.wallet:
+                    changeState(2);
                  //   getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WalletFragment()).commit();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WalletFragment2()).commit();
+                    //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WalletFragment2()).commit();
                     binding.appBar.setVisibility(View.VISIBLE);
 
                     break;
                 case R.id.lock:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();
+                    changeState(3);
+                    //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();
                     binding.appBar.setVisibility(View.VISIBLE);
                     break;
 
@@ -92,18 +115,19 @@ public class MainActivity extends AppCompatActivity {
         privacy.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
         myPage.setOnClickListener(v -> {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WalletFragment()).commit();
             binding.appBar.setVisibility(View.VISIBLE);
             binding.bottomNavigation.setSelectedItemId(R.id.wallet);
             binding.drawerLayout.closeDrawer(GravityCompat.START);
+            changeState(2);
         });
         addressBook.setOnClickListener(v -> {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AddressesBookFragment()).commit();
             binding.drawerLayout.closeDrawer(GravityCompat.START);
-            binding.appBar.setVisibility(View.GONE);
+            binding.appBar.setVisibility(View.VISIBLE);
+            startActivity(new Intent(MainActivity.this, AddressesBookActivity.class));
+
         });
         settings.setOnClickListener(v -> {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();
+            changeState(3);
             binding.appBar.setVisibility(View.VISIBLE);
             binding.drawerLayout.closeDrawer(GravityCompat.START);
             binding.bottomNavigation.setSelectedItemId(R.id.lock);
@@ -132,42 +156,27 @@ public class MainActivity extends AppCompatActivity {
         version.setOnClickListener(v -> {
 
         });
-
-//        binding.navView.setNavigationItemSelectedListener(item -> {
-//            switch (item.getItemId()) {
-//                case R.id.addressBook:
-//                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AddressesBookFragment()).commit();
-//                    binding.drawerLayout.closeDrawer(GravityCompat.START);
-//                    binding.appBar.setVisibility(View.GONE);
-//                    break;
-//                case R.id.directMessage:
-//                    binding.drawerLayout.closeDrawer(GravityCompat.START);
-//                    binding.appBar.setVisibility(View.VISIBLE);
-//                    startActivity(new Intent(MainActivity.this, DirectQuestionActivity.class));
-//                    break;
-//                case R.id.notice:
-//                    binding.drawerLayout.closeDrawer(GravityCompat.START);
-//                    binding.appBar.setVisibility(View.VISIBLE);
-//                    startActivity(new Intent(MainActivity.this, NotificationActivity.class));
-//                    break;
-//                case R.id.faq:
-//                    binding.drawerLayout.closeDrawer(GravityCompat.START);
-//                    binding.appBar.setVisibility(View.VISIBLE);
-//                    startActivity(new Intent(MainActivity.this, FaqActivity.class));
-//                    break;
-//                case R.id.mainPage:
-//                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WalletFragment()).commit();
-//                    binding.appBar.setVisibility(View.VISIBLE);
-//                    binding.bottomNavigation.setSelectedItemId(R.id.wallet);
-//                    binding.drawerLayout.closeDrawer(GravityCompat.START);
-//                    break;
-//            }
-//
-//            return true;
-//
-//        });
-
     }
+
+
+    private void changeState(int position) {
+        if (position == 1) {
+            getSupportFragmentManager().beginTransaction().show( mainFragment3).commit();
+            getSupportFragmentManager().beginTransaction().hide( walletFragment2).commit();
+            getSupportFragmentManager().beginTransaction().hide(settingsFragment).commit();
+
+        } else if (position == 2) {
+            getSupportFragmentManager().beginTransaction().hide( mainFragment3).commit();
+            getSupportFragmentManager().beginTransaction().show( walletFragment2).commit();
+            getSupportFragmentManager().beginTransaction().hide(settingsFragment).commit();
+        } else {
+            getSupportFragmentManager().beginTransaction().hide( mainFragment3).commit();
+            getSupportFragmentManager().beginTransaction().hide( walletFragment2).commit();
+            getSupportFragmentManager().beginTransaction().show(settingsFragment).commit();
+
+        }
+    }
+
     @Override
     public void onBackPressed() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {

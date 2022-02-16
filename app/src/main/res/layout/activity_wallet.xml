@@ -68,6 +68,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="14dp"
                     android:fontFamily="@font/notosanskr_regular"
                     android:includeFontPadding="false"
                     android:text="지갑 만들기를 실행하면 "
@@ -77,6 +78,7 @@
                     android:id="@+id/terms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="14dp"
                     android:fontFamily="@font/notosanskr_regular"
                     android:includeFontPadding="false"
                     android:text="이용약관"
@@ -85,6 +87,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="14dp"
                     android:fontFamily="@font/notosanskr_regular"
                     android:includeFontPadding="false"
                     android:text=",  "
@@ -94,6 +97,7 @@
                     android:id="@+id/privacy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="14dp"
                     android:fontFamily="@font/notosanskr_regular"
                     android:includeFontPadding="false"
                     android:text="개인정보보호처리방침"
@@ -102,6 +106,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="14dp"
                     android:fontFamily="@font/notosanskr_regular"
                     android:includeFontPadding="false"
                     android:text=" 에"

@@ -1,4 +1,4 @@
-package com.centerprime.ttap.ui.fragments;
+package com.centerprime.ttap.ui;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -6,15 +6,11 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,37 +19,26 @@ import com.centerprime.ttap.adapter.AddressesBookAdapter;
 import com.centerprime.ttap.database.AddressesBookDB;
 import com.centerprime.ttap.databinding.FragmentAddressesBookBinding;
 import com.centerprime.ttap.models.AddressesBookModel;
-import com.centerprime.ttap.ui.AddWalletAddressActivity;
-import com.centerprime.ttap.ui.MainActivity;
-import com.centerprime.ttap.ui.OtpActivity;
-import com.centerprime.ttap.ui.WalletSeedsActivity;
 import com.centerprime.ttap.ui.dialogs.BaseDialog;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddressesBookFragment extends Fragment {
-    FragmentAddressesBookBinding binding;
+public class AddressesBookActivity extends AppCompatActivity {
+    private FragmentAddressesBookBinding binding;
     public static AddressesBookAdapter adapter;
     private static AddressesBookDB addressesBookDB;
     public static RecyclerView recyclerView;
     List<AddressesBookModel> list;
-
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_addresses_book, container, false);
-        View view = binding.getRoot();
-        addressesBookDB = new AddressesBookDB(getActivity());
-        recyclerView = view.findViewById(R.id.recyclerView);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = DataBindingUtil.setContentView(this, R.layout.fragment_addresses_book);
 
+        addressesBookDB = new AddressesBookDB(this);
+        recyclerView = binding.recyclerView;
         binding.backBtn.setOnClickListener(v -> {
-            Fragment someFragment = new MainFragment3();
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, someFragment); // give your fragment container id in first parameter
-            transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
-            MainActivity.appBarLayout.setVisibility(View.VISIBLE);
-            transaction.commit();
+            finish();
         });
 
         list = getDataFromDB();
@@ -67,8 +52,8 @@ public class AddressesBookFragment extends Fragment {
             }
         }
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
-        adapter = new AddressesBookAdapter(list, getActivity());
+        recyclerView.setLayoutManager(new LinearLayoutManager(AddressesBookActivity.this, RecyclerView.VERTICAL, false));
+        adapter = new AddressesBookAdapter(list, AddressesBookActivity.this);
         recyclerView.setAdapter(adapter);
         AddressesBookAdapter.ClickListener clickListener = new AddressesBookAdapter.ClickListener() {
             @Override
@@ -95,25 +80,12 @@ public class AddressesBookFragment extends Fragment {
         });
 
         binding.addBtn.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), AddWalletAddressActivity.class));
+            startActivity(new Intent(this, AddWalletAddressActivity.class));
         });
 
         binding.deleteBtn.setOnClickListener(v -> {
             showDialog();
-//            List<AddressesBookModel> modelsToDelete = adapter.getCheckedAddresses();
-//            for (int i = 0; i < modelsToDelete.size(); i++) {
-//                addressesBookDB.deleteRow(modelsToDelete.get(i));
-//                System.out.println(modelsToDelete.get(i).getID());
-//                System.out.println(modelsToDelete.get(i).getName());
-//                System.out.println(modelsToDelete.get(i).getWalletAddress());
-//            }
-//            list = getDataFromDB();
-//            adapter = new AddressesBookAdapter(list, getActivity());
-//            recyclerView.setAdapter(adapter);
-
         });
-
-        return view;
     }
 
     public static List<AddressesBookModel> getDataFromDB() {
@@ -129,8 +101,8 @@ public class AddressesBookFragment extends Fragment {
 
 
     public void showDialog() {
-        BaseDialog baseDialog = new BaseDialog(getActivity());
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity());
+        BaseDialog baseDialog = new BaseDialog(AddressesBookActivity.this);
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(AddressesBookActivity.this);
         alertBuilder.setView(baseDialog);
         AlertDialog dialog = alertBuilder.create();
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -160,7 +132,7 @@ public class AddressesBookFragment extends Fragment {
                 }
                 binding.deleteBtn.setVisibility(View.GONE);
                 binding.addBtn.setVisibility(View.VISIBLE);
-                adapter = new AddressesBookAdapter(list, getActivity());
+                adapter = new AddressesBookAdapter(list, AddressesBookActivity.this);
                 recyclerView.setAdapter(adapter);
                 dialog.dismiss();
 

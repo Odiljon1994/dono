@@ -48,52 +48,52 @@ public class VerifySendingActivity extends AppCompatActivity {
 
 
         if (tokenName.equals("ETH")) {
-            binding.logo.setImageDrawable(getDrawable(R.drawable.eth_icon));
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.eth_icon));
             binding.cymbol.setText("ETH");
         } else if (tokenName.equals("BNB")) {
-            binding.logo.setImageDrawable(getDrawable(R.drawable.bnb_icon));
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.bnb_icon));
             binding.cymbol.setText("BNB");
         } else if (tokenName.equals("USDT")) {
-            binding.logo.setImageDrawable(getDrawable(R.drawable.usdt));
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.usdt));
             binding.cymbol.setText("USDT");
         } else if (tokenName.equals("TTAP")) {
-            binding.logo.setImageDrawable(getDrawable(R.drawable.ttap_new_icon));
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.ttap_new_icon));
             binding.cymbol.setText("TTAP");
         } else if (tokenName.equals("DAI")) {
-            binding.logo.setImageDrawable(getDrawable(R.drawable.dai));
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.dai));
             binding.cymbol.setText("DAI");
         } else if (tokenName.equals("LINK")) {
-            binding.logo.setImageDrawable(getDrawable(R.drawable.link));
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.link));
             binding.cymbol.setText("LINK");
         } else if (tokenName.equals("UNI")) {
-            binding.logo.setImageDrawable(getDrawable(R.drawable.uni));
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.uni));
             binding.cymbol.setText("UNI");
         } else if (tokenName.equals("USDC")) {
-            binding.logo.setImageDrawable(getDrawable(R.drawable.usdc));
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.usdc));
             binding.cymbol.setText("USDC");
         } else if (tokenName.equals("WBTC")) {
-            binding.logo.setImageDrawable(getDrawable(R.drawable.wbtc));
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.wbtc));
             binding.cymbol.setText("WBTC");
         } else if (tokenName.equals("VEN")) {
-            binding.logo.setImageDrawable(getDrawable(R.drawable.ven));
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.ven));
             binding.cymbol.setText("VEN");
         } else if (tokenName.equals("THETA")) {
-            binding.logo.setImageDrawable(getDrawable(R.drawable.theta));
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.theta));
             binding.cymbol.setText("THETA");
         } else if (tokenName.equals("WFIL")) {
-            binding.logo.setImageDrawable(getDrawable(R.drawable.wfil));
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.wfil));
             binding.cymbol.setText("WFIL");
         } else if (tokenName.equals("BUSD")) {
-            binding.logo.setImageDrawable(getDrawable(R.drawable.busd));
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.busd));
             binding.cymbol.setText("BUSD");
         } else if (tokenName.equals("OKB")) {
-            binding.logo.setImageDrawable(getDrawable(R.drawable.okb));
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.okb));
             binding.cymbol.setText("OKB");
         } else if (tokenName.equals("CRO")) {
-            binding.logo.setImageDrawable(getDrawable(R.drawable.cro));
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.cro));
             binding.cymbol.setText("CRO");
         } else if (tokenName.equals("cUSDC")) {
-            binding.logo.setImageDrawable(getDrawable(R.drawable.cusdc));
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.cusdc));
             binding.cymbol.setText("cUSDC");
         }
 
@@ -105,7 +105,8 @@ public class VerifySendingActivity extends AppCompatActivity {
 
         binding.backBtn.setOnClickListener(v -> finish());
         binding.fromAddress.setText(preferencesUtil.getWalletAddress());
-        binding.endImage.setImageDrawable(getDrawable(R.drawable.qr_code_icon));
+       // binding.endImage.setImageDrawable(getDrawable(R.drawable.qr_code_icon));
+        binding.endImage.setImageDrawable(getResources().getDrawable(R.drawable.qr_code_icon));
 
         binding.confirm.setOnClickListener(v -> {
             Intent intent = new Intent(VerifySendingActivity.this, SendOtpActivity.class);

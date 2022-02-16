@@ -41,7 +41,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
-                binding.fingerprintImage.setImageDrawable(getDrawable(R.drawable.fingerprint_success));
+               // binding.fingerprintImage.setImageDrawable(getDrawable(R.drawable.fingerprint_success));
+                binding.fingerprintImage.setImageDrawable(getResources().getDrawable(R.drawable.fingerprint_success));
+
 
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

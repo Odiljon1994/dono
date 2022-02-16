@@ -68,9 +68,9 @@ public class TokenFragment extends Fragment {
         contractAddress = getArguments().getString("contractAddress");
         binding.tokenName.setText(tokenName);
         if (tokenName.equals("ETH")) {
-            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.eth_icon));
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.eth_icon));
         } else if (tokenName.equals("BNB")) {
-            binding.logo.setImageDrawable(getActivity().getDrawable(R.drawable.bnb_icon));
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.bnb_icon));
         }
 
         binding.amountInKrw.setText(amountInKrw + " KRW");

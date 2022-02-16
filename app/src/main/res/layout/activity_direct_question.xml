@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:layout_marginTop="20dp"
+            android:textSize="14dp"
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
             android:text="이름"
@@ -46,6 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:layout_marginTop="20dp"
+            android:textSize="14dp"
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
             android:text="이메일"
@@ -73,6 +75,7 @@
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
             android:text="내용"
+            android:textSize="14dp"
             android:textColor="@color/black" />
 
         <EditText
@@ -99,6 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textColor="#DD4343"
+            android:textSize="14dp"
             android:layout_marginStart="18dp"
             android:layout_marginEnd="18dp"
             android:gravity="center"

@@ -31,6 +31,8 @@ import com.centerprime.ttap.databinding.FragmentWalletBinding;
 import com.centerprime.ttap.di.ViewModelFactory;
 import com.centerprime.ttap.models.TokensModel;
 import com.centerprime.ttap.ui.AddTokenActivity;
+import com.centerprime.ttap.ui.TokenActivity;
+import com.centerprime.ttap.ui.TransactionDetailsActivity;
 import com.centerprime.ttap.ui.viewmodel.CoinMarketCapVM;
 import com.centerprime.ttap.util.PreferencesUtil;
 import com.centerprime.ttap.web3.EthManager;
@@ -158,19 +160,28 @@ public class WalletFragment2 extends Fragment {
         }
 
         adapter = new TokensAdapter(mainnetTokenList, getActivity(), clickListener -> {
-            Fragment someFragment = new TokensFragment();
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, someFragment ); // give your fragment container id in first parameter
-            transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+//            Fragment someFragment = new TokensFragment();
+//            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//            transaction.replace(R.id.fragment_container, someFragment ); // give your fragment container id in first parameter
+//            transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+//
+//            //String ethKrw = String.format("%,.2f", tokens.get(0).getAmountInKrw());
+//            Bundle bundle = new Bundle();
+//            bundle.putString("tokenName", clickListener.getTokenSymbol());
+//            bundle.putString("KRW", clickListener.getAmountInWon());
+//            bundle.putString("contractAddress", clickListener.getContractAddress());
+//            someFragment.setArguments(bundle);
+//
+//            transaction.commit();
 
-            //String ethKrw = String.format("%,.2f", tokens.get(0).getAmountInKrw());
-            Bundle bundle = new Bundle();
-            bundle.putString("tokenName", clickListener.getTokenSymbol());
-            bundle.putString("KRW", clickListener.getAmountInWon());
-            bundle.putString("contractAddress", clickListener.getContractAddress());
-            someFragment.setArguments(bundle);
 
-            transaction.commit();
+            Intent intent = new Intent(getActivity(), TokenActivity.class);
+
+            intent.putExtra("tokenName", clickListener.getTokenSymbol());
+            intent.putExtra("KRW", clickListener.getAmountInWon());
+            intent.putExtra("contractAddress", clickListener.getContractAddress());
+
+            startActivity(intent);
         });
 
         binding.recyclerview.setAdapter(adapter);
@@ -186,19 +197,24 @@ public class WalletFragment2 extends Fragment {
     }
 
     private void dismissRefreshLayout(int listCount) {
-        if (counterPfResponses == listCount) {
-            // binding.swipeRefreshLayout.setRefreshing(false);
+        try {
+            if (counterPfResponses == listCount) {
+                // binding.swipeRefreshLayout.setRefreshing(false);
 
-            for (int i = 0; i < tokensForConvertingKRW.size(); i++) {
-                if (tokensForConvertingKRW.get(i).getTokenSymbol().equals("TTAP") && i != 1) {
-                    TokensModel model = tokensForConvertingKRW.get(i);
-                    tokensForConvertingKRW.remove(i);
-                    tokensForConvertingKRW.add(1, model);
+                for (int i = 0; i < tokensForConvertingKRW.size(); i++) {
+                    if (tokensForConvertingKRW.get(i).getTokenSymbol().equals("TTAP") && i != 1) {
+                        TokensModel model = tokensForConvertingKRW.get(i);
+                        tokensForConvertingKRW.remove(i);
+                        tokensForConvertingKRW.add(1, model);
+                    }
                 }
-            }
 
-            coinMarketCapVM.getPrices2(tokensForConvertingKRW);
+                coinMarketCapVM.getPrices2(tokensForConvertingKRW);
+            }
+        } catch (Throwable error) {
+            System.out.println(error.getMessage());
         }
+
     }
 
     private void checkBalanaces(List<TokensModel> items) {

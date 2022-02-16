@@ -1,35 +1,25 @@
-package com.centerprime.ttap.ui.fragments;
+package com.centerprime.ttap.ui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.centerprime.ttap.MyApp;
 import com.centerprime.ttap.R;
 import com.centerprime.ttap.adapter.TransactionAdapter;
-import com.centerprime.ttap.adapter.TransactionsAdapter;
 import com.centerprime.ttap.api.ApiUtils;
 import com.centerprime.ttap.databinding.FragmentTokenBinding;
 import com.centerprime.ttap.di.ViewModelFactory;
-import com.centerprime.ttap.models.Transaction;
 import com.centerprime.ttap.models.TransactionsModel;
-import com.centerprime.ttap.ui.MainActivity;
-import com.centerprime.ttap.ui.ReceiveActivity;
-import com.centerprime.ttap.ui.SendActivity;
-import com.centerprime.ttap.ui.TransactionDetailsActivity;
 import com.centerprime.ttap.ui.viewmodel.EtherScanVM;
-import com.centerprime.ttap.ui.viewmodel.EthereumVM;
 import com.centerprime.ttap.util.PreferencesUtil;
 import com.centerprime.ttap.web3.EthManager;
 import com.google.android.material.tabs.TabLayout;
@@ -42,7 +32,7 @@ import javax.inject.Inject;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class TokensFragment extends Fragment {
+public class TokenActivity extends AppCompatActivity {
     FragmentTokenBinding binding;
     @Inject
     PreferencesUtil preferencesUtil;
@@ -59,23 +49,25 @@ public class TokensFragment extends Fragment {
     List<TransactionsModel> receiveTransactionList = new ArrayList<>();
     List<TransactionsModel> sendTransactionList = new ArrayList<>();
     private ProgressDialog progressDialog;
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ((MyApp) getActivity().getApplication()).getAppComponent().inject(this);
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_token, container, false);
-        View view = binding.getRoot();
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ((MyApp) getApplication()).getAppComponent().inject(this);
+        binding = DataBindingUtil.setContentView(this, R.layout.fragment_token);
+
         etherScanVM = ViewModelProviders.of(this, viewModelFactory).get(EtherScanVM.class);
-        etherScanVM.transactions().observe(getActivity(), this::items);
+        etherScanVM.transactions().observe(this, this::items);
         binding.swipeRefreshLayout.setRefreshing(true);
 
+        binding.toolbar.backBtn.setOnClickListener(v -> finish());
 
-        tokenName = getArguments().getString("tokenName");
-        amountInKrw = getArguments().getString("KRW");
-        contractAddress = getArguments().getString("contractAddress");
+
+        tokenName = getIntent().getStringExtra("tokenName");
+        amountInKrw = getIntent().getStringExtra("KRW");
+        contractAddress = getIntent().getStringExtra("contractAddress");
+
         walletAddress = preferencesUtil.getWalletAddress();
         binding.tokenName.setText(tokenName);
-
         if (tokenName.equals("ETH")) {
             binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.eth_icon));
         } else if (tokenName.equals("BNB")) {
@@ -143,13 +135,13 @@ public class TokensFragment extends Fragment {
 
         binding.amountInKrw.setText(amountInKrw + " KRW");
 
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-        adapter = new TransactionAdapter(preferencesUtil.getWalletAddress(), getActivity(), new TransactionAdapter.ClickListener() {
+        adapter = new TransactionAdapter(preferencesUtil.getWalletAddress(), this, new TransactionAdapter.ClickListener() {
             @Override
             public void onClick(TransactionsModel item) {
-                Intent intent = new Intent(getActivity(), TransactionDetailsActivity.class);
+                Intent intent = new Intent(TokenActivity.this, TransactionDetailsActivity.class);
 
 
                 intent.putExtra("timeStamp", item.getTimeStamp());
@@ -174,10 +166,10 @@ public class TokensFragment extends Fragment {
         binding.swipeRefreshLayout.setOnRefreshListener(this::loadData);
 
         binding.receive.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), ReceiveActivity.class));
+            startActivity(new Intent(this, ReceiveActivity.class));
         });
         binding.send.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), SendActivity.class);
+            Intent intent = new Intent(this, SendActivity.class);
             intent.putExtra("tokenName", tokenName);
             intent.putExtra("contractAddress", contractAddress);
             startActivity(intent);
@@ -218,7 +210,7 @@ public class TokensFragment extends Fragment {
             }
         });
 
-        return view;
+
     }
 
     /**
@@ -230,7 +222,7 @@ public class TokensFragment extends Fragment {
 
         allTransactionList = new ArrayList<>();
 
-      //  progressDialog = ProgressDialog.show(getActivity(), "", "데이터 불러오는 중…", true);
+        //  progressDialog = ProgressDialog.show(getActivity(), "", "데이터 불러오는 중…", true);
         etherScanVM.getTransactions(preferencesUtil.getWalletAddress());
 
         binding.swipeRefreshLayout.setRefreshing(false);
@@ -244,7 +236,7 @@ public class TokensFragment extends Fragment {
         ethManager.init(ApiUtils.getInfura());
 
         if (contractAddress.toLowerCase().equals(preferencesUtil.getWalletAddress().toLowerCase())) {
-            ethManager.balanceInEth(preferencesUtil.getWalletAddress(), getActivity())
+            ethManager.balanceInEth(preferencesUtil.getWalletAddress(), this)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(balance -> {
@@ -254,11 +246,11 @@ public class TokensFragment extends Fragment {
                     }, error -> {
                         binding.progressBar.setVisibility(View.GONE);
                         binding.tokenAmount.setVisibility(View.VISIBLE);
-                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
                         System.out.println(error.getMessage());
                     });
         } else {
-            ethManager.getTokenBalance(walletAddress, "", contractAddress, getActivity())
+            ethManager.getTokenBalance(walletAddress, "", contractAddress, this)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(balance -> {
@@ -269,7 +261,7 @@ public class TokensFragment extends Fragment {
 
                         binding.progressBar.setVisibility(View.GONE);
                         binding.tokenAmount.setVisibility(View.VISIBLE);
-                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
                         System.out.println(error.getMessage());
                     });
         }
@@ -278,7 +270,7 @@ public class TokensFragment extends Fragment {
 
     public void items(List<TransactionsModel> items) {
 
-      //  progressDialog.dismiss();
+        //  progressDialog.dismiss();
         allTransactionList = items;
         receiveTransactionList = new ArrayList<>();
         sendTransactionList = new ArrayList<>();

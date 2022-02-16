@@ -75,6 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
+                android:textSize="14dp"
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
                 android:text="TTAP"
@@ -111,6 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:text="출금주소"
+                android:textSize="14dp"
                 android:textColor="@color/black" />
 
             <TextView
@@ -158,18 +160,10 @@
             android:layout_marginStart="18dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="18dp"
+            android:textSize="14dp"
             android:background="#f0f0f0"
             android:text="주소록" />
 
-        <!--        <TextView-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="※ 출금 주소를 잘못 입력하면 가상자산 복구가 불가능합니다."-->
-        <!--            android:layout_gravity="center"-->
-        <!--            android:gravity="center"-->
-        <!--            android:textColor="#999999"-->
-        <!--            android:layout_marginTop="10dp"-->
-        <!--            android:textSize="12dp"/>-->
 
         <TextView
             android:layout_width="wrap_content"
@@ -210,6 +204,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginEnd="10dp"
+                android:textSize="14dp"
                 android:fontFamily="@font/poppins_regular"
                 android:includeFontPadding="false"
                 android:text="TTAP"
@@ -286,6 +281,7 @@
             android:layout_marginEnd="18dp"
             android:layout_marginBottom="10dp"
             android:gravity="center"
+            android:textSize="14dp"
             android:textColor="#ff0000" />
 
 
@@ -298,6 +294,7 @@
             android:layout_marginBottom="40dp"
             android:background="@color/colorPrimary"
             android:text="다음"
+            android:textSize="14dp"
             android:textColor="@color/white" />
     </LinearLayout>
 </layout>

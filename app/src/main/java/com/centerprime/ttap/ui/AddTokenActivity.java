@@ -120,61 +120,61 @@ public class AddTokenActivity extends AppCompatActivity {
                         binding.next.setText("추가");
 
                         if (tokenSymbol.equals("USDT")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.usdt));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.usdt));
                         } else if (tokenSymbol.equals("DAI")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.dai));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.dai));
                         } else if (tokenSymbol.equals("LINK")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.link));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.link));
                         } else if (tokenSymbol.equals("UNI")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.uni));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.uni));
                         } else if (tokenSymbol.equals("USDC")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.usdc));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.usdc));
                         } else if (tokenSymbol.equals("WBTC")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.wbtc));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.wbtc));
                         } else if (tokenSymbol.equals("VEN")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.ven));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.ven));
                         } else if (tokenSymbol.equals("THETA")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.theta));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.theta));
                         } else if (tokenSymbol.equals("WFIL")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.wfil));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.wfil));
                         } else if (tokenSymbol.equals("BUSD")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.busd));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.busd));
                         } else if (tokenSymbol.equals("OKB")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.okb));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.okb));
                         } else if (tokenSymbol.equals("CRO")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.cro));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.cro));
                         } else if (tokenSymbol.equals("cUSDC")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.cusdc));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.cusdc));
                         } else if (tokenSymbol.equals("HT")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.ht));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.ht));
                         } else if (tokenSymbol.equals("cETH")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.ceth));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.ceth));
                         } else if (tokenSymbol.equals("MKR")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.mkr));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.mkr));
                         } else if (tokenSymbol.equals("cDAI")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.cdai));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.cdai));
                         } else if (tokenSymbol.equals("COMP")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.comp));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.comp));
                         } else if (tokenSymbol.equals("CHZ")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.chz));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.chz));
                         } else if (tokenSymbol.equals("XRP")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.xrp));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.xrp));
                         } else if (tokenSymbol.equals("DOGE")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.doge));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.doge));
                         } else if (tokenSymbol.equals("ADA")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.ada));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.ada));
                         } else if (tokenSymbol.equals("BCH")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.bch));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.bch));
                         } else if (tokenSymbol.equals("LTC")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.ltc));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.ltc));
                         } else if (tokenSymbol.equals("EOS")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.eos));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.eos));
                         } else if (tokenSymbol.equals("CAKE")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.cake));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.cake));
                         } else if (tokenSymbol.equals("BUSD-T")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.busdt));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.busdt));
                         } else if (tokenSymbol.equals("YFI")) {
-                            binding.logo.setImageDrawable(getDrawable(R.drawable.yfi));
+                            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.yfi));
                         }
                     } else {
 

@@ -2,6 +2,7 @@ package com.centerprime.ttap.di;
 
 import com.centerprime.ttap.MyApp;
 import com.centerprime.ttap.ui.AddTokenActivity;
+import com.centerprime.ttap.ui.AddressesBookActivity;
 import com.centerprime.ttap.ui.BackUpQrCodeActivity;
 import com.centerprime.ttap.ui.BackUpSeedsActivity;
 import com.centerprime.ttap.ui.DirectQuestionActivity;
@@ -31,10 +32,12 @@ import com.centerprime.ttap.ui.WalletSeedsActivity;
 import com.centerprime.ttap.ui.fragments.MainFragment;
 import com.centerprime.ttap.ui.fragments.MainFragment2;
 import com.centerprime.ttap.ui.fragments.MainFragment3;
+import com.centerprime.ttap.ui.fragments.MainFragment4;
 import com.centerprime.ttap.ui.fragments.TokenFragment;
 import com.centerprime.ttap.ui.fragments.TokensFragment;
 import com.centerprime.ttap.ui.fragments.WalletFragment;
 import com.centerprime.ttap.ui.fragments.WalletFragment2;
+import com.centerprime.ttap.ui.TokenActivity;
 
 import javax.inject.Singleton;
 
@@ -82,8 +85,11 @@ public interface ApplicationComponent {
     void inject(PrivacyPolicyActivity activity);
     void inject(TermsOfUseActivity activity);
     void inject(MainFragment3 fragment3);
+    void inject(MainFragment4 fragment4);
     void inject(AddTokenActivity activity);
     void inject(WalletFragment2 fragment2);
+    void inject(AddressesBookActivity activity);
+    void inject(TokenActivity activity);
 
 
     @Component.Builder
