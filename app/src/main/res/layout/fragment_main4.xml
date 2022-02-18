@@ -39,6 +39,7 @@
                 android:orientation="vertical">
 
                 <com.tomer.fadingtextview.FadingTextView
+
                     android:id="@+id/notificationTitles"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
@@ -154,15 +155,25 @@
 
                 <ImageView
                     android:id="@+id/closeBtn"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:padding="10dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="15dp"
                     android:visibility="gone"
                     android:elevation="3dp"
                     android:layout_gravity="right"
                     android:layout_marginEnd="30dp"
                     android:src="@drawable/close_btn"
                     />
+                <TextView
+                    android:id="@+id/noItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="검색 결과 없습니다."
+                    android:elevation="4dp"
+                    android:layout_gravity="center|top"
+                    android:layout_marginTop="65dp"
+                    android:visibility="gone"/>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
@@ -173,6 +184,7 @@
                     android:background="@color/white"
                     android:elevation="2dp"
                     android:visibility="gone"
+                    android:layout_marginBottom="40dp"
                     tools:listitem="@layout/item_search_sections">
 
                 </androidx.recyclerview.widget.RecyclerView>

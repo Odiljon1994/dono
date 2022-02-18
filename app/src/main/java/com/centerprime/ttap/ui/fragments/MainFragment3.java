@@ -100,11 +100,6 @@ public class MainFragment3 extends Fragment {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-//            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ung4915.wixsite.com/wellet"));
-//            startActivity(browserIntent);
-//            Intent intent = new Intent(getActivity(), WebViewActivity.class);
-//            intent.putExtra("url", "https://ung4915.wixsite.com/wellet");
-//            startActivity(intent);
         });
         binding.bannerSecond.setOnClickListener(v -> {
             try {
@@ -114,11 +109,6 @@ public class MainFragment3 extends Fragment {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-//            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ung4915.wixsite.com/wellet/get-started"));
-//            startActivity(browserIntent);
-//            Intent intent = new Intent(getActivity(), WebViewActivity.class);
-//            intent.putExtra("url", "https://ung4915.wixsite.com/wellet/get-started");
-//            startActivity(intent);
         });
 
         binding.bannerThird.setOnClickListener(v -> {
@@ -129,11 +119,6 @@ public class MainFragment3 extends Fragment {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-//            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ung4915.wixsite.com/wellet"));
-//            startActivity(browserIntent);
-//            Intent intent = new Intent(getActivity(), WebViewActivity.class);
-//            intent.putExtra("url", "https://ung4915.wixsite.com/wellet");
-//            startActivity(intent);
         });
 
         binding.bannerFourth.setOnClickListener(v -> {
@@ -144,11 +129,6 @@ public class MainFragment3 extends Fragment {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-//            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ung4915.wixsite.com/wellet"));
-//            startActivity(browserIntent);
-//            Intent intent = new Intent(getActivity(), WebViewActivity.class);
-//            intent.putExtra("url", "https://ung4915.wixsite.com/wellet");
-//            startActivity(intent);
         });
 
         walletAddress = preferencesUtil.getWalletAddress();

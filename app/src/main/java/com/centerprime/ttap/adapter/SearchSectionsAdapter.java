@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.centerprime.ttap.R;
 import com.centerprime.ttap.databinding.ItemSearchSectionsBinding;
+import com.centerprime.ttap.models.FaqModel;
 import com.centerprime.ttap.models.SearchSectionModel;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -61,7 +62,7 @@ public class SearchSectionsAdapter extends RecyclerView.Adapter<SearchSectionsAd
                 filteredList.addAll(allItems);
             } else {
                 for (int i = 0; i < allItems.size(); i++) {
-                    if (allItems.get(i).getSection().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                    if (allItems.get(i).getTitle().toLowerCase().contains(constraint.toString().toLowerCase())) {
                         filteredList.add(allItems.get(i));
                     }
                 }
@@ -90,10 +91,15 @@ public class SearchSectionsAdapter extends RecyclerView.Adapter<SearchSectionsAd
         }
 
         void bind(SearchSectionModel model) {
-            binding.section.setText(model.getSection());
+            binding.section.setText(model.getTitle());
 
             binding.getRoot().setOnClickListener(v -> clickListener.onClick(model));
         }
+    }
+
+    public void setItems(List<SearchSectionModel> items) {
+        this.items = items;
+        notifyDataSetChanged();
     }
 
     public interface ClickListener {

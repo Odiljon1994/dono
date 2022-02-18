@@ -1,6 +1,5 @@
 package com.centerprime.ttap.ui.fragments;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -10,8 +9,8 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,28 +23,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.centerprime.ttap.MyApp;
 import com.centerprime.ttap.R;
-import com.centerprime.ttap.adapter.FaqAdapter;
 import com.centerprime.ttap.adapter.SearchSectionsAdapter;
 import com.centerprime.ttap.api.ApiUtils;
-import com.centerprime.ttap.databinding.FragmentMain2Binding;
-import com.centerprime.ttap.databinding.FragmentMain3Binding;
 import com.centerprime.ttap.databinding.FragmentMain4Binding;
 import com.centerprime.ttap.di.ViewModelFactory;
 import com.centerprime.ttap.models.BannerListModel;
-import com.centerprime.ttap.models.ExistingTokenModel;
+import com.centerprime.ttap.models.FaqModel;
 import com.centerprime.ttap.models.NotificationModel;
 import com.centerprime.ttap.models.SearchSectionModel;
 import com.centerprime.ttap.ui.AddressesBookActivity;
 import com.centerprime.ttap.ui.DirectQuestionActivity;
 import com.centerprime.ttap.ui.FaqActivity;
 import com.centerprime.ttap.ui.FaqBodyActivity;
-import com.centerprime.ttap.ui.MainActivity;
 import com.centerprime.ttap.ui.NotificationActivity;
 import com.centerprime.ttap.ui.NotificationBodyActivity;
 import com.centerprime.ttap.ui.PrivacyPolicyActivity;
 import com.centerprime.ttap.ui.TermsOfUseActivity;
-import com.centerprime.ttap.ui.WebViewActivity;
 import com.centerprime.ttap.ui.viewmodel.BannersListVM;
+import com.centerprime.ttap.ui.viewmodel.FaqVM;
 import com.centerprime.ttap.ui.viewmodel.NotificationVM;
 import com.centerprime.ttap.util.PreferencesUtil;
 import com.centerprime.ttap.web3.EthManager;
@@ -66,19 +61,22 @@ public class MainFragment4 extends Fragment {
     private String walletAddress;
     private String[] notificationTitles = {"[공지] 가상자산 사업자 관련하여 공식 입장 안내...", "[공지] 가상자산 사업자 관련하여 공식 입장 안내...", "[공지] 가상자산 사업자 관련하여 공식 입장 안내..."};
     private List<SearchSectionModel> searchSectionModels;
+    private List<SearchSectionModel> filteredSearchSectionModels;
     @Inject
     PreferencesUtil preferencesUtil;
     @Inject
     ViewModelFactory viewModelFactory;
     private ProgressDialog progressDialog;
     NotificationVM notificationVM;
+    FaqVM faqVM;
     BannersListVM bannersListVM;
     private String[] fadingTitles;
-    private List<NotificationModel.Data> list = new ArrayList<>();
+    private List<NotificationModel.Data> notificationList = new ArrayList<>();
+    private List<FaqModel.FaqData> faqList = new ArrayList<>();
     private String firstBannerUrl = "";
     private String secondBannerUrl = "";
     private String thirdBannerUrl = "";
-    private  String fourthBannerUrl = "";
+    private String fourthBannerUrl = "";
     private SearchSectionsAdapter adapter;
 
     @Nullable
@@ -88,54 +86,80 @@ public class MainFragment4 extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main4, container, false);
         notificationVM = ViewModelProviders.of(this, viewModelFactory).get(NotificationVM.class);
         bannersListVM = ViewModelProviders.of(this, viewModelFactory).get(BannersListVM.class);
+        faqVM = ViewModelProviders.of(this, viewModelFactory).get(FaqVM.class);
         notificationVM.item().observe(getActivity(), this::items);
         notificationVM.errorMessage().observe(getActivity(), this::onError);
+        faqVM.item().observe(getActivity(), this::faqItems);
+        faqVM.errorMessage().observe(getActivity(), this::onFaqError);
+
         bannersListVM.item().observe(getActivity(), this::bannersList);
         bannersListVM.itemOnError().observe(getActivity(), this::onError);
         View view = binding.getRoot();
+
+        notificationVM.getNotifications();
+        faqVM.getFaq();
+        bannersListVM.getBannerList();
 
         binding.closeBtn.setOnClickListener(v -> {
             binding.recyclerView.setVisibility(View.GONE);
             binding.closeBtn.setVisibility(View.GONE);
             binding.searchEditText.clearFocus();
+            binding.noItem.setVisibility(View.GONE);
         });
 
         searchSectionModels = new ArrayList<>();
-        searchSectionModels.add(new SearchSectionModel("공지사항"));
-        searchSectionModels.add(new SearchSectionModel("FAQ"));
-        searchSectionModels.add(new SearchSectionModel("1:1 문의하기"));
-        searchSectionModels.add(new SearchSectionModel("주소록"));
-        searchSectionModels.add(new SearchSectionModel("이용약관"));
-        searchSectionModels.add(new SearchSectionModel("개인정보보호처리방침"));
+        searchSectionModels.add(new SearchSectionModel("other", "공지사항", 0));
+        searchSectionModels.add(new SearchSectionModel("other", "FAQ", 0));
+        searchSectionModels.add(new SearchSectionModel("other", "1:1 문의하기", 0));
+        searchSectionModels.add(new SearchSectionModel("other", "주소록", 0));
+        searchSectionModels.add(new SearchSectionModel("other", "이용약관", 0));
+        searchSectionModels.add(new SearchSectionModel("other", "개인정보보호처리방침", 0));
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
         adapter = new SearchSectionsAdapter(getActivity(), searchSectionModels, item -> {
 
             binding.recyclerView.setVisibility(View.GONE);
             binding.closeBtn.setVisibility(View.GONE);
-            binding.searchEditText.setText(item.getSection());
-            if (item.getSection().equals("주소록")) {
+            binding.searchEditText.setText(item.getTitle());
+            if (item.getType().equals("other") && item.getTitle().equals("주소록")) {
                 startActivity(new Intent(getActivity(), AddressesBookActivity.class));
-                binding.searchEditText.clearFocus();
-            } else if (item.getSection().equals("공지사항")) {
+            } else if (item.getType().equals("other") && item.getTitle().equals("공지사항")) {
                 startActivity(new Intent(getActivity(), NotificationActivity.class));
-                binding.searchEditText.clearFocus();
-            } else if (item.getSection().equals("FAQ")) {
+            } else if (item.getType().equals("other") && item.getTitle().equals("FAQ")) {
                 startActivity(new Intent(getActivity(), FaqActivity.class));
-                binding.searchEditText.clearFocus();
-            } else if (item.getSection().equals("1:1 문의하기")) {
+            } else if (item.getType().equals("other") && item.getTitle().equals("1:1 문의하기")) {
                 startActivity(new Intent(getActivity(), DirectQuestionActivity.class));
-                binding.searchEditText.clearFocus();
-            } else if (item.getSection().equals("주소록")) {
+            } else if (item.getType().equals("other") && item.getTitle().equals("주소록")) {
                 startActivity(new Intent(getActivity(), AddressesBookActivity.class));
-                binding.searchEditText.clearFocus();
-            } else if (item.getSection().equals("이용약관")) {
+            } else if (item.getType().equals("other") && item.getType().equals("other") && item.getTitle().equals("이용약관")) {
                 startActivity(new Intent(getActivity(), TermsOfUseActivity.class));
-                binding.searchEditText.clearFocus();
-            } else if (item.getSection().equals("개인정보보호처리방침")) {
+            } else if (item.getType().equals("other") && item.getType().equals("other") && item.getTitle().equals("개인정보보호처리방침")) {
                 startActivity(new Intent(getActivity(), PrivacyPolicyActivity.class));
-                binding.searchEditText.clearFocus();
+            } else if (item.getType().equals("FAQ")) {
+                Intent intent = new Intent(getActivity(), FaqBodyActivity.class);
+                intent.putExtra("title", faqList.get(item.getId()).getTitle());
+                intent.putExtra("date", faqList.get(item.getId()).getCreated_at());
+                intent.putExtra("content", faqList.get(item.getId()).getContent());
+                startActivity(intent);
+            } else if (item.getType().equals("Notification")) {
+                Intent intent = new Intent(getActivity(), NotificationBodyActivity.class);
+                intent.putExtra("content", notificationList.get(item.getId()).getContent());
+                if (item.getType().equals("1")) {
+                    intent.putExtra("title", "[공지] " + notificationList.get(item.getId()).getName());
+                } else if (item.getType().equals("2")) {
+                    intent.putExtra("title", "[이벤트] " + notificationList.get(item.getId()).getName());
+                } else {
+                    intent.putExtra("title", notificationList.get(item.getId()).getName());
+                }
+                intent.putExtra("title", notificationList.get(item.getId()).getName());
+                intent.putExtra("date", notificationList.get(item.getId()).getCreated_at());
+                startActivity(intent);
             }
+            binding.searchEditText.clearFocus();
+            binding.searchEditText.setText("");
+            binding.recyclerView.setVisibility(View.GONE);
+            binding.closeBtn.setVisibility(View.GONE);
+            binding.noItem.setVisibility(View.GONE);
 
         });
         binding.recyclerView.setAdapter(adapter);
@@ -144,9 +168,13 @@ public class MainFragment4 extends Fragment {
             if (hasFocus) {
                 binding.recyclerView.setVisibility(View.VISIBLE);
                 binding.closeBtn.setVisibility(View.VISIBLE);
+                if (filteredSearchSectionModels != null && filteredSearchSectionModels.size() == 0) {
+                    binding.noItem.setVisibility(View.VISIBLE);
+                }
             } else {
                 binding.recyclerView.setVisibility(View.GONE);
                 binding.closeBtn.setVisibility(View.GONE);
+                binding.noItem.setVisibility(View.GONE);
             }
         });
 
@@ -163,28 +191,41 @@ public class MainFragment4 extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
+                filteredSearchSectionModels = new ArrayList<>();
+                for (int i = 0; i < searchSectionModels.size(); i++) {
+                    if (searchSectionModels.get(i).getTitle().toLowerCase().contains(s.toString().toLowerCase())) {
+                        filteredSearchSectionModels.add(searchSectionModels.get(i));
+                    }
+                }
+                adapter.setItems(filteredSearchSectionModels);
                 binding.recyclerView.setVisibility(View.VISIBLE);
-                adapter.getFilter().filter(s);
                 binding.closeBtn.setVisibility(View.VISIBLE);
+                if (filteredSearchSectionModels.size() == 0) {
+                    binding.noItem.setVisibility(View.VISIBLE);
+                } else if (filteredSearchSectionModels.size() > 0) {
+                    binding.noItem.setVisibility(View.GONE);
+                }
+
+//                binding.recyclerView.setVisibility(View.VISIBLE);
+//                adapter.getFilter().filter(s);
+//                binding.closeBtn.setVisibility(View.VISIBLE);
             }
         });
 
         binding.notificationTitles.setTexts(notificationTitles);
         binding.notificationTitles.setOnClickListener(v -> {
 
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).getName().equals(binding.notificationTitles.getText().toString())) {
+            for (int i = 0; i < notificationList.size(); i++) {
+                if (notificationList.get(i).getName().equals(binding.notificationTitles.getText().toString())) {
                     Intent intent = new Intent(getActivity(), NotificationBodyActivity.class);
 
-                    intent.putExtra("content", list.get(i).getContent());
-                    intent.putExtra("title", list.get(i).getName());
-                    intent.putExtra("date", list.get(i).getCreated_at());
+                    intent.putExtra("content", notificationList.get(i).getContent());
+                    intent.putExtra("title", notificationList.get(i).getName());
+                    intent.putExtra("date", notificationList.get(i).getCreated_at());
                     startActivity(intent);
                     break;
                 }
             }
-
-
         });
 
         binding.firstBanner.setOnClickListener(v -> {
@@ -195,11 +236,6 @@ public class MainFragment4 extends Fragment {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-//            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ung4915.wixsite.com/wellet"));
-//            startActivity(browserIntent);
-//            Intent intent = new Intent(getActivity(), WebViewActivity.class);
-//            intent.putExtra("url", "https://ung4915.wixsite.com/wellet");
-//            startActivity(intent);
         });
         binding.bannerSecond.setOnClickListener(v -> {
             try {
@@ -209,11 +245,6 @@ public class MainFragment4 extends Fragment {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-//            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ung4915.wixsite.com/wellet/get-started"));
-//            startActivity(browserIntent);
-//            Intent intent = new Intent(getActivity(), WebViewActivity.class);
-//            intent.putExtra("url", "https://ung4915.wixsite.com/wellet/get-started");
-//            startActivity(intent);
         });
 
         binding.bannerThird.setOnClickListener(v -> {
@@ -224,11 +255,6 @@ public class MainFragment4 extends Fragment {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-//            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ung4915.wixsite.com/wellet"));
-//            startActivity(browserIntent);
-//            Intent intent = new Intent(getActivity(), WebViewActivity.class);
-//            intent.putExtra("url", "https://ung4915.wixsite.com/wellet");
-//            startActivity(intent);
         });
 
         binding.bannerFourth.setOnClickListener(v -> {
@@ -239,19 +265,11 @@ public class MainFragment4 extends Fragment {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-//            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ung4915.wixsite.com/wellet"));
-//            startActivity(browserIntent);
-//            Intent intent = new Intent(getActivity(), WebViewActivity.class);
-//            intent.putExtra("url", "https://ung4915.wixsite.com/wellet");
-//            startActivity(intent);
         });
 
         walletAddress = preferencesUtil.getWalletAddress();
-        binding.progressBar.getProgress();
-
         checkBalance();
-        notificationVM.getNotifications();
-        bannersListVM.getBannerList();
+        binding.progressBar.getProgress();
 
         return view;
     }
@@ -318,7 +336,6 @@ public class MainFragment4 extends Fragment {
         if (model.getCode() == 200) {
             fadingTitles = new String[model.getData().size()];
             for (int i = 0; i < fadingTitles.length; i++) {
-
                 String title = "";
                 if (model.getData().get(i).getType().equals("1")) {
                     title = "[공지] " + model.getData().get(i).getName();
@@ -328,8 +345,9 @@ public class MainFragment4 extends Fragment {
                     title = model.getData().get(i).getName();
                 }
 
+                searchSectionModels.add(new SearchSectionModel("Notification", title, i));
 
-                list.add(new NotificationModel.Data(model.getData().get(i).getId(),
+                notificationList.add(new NotificationModel.Data(model.getData().get(i).getId(),
                         title,
                         model.getData().get(i).getType(),
                         model.getData().get(i).getContent(),
@@ -339,6 +357,7 @@ public class MainFragment4 extends Fragment {
                 fadingTitles[i] = title;
 
             }
+            adapter.setItems(searchSectionModels);
             binding.notificationTitles.setTexts(fadingTitles);
         }
 
@@ -348,4 +367,22 @@ public class MainFragment4 extends Fragment {
 
 
     }
+
+    public void faqItems(FaqModel model) {
+
+        if (model.getCode() == 200) {
+            faqList = model.getData();
+            for (int i = 0; i < model.getData().size(); i++) {
+                searchSectionModels.add(new SearchSectionModel("FAQ", model.getData().get(i).getTitle(), i));
+            }
+            adapter.setItems(searchSectionModels);
+        }
+
+
+    }
+    public void onFaqError(String error) {
+
+
+    }
+
 }
