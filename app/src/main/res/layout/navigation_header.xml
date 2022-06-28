@@ -11,15 +11,15 @@
         android:layout_width="80dp"
         android:layout_height="30dp"
         android:layout_marginTop="20dp"
-        android:src="@drawable/drawer_logo" />
+        android:src="@drawable/red_toolbar" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="지갑 주소"
+        android:text="@string/wallet_address"
         android:textColor="@color/black"
-        android:textSize="14dp"
+        android:textSize="13dp"
         android:textStyle="bold" />
 
     <TextView
@@ -37,7 +37,7 @@
         android:textSize="18dp"
         android:fontFamily="@font/notosanskr_regular"
         android:includeFontPadding="false"
-        android:text="지갑"
+        android:text="Wallet"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
@@ -48,7 +48,7 @@
         android:textColor="@color/black"
         android:layout_marginTop="5dp"
         android:gravity="center|start"
-        android:text="마이 페이지"/>
+        android:text="@string/my_page"/>
 
     <TextView
         android:id="@+id/addressBook"
@@ -56,7 +56,7 @@
         android:layout_height="35dp"
         android:textColor="@color/black"
         android:gravity="center|start"
-        android:text="주소록"/>
+        android:text="@string/address_book"/>
 
     <TextView
         android:id="@+id/settings"
@@ -64,16 +64,16 @@
         android:layout_height="35dp"
         android:textColor="@color/black"
         android:gravity="center|start"
-        android:text="설정"/>
+        android:text="@string/settings"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:textSize="18dp"
+        android:textSize="17dp"
         android:fontFamily="@font/notosanskr_regular"
         android:includeFontPadding="false"
-        android:text="고객센터"
+        android:text="@string/service_center"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
@@ -84,7 +84,7 @@
         android:textColor="@color/black"
         android:layout_marginTop="5dp"
         android:gravity="center|start"
-        android:text="공지사항"/>
+        android:text="@string/notice"/>
 
     <TextView
         android:id="@+id/faq"
@@ -100,7 +100,33 @@
         android:layout_height="35dp"
         android:textColor="@color/black"
         android:gravity="center|start"
-        android:text="1:1 문의하기"/>
+        android:text="@string/direct_message"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <CheckBox
+            android:id="@+id/isKor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="1dp"
+            android:buttonTint="@color/colorPrimary"
+            android:text="한국어"
+            android:textColor="@color/colorPrimary" />
+
+        <CheckBox
+            android:id="@+id/isJp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="40dp"
+            android:buttonTint="@color/colorPrimary"
+            android:text="日本語"
+            android:textColor="@color/colorPrimary" />
+    </LinearLayout>
 
 
     <View
@@ -122,7 +148,12 @@
             android:layout_height="35dp"
             android:textColor="@color/black"
             android:gravity="center|start"
-            android:text="이용약관, "/>
+            android:textSize="13dp"
+            android:text="@string/terms_of_service"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=", "/>
 
         <TextView
             android:id="@+id/privacy"
@@ -130,8 +161,9 @@
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:textColor="@color/black"
+            android:textSize="13dp"
             android:gravity="center|start"
-            android:text="개인정보보호처리방침"/>
+            android:text="@string/privacy_policy"/>
 
     </LinearLayout>
     <TextView
@@ -140,6 +172,6 @@
         android:layout_height="35dp"
         android:textColor="@color/black"
         android:gravity="center|start"
-        android:text="앱 버전 1.0"/>
+        android:text="@string/app_version"/>
 
 </LinearLayout>

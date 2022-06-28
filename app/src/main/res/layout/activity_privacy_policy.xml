@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
@@ -28,7 +28,7 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="30dp"
-                android:src="@drawable/toolbar_logo"
+                android:src="@drawable/logo_long_text"
                 android:layout_gravity="center" />
 
             <ImageView
@@ -50,8 +50,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="16dp"
             android:fontFamily="@font/notosanskr_regular"
-            android:textSize="30dp"
-            android:text="개인정보정책"/>
+            android:textSize="28dp"
+            android:text="@string/privacy_policy"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -87,22 +87,22 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1">
+
             <TextView
                 android:id="@+id/content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
 
-                android:layout_marginTop="10dp"
-                android:lineSpacingExtra="2dp"
-                android:textSize="10dp"
-                android:text=""
-                android:layout_marginBottom="20dp"
                 android:layout_marginStart="18dp"
-                android:layout_marginEnd="18dp"/>
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="20dp"
+                android:lineSpacingExtra="2dp"
+                android:text=""
+                android:textSize="10dp" />
         </ScrollView>
-
 
 
     </LinearLayout>

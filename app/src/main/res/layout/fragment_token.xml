@@ -28,12 +28,12 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="18dp"
-                android:src="@drawable/ttap_logo" />
+                android:src="@drawable/g3s" />
             <TextView
                 android:id="@+id/tokenName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TTAP"
+                android:text="G3S"
                 android:fontFamily="@font/poppins_regular"
                 android:includeFontPadding="false"
                 android:textStyle="bold"
@@ -97,8 +97,8 @@
             <Button
                 android:id="@+id/receive"
                 android:layout_width="0dp"
-                android:background="#253D85"
-                android:text="입금"
+                android:background="@color/colorPrimary"
+                android:text="@string/deposit"
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:fontFamily="@font/notosanskr_regular"
@@ -108,7 +108,7 @@
                 android:id="@+id/send"
                 android:layout_width="0dp"
                 android:background="#121212"
-                android:text="출금"
+                android:text="@string/send"
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:fontFamily="@font/notosanskr_regular"
@@ -124,8 +124,8 @@
             android:layout_marginTop="10dp"
             app:tabBackground="@color/white"
             app:tabGravity="fill"
-            app:tabIndicatorColor="#43B0DD"
-            app:tabSelectedTextColor="#43B0DD"
+            app:tabIndicatorColor="@color/colorPrimary"
+            app:tabSelectedTextColor="@color/colorPrimary"
             app:tabTextColor="#121212"
             >
 
@@ -154,7 +154,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="top|center"
                     android:layout_marginTop="20dp"
-                    android:text="거래 내역이 없습니다."
+                    android:text="@string/no_transactions"
                     android:fontFamily="@font/notosanskr_regular"
                     android:includeFontPadding="false"
                     android:textColor="#d2d2d2"

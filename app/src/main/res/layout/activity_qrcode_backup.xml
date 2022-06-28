@@ -22,8 +22,9 @@
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
             android:layout_gravity="center"
+            android:gravity="center"
             android:layout_marginTop="60dp"
-            android:text="반드시 QR 코드는 \n안전한 곳에 보관하세요"/>
+            android:text="@string/be_sure_to_keep_qrcode"/>
 
         <ImageView
             android:id="@+id/qrcode"
@@ -43,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/colorPrimary"
-            android:text="백업"
+            android:text="@string/backup"
             android:textColor="@color/white"
             android:layout_marginBottom="40dp"
             />

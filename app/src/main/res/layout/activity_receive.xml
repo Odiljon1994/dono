@@ -28,13 +28,13 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ttap_coin_logo" />
+                android:src="@drawable/g3s" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="TTAP"
+                android:text="G3S"
                 android:textSize="14dp"
                 android:layout_marginTop="5dp"
                 android:textStyle="bold"

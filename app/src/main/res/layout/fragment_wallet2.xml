@@ -65,7 +65,7 @@
                 android:layout_marginStart="18dp"
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
-                android:text="보유 가상 자산"
+                android:text="@string/hold_virtual_assets"
                 android:textColor="@color/black"
                 android:textSize="22dp"
                 android:textStyle="bold" />
@@ -79,7 +79,7 @@
                 android:id="@+id/addToken"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="토큰추가"
+                android:text="@string/add_token"
                 android:drawablePadding="5dp"
                 android:textColor="@color/black"
                 android:textStyle="bold"

@@ -20,7 +20,7 @@
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
-                android:text="주소록"
+                android:text="@string/address_book"
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
                 android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
                 android:id="@+id/addBtn"
                 android:layout_width="wrap_content"
                 android:background="@color/white"
-                android:text="등록하기"
+                android:text="@string/add_btn"
                 android:textSize="12dp"
                 android:paddingEnd="18dp"
                 android:textColor="#253D85"
@@ -71,7 +71,7 @@
             android:paddingBottom="3dp"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:text="선택"/>
+            android:text="@string/select"/>
 
         <View
             android:layout_width="match_parent"

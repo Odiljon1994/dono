@@ -28,7 +28,7 @@
                     style="@style/TextViewMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="출금 확인"
+                    android:text="@string/withdrawal_confirmation"
                     android:textColor="@color/white"
                     android:layout_gravity="center"
                     android:textSize="15dp"
@@ -58,7 +58,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="18dp"
                 android:layout_marginTop="25dp"
-                android:src="@drawable/ttap_coin_logo" />
+                android:src="@drawable/g3s" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -67,7 +67,7 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
-                android:text="출금 수량"
+                android:text="@string/withdrawal_quantity"
                 android:textColor="@color/white"
                 android:textSize="14dp"
                 android:textStyle="bold" />
@@ -98,7 +98,7 @@
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
-                    android:text="TTAP"
+                    android:text="G3s"
                     android:textColor="#999999"
                     android:textSize="15dp"
                     android:textStyle="bold" />
@@ -111,7 +111,7 @@
                 android:layout_marginTop="25dp"
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
-                android:text="수수료"
+                android:text="@string/fee"
                 android:textColor="@color/white"
                 android:textSize="14dp"
                 android:textStyle="bold" />
@@ -142,7 +142,7 @@
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
-                    android:text="TTAP"
+                    android:text="G3S"
                     android:textColor="#999999"
                     android:textSize="15dp"
                     android:textStyle="bold" />
@@ -175,7 +175,7 @@
             android:layout_width="13dp"
             android:layout_height="25dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/dwon_arrow"
+            android:src="@drawable/down_array"
             android:layout_marginStart="18dp"/>
 
         <TextView
@@ -211,8 +211,7 @@
             android:layout_marginStart="18dp"
             android:layout_marginEnd="18dp"
             android:layout_marginBottom="10dp"
-            android:text="* 위 정보가 맞는지 확인해주세요.\n
-잘못된 정보인 경우, 가상 자산을 찾을 방법은 없습니다."/>
+            android:text="@string/check_above_info"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -226,7 +225,7 @@
                 android:id="@+id/goBack"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:text="다음"
+                android:text="@string/back"
                 android:fontFamily="@font/notosanskr_regular"
                 android:textColor="@color/white"
                 android:background="#121212"
@@ -235,7 +234,7 @@
                 android:id="@+id/confirm"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:text="확인"
+                android:text="@string/confirm"
                 android:textColor="@color/white"
                 android:fontFamily="@font/notosanskr_regular"
                 android:layout_marginStart="10dp"

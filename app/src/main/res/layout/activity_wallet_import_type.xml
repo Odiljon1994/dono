@@ -12,11 +12,11 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="130dp"
+            android:layout_width="180dp"
             android:layout_height="155dp"
             android:layout_gravity="center"
             android:layout_marginTop="100dp"
-            android:src="@drawable/wallet_import" />
+            android:src="@drawable/red_logo_with_text" />
 
 
         <View
@@ -34,7 +34,7 @@
             android:layout_marginBottom="5dp"
             android:backgroundTint="@color/colorPrimary"
             android:fontFamily="@font/notosanskr_regular"
-            android:text="시드구문 불러오기" />
+            android:text="@string/import_seeds" />
 
         <Button
             android:id="@+id/qrCode"
@@ -45,7 +45,7 @@
             android:layout_marginBottom="40dp"
             android:backgroundTint="@color/grayColor"
             android:fontFamily="@font/notosanskr_regular"
-            android:text="QR코드 불러오기"
+            android:text="@string/import_by_qrcode"
             android:textColor="@color/black" />
 
 

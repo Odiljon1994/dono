@@ -17,7 +17,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="18dp"
             android:layout_marginTop="50dp"
-            android:src="@drawable/toolbar_logo" />
+            android:src="@drawable/logo_long_text" />
 
         <TextView
             android:id="@+id/header_text"
@@ -58,7 +58,7 @@
             android:padding="10dp"
             android:text="비밀번호로 연결"
             android:textStyle="bold"
-            android:textColor="@color/colorPrimary"/>
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/okBtn"

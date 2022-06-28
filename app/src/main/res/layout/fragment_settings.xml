@@ -8,81 +8,116 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:orientation="vertical">
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="50dp"
-            android:background="#F0F0F0"/>
+            android:background="#F0F0F0" />
 
         <TextView
             android:id="@+id/qrCodeBackUp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="QR 코드 백업"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:paddingStart="20dp"
-            android:gravity="center|start"
             android:fontFamily="@font/poppins_regular"
-            android:includeFontPadding="false"/>
+            android:gravity="center|start"
+            android:includeFontPadding="false"
+            android:paddingStart="20dp"
+            android:text="@string/qr_code_back_up"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#F0F0F0"/>
+            android:background="#F0F0F0" />
 
         <TextView
             android:id="@+id/seedBackUp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="시드 구문 백업"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:paddingStart="20dp"
-            android:gravity="center|start"
             android:fontFamily="@font/poppins_regular"
-            android:includeFontPadding="false"/>
+            android:gravity="center|start"
+            android:includeFontPadding="false"
+            android:paddingStart="20dp"
+            android:text="@string/seed_back_up"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#F0F0F0"/>
+            android:background="#F0F0F0" />
 
         <TextView
             android:id="@+id/privateKey"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="프라이빗 키 보기"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:paddingStart="20dp"
-            android:gravity="center|start"
             android:fontFamily="@font/poppins_regular"
-            android:includeFontPadding="false"/>
+            android:gravity="center|start"
+            android:includeFontPadding="false"
+            android:paddingStart="20dp"
+            android:text="@string/private_key_back_up"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#F0F0F0"/>
+            android:background="#F0F0F0" />
 
         <TextView
             android:id="@+id/lockTheWallet"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="지갑 잠금"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center|start"
+            android:includeFontPadding="false"
+            android:paddingStart="20dp"
+            android:text="@string/lock_app"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:paddingStart="20dp"
-            android:gravity="center|start"
-            android:fontFamily="@font/poppins_regular"
-            android:includeFontPadding="false"/>
+            android:visibility="gone" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#F0F0F0"/>
+            android:background="#F0F0F0" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:visibility="invisible">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <CheckBox
+                android:id="@+id/isKor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="1dp"
+                android:buttonTint="@color/colorPrimary"
+                android:text="한국어"
+                android:textColor="@color/colorPrimary" />
+
+            <CheckBox
+                android:id="@+id/isJp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="40dp"
+                android:buttonTint="@color/colorPrimary"
+                android:text="日本語"
+                android:textColor="@color/colorPrimary" />
+        </LinearLayout>
+
 
     </LinearLayout>
 </layout>

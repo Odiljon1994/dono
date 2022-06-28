@@ -22,6 +22,7 @@
                 style="@style/TextViewMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/send"
                 android:layout_gravity="center"
                 android:textSize="15dp"
                 android:textStyle="bold" />
@@ -67,7 +68,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="18dp"
-                android:src="@drawable/ttap_logo" />
+                android:src="@drawable/g3s" />
 
             <TextView
                 android:id="@+id/cymbolHead"
@@ -78,7 +79,7 @@
                 android:textSize="14dp"
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
-                android:text="TTAP"
+                android:text="G3S"
                 android:textColor="#121212"
                 android:textStyle="bold" />
 
@@ -111,7 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
-                android:text="출금주소"
+                android:text="@string/withdrawal_address"
                 android:textSize="14dp"
                 android:textColor="@color/black" />
 
@@ -119,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="*잘못된 출금 주소를 입력하는 경우, 가상 자산 복구는 불가능합니다."
+                android:text="@string/incorrect_withdrawal_address_warning"
                 android:textSize="8dp"
                 android:textStyle="bold" />
 
@@ -142,7 +143,7 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:ellipsize="middle"
-                android:hint="0x로 시작하는 주소를 입력해주세요."
+                android:hint="@string/enter_address_with_ox"
                 android:paddingStart="10dp"
                 android:singleLine="true"
                 android:text=""
@@ -162,7 +163,7 @@
             android:layout_marginEnd="18dp"
             android:textSize="14dp"
             android:background="#f0f0f0"
-            android:text="주소록" />
+            android:text="@string/address_book" />
 
 
         <TextView
@@ -172,7 +173,7 @@
             android:layout_marginTop="30dp"
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
-            android:text="금액"
+            android:text="@string/amount"
             android:textColor="@color/black"
             android:textSize="15dp" />
 
@@ -192,7 +193,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:background="@null"
-                android:hint="수량을 입력해주세요."
+                android:hint="@string/enter_quantity"
                 android:inputType="numberDecimal"
                 android:paddingStart="10dp"
                 android:textColorHint="#d2d2d2"
@@ -207,7 +208,7 @@
                 android:textSize="14dp"
                 android:fontFamily="@font/poppins_regular"
                 android:includeFontPadding="false"
-                android:text="TTAP"
+                android:text="G3S"
                 android:textColor="@color/black" />
 
             <TextView
@@ -221,7 +222,7 @@
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
                 android:text="Max"
-                android:textColor="#43B0DD"
+                android:textColor="@color/colorPrimary"
                 android:textSize="12dp" />
 
         </LinearLayout>
@@ -234,7 +235,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
-            android:text="잔액 : "
+            android:text="@string/balance"
             android:textColor="@color/black"
             android:textSize="15dp" />
 
@@ -252,7 +253,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
-            android:text="수수료 :"
+            android:text="@string/fee"
             android:textColor="@color/black"
             android:textSize="15dp" />
 
@@ -264,7 +265,7 @@
             android:layout_marginTop="5dp"
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
-            android:text=""
+            android:text="1 G3S"
             android:textColor="#253D85"
             android:textSize="12dp" />
 
@@ -293,7 +294,7 @@
             android:layout_marginEnd="18dp"
             android:layout_marginBottom="40dp"
             android:background="@color/colorPrimary"
-            android:text="다음"
+            android:text="@string/next"
             android:textSize="14dp"
             android:textColor="@color/white" />
     </LinearLayout>

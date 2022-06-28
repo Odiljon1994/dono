@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
@@ -13,7 +14,7 @@
 
         <include
             android:id="@+id/toolbar"
-            layout="@layout/toolbar"/>
+            layout="@layout/toolbar" />
 
 
         <TextView
@@ -21,34 +22,44 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
-            android:textSize="34dp"
             android:layout_marginTop="10dp"
+            android:text="@string/six_digits"
             android:textColor="@color/black"
-            android:text="6자리\n비밀번호"/>
+            android:textSize="34dp" />
+
+        <TextView
+            android:id="@+id/otp_status_second_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="2dp"
+            android:text="@string/password"
+            android:textColor="@color/black"
+            android:textSize="34dp" />
 
         <TextView
             android:id="@+id/onSendingText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
-            android:visibility="gone"
-            android:layout_marginEnd="18dp"
             android:layout_marginTop="5dp"
-            android:textColor="@color/black"
+            android:layout_marginEnd="18dp"
             android:text="네트워크 상태에 따라 전송 완료까지 시간이\n
-소요될 수 있습니다. 거래내역을 통해 확인해주세요."/>
+소요될 수 있습니다. 거래내역을 통해 확인해주세요."
+            android:textColor="@color/black"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/firstLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="지갑 로그인 및 가상 자산을 보낼 때"
-            android:textSize="15dp"
-            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
-            android:layout_marginTop="60dp"
-            android:layout_gravity="center"/>
+            android:text="@string/otp_middle_first_line"
+            android:textColor="@color/black"
+            android:textSize="15dp" />
 
         <LinearLayout
             android:id="@+id/secondLine"
@@ -56,38 +67,40 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:layout_marginEnd="18dp"
-            android:orientation="horizontal"
+            android:background="@color/white"
             android:gravity="center"
-            android:background="@color/white">
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/secondLineStart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:textColor="@color/black"
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
-                android:text="보낼 때 "/>
+                android:text="@string/otp_middle_second_line_begin"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/secondLineBlue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:textColor="#43B0DD"
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
-                android:text="비밀번호(6자리)"/>
+                android:text="@string/otp_middle_red_line"
+                android:layout_marginStart="3dp"
+                android:textColor="#BF0012"
+                android:textSize="15dp" />
+
             <TextView
                 android:id="@+id/secondLineEnd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:textColor="@color/black"
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
-                android:text="입니다."/>
+                android:text="@string/otp_middle_end"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
 
         </LinearLayout>
 
@@ -97,46 +110,48 @@
             android:layout_height="45dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
+            app:dotDiameter="48dp"
             app:dotEmptyBackground="@drawable/otp_unselected"
             app:dotFilledBackground="@drawable/otp_selected"
             app:dotSpacing="5dp"
-            app:dotDiameter="48dp"
-            app:pinLength="6"
-            />
+            app:pinLength="6" />
 
         <TextView
             android:id="@+id/blueText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:lineSpacingExtra="3dp"
-            android:layout_marginTop="15dp"
             android:layout_gravity="center"
-            android:textSize="12dp"
+            android:layout_marginTop="15dp"
             android:gravity="center"
-            android:text=""/>
+            android:lineSpacingExtra="3dp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="12dp" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/error"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_gravity="center"
             android:layout_marginTop="2dp"
-            android:textColor="#C80000"
+            android:textSize="13dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
             android:layout_marginBottom="2dp"
-            android:layout_gravity="center"/>
+            android:gravity="center"
+            android:textColor="#C80000" />
 
         <com.andrognito.pinlockview.PinLockView
             android:id="@+id/pin_lock_view"
             android:layout_width="305dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_gravity="center"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="80dp"
             app:keypadButtonSize="56dp"
@@ -144,7 +159,7 @@
             app:keypadShowDeleteButton="true"
             app:keypadTextColor="@color/colorBlack"
             app:keypadTextSize="28dp"
-            app:pinLength="6"/>
+            app:pinLength="6" />
 
     </LinearLayout>
 </layout>

@@ -43,7 +43,7 @@
 
         <Button
             android:id="@+id/okBtn"
-            android:text="확인"
+            android:text="@string/confirm"
             android:textStyle="bold"
             android:minWidth="0dp"
             android:minHeight="0dp"
