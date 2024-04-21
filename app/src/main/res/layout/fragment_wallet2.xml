@@ -8,14 +8,13 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="#020F27"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:background="@color/white"
             android:orientation="vertical">
 
 
@@ -66,7 +65,7 @@
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
                 android:text="@string/hold_virtual_assets"
-                android:textColor="@color/black"
+                android:textColor="#B9BABB"
                 android:textSize="22dp"
                 android:textStyle="bold" />
 
@@ -81,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/add_token"
                 android:drawablePadding="5dp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:drawableEnd="@drawable/add_token"
                 android:padding="8dp"
@@ -93,7 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="5dp"
-            android:background="@color/grayColor" />
+            android:background="#707070" />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefreshLayout"

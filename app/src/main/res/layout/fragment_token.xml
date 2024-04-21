@@ -8,7 +8,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="#020F27"
 
         android:orientation="vertical">
         <include
@@ -28,16 +28,16 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="18dp"
-                android:src="@drawable/g3s" />
+                android:src="@drawable/donpia_logo" />
             <TextView
                 android:id="@+id/tokenName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="G3S"
+                android:text="DONpia"
                 android:fontFamily="@font/poppins_regular"
                 android:includeFontPadding="false"
                 android:textStyle="bold"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="20dp"
 
                 android:layout_marginStart="10dp"/>
@@ -66,7 +66,7 @@
                     android:id="@+id/tokenAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="20dp"
                     android:visibility="gone"
                     android:fontFamily="@font/poppins_regular"
@@ -107,7 +107,7 @@
             <Button
                 android:id="@+id/send"
                 android:layout_width="0dp"
-                android:background="#121212"
+                android:background="#010C23"
                 android:text="@string/send"
                 android:textColor="@color/white"
                 android:gravity="center"

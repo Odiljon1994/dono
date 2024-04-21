@@ -8,15 +8,15 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="#181C1F"
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="180dp"
-            android:layout_height="155dp"
+            android:layout_width="207dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="100dp"
-            android:src="@drawable/red_logo_with_text" />
+            android:src="@drawable/dono_logo" />
 
 
         <View

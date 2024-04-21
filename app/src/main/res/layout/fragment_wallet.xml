@@ -8,14 +8,13 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="#020F27"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:background="@color/white"
             android:orientation="vertical">
 
 
@@ -66,7 +65,7 @@
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
                 android:text="@string/hold_virtual_assets"
-                android:textColor="@color/black"
+                android:textColor="#B9BABB"
                 android:textSize="22dp"
                 android:textStyle="bold" />
 
@@ -81,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:text="토큰추가"
                 android:drawablePadding="5dp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:drawableEnd="@drawable/add_token"
                 android:padding="4dp"
@@ -107,7 +106,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="18dp"
-                android:src="@drawable/g3s" />
+                android:src="@drawable/donpia_logo" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -116,8 +115,8 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
-                android:text="G3S"
-                android:textColor="@color/black"
+                android:text="DONpia"
+                android:textColor="@color/white"
                 android:textStyle="bold" />
 
             <View
@@ -192,7 +191,7 @@
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
                 android:text="ETH"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textStyle="bold" />
 
             <View

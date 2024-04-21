@@ -8,7 +8,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="#020F27"
         android:orientation="vertical">
 
         <TextView
@@ -18,8 +18,8 @@
             android:layout_marginStart="18dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="18dp"
-            android:text="[공지] RLA Wallet 출시!"
-            android:textColor="@color/black"
+            android:text="[공지] VONUS Wallet 출시!"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
         <TextView
@@ -29,7 +29,7 @@
             android:layout_marginStart="18dp"
             android:layout_marginEnd="18dp"
             android:text="2021.10.21"
-            android:textColor="#999999"
+            android:textColor="#B9BABB"
             android:textSize="12dp"
             android:textStyle="bold" />
 
@@ -37,6 +37,6 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="15dp"
-            android:background="#F0F0F0" />
+            android:background="#B9BABB" />
     </LinearLayout>
 </layout>

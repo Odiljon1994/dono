@@ -8,7 +8,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="#020F27"
         android:orientation="vertical"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp">
@@ -34,7 +34,7 @@
             android:gravity="center"
             android:text="문의 보내기가 완료되었습니다"
             android:textSize="14dp"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
         <TextView
             android:layout_width="match_parent"
@@ -48,7 +48,7 @@
             android:gravity="center"
             android:text="*최대한 빠른 시간안에 입력하신\n이메일로 답변을 드리겠습니다"
             android:textSize="12dp"
-            android:textColor="@color/black" />
+            android:textColor="#B9BABB" />
 
         <Button
             android:id="@+id/okBtn"

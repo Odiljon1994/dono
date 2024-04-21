@@ -8,7 +8,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="#191B1D"
         android:orientation="vertical">
 
         <include
@@ -18,7 +18,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
             android:layout_gravity="center"

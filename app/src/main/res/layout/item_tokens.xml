@@ -21,7 +21,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="18dp"
-                android:src="@drawable/g3s" />
+                android:src="@drawable/donpia_logo" />
 
             <TextView
                 android:id="@+id/tokenName"
@@ -31,8 +31,8 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
-                android:text="G3S"
-                android:textColor="@color/black"
+                android:text="VONUS"
+                android:textColor="@color/white"
                 android:textStyle="bold" />
 
             <View
@@ -62,7 +62,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
                     android:text=""
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="15dp"
                     android:visibility="visible" />
 
@@ -83,7 +83,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/grayColor"/>
+            android:background="#707070"/>
 <!--        <ImageView-->
 <!--            android:id="@+id/tokenLogo"-->
 <!--            android:layout_width="30dp"-->

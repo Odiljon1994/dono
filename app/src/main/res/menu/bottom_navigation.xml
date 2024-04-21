@@ -3,17 +3,17 @@
     <item
         android:id="@+id/home"
         android:enabled="true"
-        android:icon="@drawable/home_bottom"
+        android:icon="@drawable/bottom_nav_home_selector"
         android:title="@string/home"/>
     <item
         android:id="@+id/wallet"
         android:enabled="true"
-        android:icon="@drawable/wallet_bottom"
+        android:icon="@drawable/bottom_nav_wallet_selector"
         android:title="@string/wallet"/>
 
     <item
         android:id="@+id/lock"
         android:enabled="true"
-        android:icon="@drawable/lockup_bottom"
+        android:icon="@drawable/bottom_nav_lock_selector"
         android:title="@string/settings"/>
 </menu>

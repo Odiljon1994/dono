@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@color/white"
+        android:background="#020F27"
         android:gravity="center|left"
         android:orientation="horizontal">
 
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:text="Binance"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="14dp"
             android:textStyle="bold" />
 

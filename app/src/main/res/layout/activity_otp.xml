@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="#020F27"
         android:orientation="vertical">
 
         <include
@@ -24,7 +24,7 @@
             android:layout_marginStart="18dp"
             android:layout_marginTop="10dp"
             android:text="@string/six_digits"
-            android:textColor="@color/black"
+            android:textColor="#B9BABB"
             android:textSize="34dp" />
 
         <TextView
@@ -34,7 +34,7 @@
             android:layout_marginStart="18dp"
             android:layout_marginTop="2dp"
             android:text="@string/password"
-            android:textColor="@color/black"
+            android:textColor="#B9BABB"
             android:textSize="34dp" />
 
         <TextView
@@ -58,7 +58,7 @@
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
             android:text="@string/otp_middle_first_line"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="15dp" />
 
         <LinearLayout
@@ -67,7 +67,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:layout_marginEnd="18dp"
-            android:background="@color/white"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -78,7 +77,7 @@
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
                 android:text="@string/otp_middle_second_line_begin"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="15dp" />
 
             <TextView
@@ -89,7 +88,7 @@
                 android:includeFontPadding="false"
                 android:text="@string/otp_middle_red_line"
                 android:layout_marginStart="3dp"
-                android:textColor="#BF0012"
+                android:textColor="@color/colorPrimary"
                 android:textSize="15dp" />
 
             <TextView
@@ -99,7 +98,7 @@
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
                 android:text="@string/otp_middle_end"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="15dp" />
 
         </LinearLayout>
@@ -125,7 +124,7 @@
             android:gravity="center"
             android:lineSpacingExtra="3dp"
             android:text=""
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="12dp" />
 
         <View
@@ -144,7 +143,7 @@
             android:layout_marginEnd="3dp"
             android:layout_marginBottom="2dp"
             android:gravity="center"
-            android:textColor="#C80000" />
+            android:textColor="#CD0046" />
 
         <com.andrognito.pinlockview.PinLockView
             android:id="@+id/pin_lock_view"
@@ -157,7 +156,7 @@
             app:keypadButtonSize="56dp"
             app:keypadDeleteButtonSize="24dp"
             app:keypadShowDeleteButton="true"
-            app:keypadTextColor="@color/colorBlack"
+            app:keypadTextColor="@color/white"
             app:keypadTextSize="28dp"
             app:pinLength="6" />
 

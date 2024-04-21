@@ -8,7 +8,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="#020F27"
         android:orientation="vertical">
 
         <include
@@ -24,7 +24,7 @@
             android:includeFontPadding="false"
             android:textSize="14dp"
             android:text="@string/name"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/name"
@@ -33,7 +33,9 @@
             android:layout_marginStart="18dp"
             android:layout_marginTop="6dp"
             android:layout_marginEnd="18dp"
-            android:background="@drawable/corner_edittext"
+            android:textColor="@color/white"
+            android:background="@drawable/linear_bgr"
+            android:textColorHint="#B9BABB"
             android:hint="@string/enter_name"
             android:maxLines="1"
             android:paddingStart="10dp"
@@ -49,7 +51,7 @@
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
             android:text="@string/wallet_address"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/walletAddress"
@@ -57,11 +59,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:layout_marginTop="6dp"
+            android:background="@drawable/linear_bgr"
+            android:textColorHint="#B9BABB"
             android:layout_marginEnd="18dp"
-            android:background="@drawable/corner_edittext"
             android:hint="@string/enter_wallet_address"
             android:maxLines="1"
             android:paddingStart="10dp"
+            android:textColor="@color/white"
             android:paddingEnd="10dp"
             android:textSize="15dp" />
 

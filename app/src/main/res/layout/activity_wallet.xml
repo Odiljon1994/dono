@@ -8,19 +8,20 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@drawable/wallet_type_bgr"
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="180dp"
-            android:layout_height="155dp"
+            android:layout_width="250dp"
+            android:layout_height="125dp"
             android:layout_gravity="center"
             android:layout_marginTop="100dp"
-            android:src="@drawable/red_logo_with_text" />
+            android:src="@drawable/dono_logo" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="invisible"
             android:layout_marginTop="10dp">
 
             <View
@@ -36,6 +37,7 @@
                 android:layout_marginEnd="1dp"
                 android:buttonTint="@color/colorPrimary"
                 android:text="한국어"
+                android:checked="true"
                 android:textColor="@color/colorPrimary" />
 
             <CheckBox
@@ -87,7 +89,6 @@
             android:layout_marginBottom="40dp"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
-            android:background="@color/white"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -95,7 +96,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@color/white"
                 android:orientation="horizontal">
 
                 <TextView
@@ -105,7 +105,7 @@
                     android:fontFamily="@font/notosanskr_regular"
                     android:includeFontPadding="false"
                     android:text="@string/when_you_create_a_wallet"
-                    android:textColor="@color/black" />
+                    android:textColor="#B9BABB" />
 
                 <TextView
                     android:id="@+id/terms"
@@ -115,7 +115,7 @@
                     android:fontFamily="@font/notosanskr_regular"
                     android:includeFontPadding="false"
                     android:text="@string/terms_of_service"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -124,7 +124,7 @@
                     android:fontFamily="@font/notosanskr_regular"
                     android:includeFontPadding="false"
                     android:text=",  "
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
 
                 <TextView
                     android:id="@+id/privacy"
@@ -134,7 +134,7 @@
                     android:fontFamily="@font/notosanskr_regular"
                     android:includeFontPadding="false"
                     android:text="@string/privacy_policy"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -153,8 +153,8 @@
                 android:textSize="13dp"
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
-                android:text="관한 동의가 자동으로 이루어집니다."
-                android:textColor="@color/black" />
+                android:text="@string/terms_of_use_second_line"
+                android:textColor="#B9BABB" />
 
         </LinearLayout>
 

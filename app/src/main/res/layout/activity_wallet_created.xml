@@ -8,15 +8,15 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="#181C1F"
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="30dp"
+            android:layout_width="150dp"
+            android:layout_height="45dp"
             android:layout_marginTop="40dp"
             android:layout_marginStart="18dp"
-            android:src="@drawable/logo_long_text"
+            android:src="@drawable/dono_logo"
              />
 
         <TextView
@@ -27,7 +27,7 @@
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
             android:text="@string/wallet_created"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="28dp" />
 
         <View

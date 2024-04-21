@@ -8,7 +8,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="#020F27"
         android:orientation="vertical">
 
 
@@ -26,16 +26,18 @@
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
             android:text="@string/name"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
+            android:textColor="@color/white"
+            android:background="@drawable/linear_bgr"
+            android:textColorHint="#B9BABB"
             android:layout_marginTop="6dp"
             android:layout_marginEnd="18dp"
-            android:background="@drawable/corner_edittext"
             android:hint="@string/enter_title"
             android:maxLines="1"
             android:paddingStart="10dp"
@@ -51,7 +53,7 @@
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
             android:text="@string/email"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/email"
@@ -59,8 +61,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:layout_marginTop="6dp"
+            android:textColor="@color/white"
+            android:background="@drawable/linear_bgr"
+            android:textColorHint="#B9BABB"
             android:layout_marginEnd="18dp"
-            android:background="@drawable/corner_edittext"
             android:hint="@string/enter_email"
             android:maxLines="1"
             android:paddingStart="10dp"
@@ -76,7 +80,7 @@
             android:includeFontPadding="false"
             android:text="@string/content"
             android:textSize="14dp"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/question"
@@ -88,10 +92,12 @@
             android:layout_marginStart="18dp"
             android:layout_marginTop="6dp"
             android:layout_marginEnd="18dp"
-            android:background="@drawable/edittext_corner_big"
+            android:textColor="@color/white"
+            android:background="@drawable/linear_bgr"
+            android:textColorHint="#B9BABB"
             android:layout_marginBottom="30dp"
             android:hint="@string/enter_inquiry"
-            android:maxLines="1"
+            android:text=""
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:textSize="15dp" />

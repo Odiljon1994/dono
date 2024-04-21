@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -8,13 +8,13 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/colorPrimary"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#262626"
+            android:background="#191B1D"
             android:orientation="vertical">
 
 
@@ -58,7 +58,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="18dp"
                 android:layout_marginTop="25dp"
-                android:src="@drawable/g3s" />
+                android:src="@drawable/donpia_logo" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -86,7 +86,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
                     android:text="99.23498498"
-                    android:textColor="#43B0DD"
+                    android:textColor="@color/white"
                     android:textSize="15dp"
                     android:textStyle="bold" />
 
@@ -98,8 +98,8 @@
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
-                    android:text="G3s"
-                    android:textColor="#999999"
+                    android:text="DONpia"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="15dp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -142,8 +142,8 @@
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
-                    android:text="G3S"
-                    android:textColor="#999999"
+                    android:text="DONpia"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="15dp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -156,7 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:text="From"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_marginTop="20dp"/>
 
         <TextView
@@ -168,7 +168,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:text="0x19f5cf38c2ffdafdafdafdafdafd3c4389f78b0cfc5"
-            android:textColor="#999999"
+            android:textColor="@color/white"
             android:layout_marginTop="10dp"/>
 
         <ImageView
@@ -176,14 +176,15 @@
             android:layout_height="25dp"
             android:layout_marginTop="10dp"
             android:src="@drawable/down_array"
-            android:layout_marginStart="18dp"/>
+            android:layout_marginStart="18dp"
+            app:tint="@color/white" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:text="To"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_marginTop="20dp"/>
 
         <TextView
@@ -195,7 +196,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:text="0x19f5cf38c2ffdafdafdafdafdafd3c4389f78b0cfc5"
-            android:textColor="#999999"
+            android:textColor="@color/white"
             android:layout_marginTop="10dp"/>
 
         <View
@@ -206,7 +207,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#DD4343"
+            android:textColor="@color/white"
             android:gravity="center"
             android:layout_marginStart="18dp"
             android:layout_marginEnd="18dp"
@@ -228,17 +229,17 @@
                 android:text="@string/back"
                 android:fontFamily="@font/notosanskr_regular"
                 android:textColor="@color/white"
-                android:background="#121212"
+                android:background="#181C1F"
                 android:layout_weight="1"/>
             <Button
                 android:id="@+id/confirm"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:text="@string/confirm"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:fontFamily="@font/notosanskr_regular"
                 android:layout_marginStart="10dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/white"
                 android:layout_weight="1"/>
         </LinearLayout>
 

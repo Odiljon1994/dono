@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        android:background="@color/white"
+        android:background="#191B1D"
         android:orientation="vertical">
 
 
@@ -31,7 +31,7 @@
             android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:text="등록된 기기의"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="15dp" />
 
 
@@ -45,7 +45,7 @@
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
             android:text="생체인식 정보를 불러옵니다"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="15dp" />
 
 
@@ -60,7 +60,7 @@
             android:layout_marginBottom="15dp"
             android:gravity="center"
             android:text="*불러온 생체인식 정보는 \n지갑연결을 위해서만 사용됩니다"
-            android:textColor="#121212"
+            android:textColor="#B9BABB"
             android:textSize="14dp"
             android:textStyle="normal" />
 

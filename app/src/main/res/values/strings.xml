@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RichLand Ai</string>
+    <string name="app_name">DONO</string>
     <string name="navigation_open">Open navigation</string>
     <string name="navigation_close">Close navigation</string>
     <string name="create_new_wallet">새 지갑 생성</string>
@@ -11,7 +11,7 @@
     <string name="six_digits">6자리</string>
     <string name="password">비밀번호</string>
     <string name="otp_middle_first_line">지갑 로그인 및 가상 자산을 보낼 때</string>
-    <string name="otp_middle_second_line_begin">보낼 때</string>
+    <string name="otp_middle_second_line_begin">사용되는</string>
     <string name="otp_middle_red_line">비밀번호(6자리)</string>
     <string name="otp_middle_end">입니다.</string>
     <string name="one_more">다시 한번</string>
@@ -109,4 +109,6 @@
     <string name="wallet">지갑</string>
     <string name="invalid_wallet_address">지갑 주소가 유효하지 않습니다</string>
     <string name="copied">복사되었습니다!</string>
+    <string name="terms_of_use_second_line">관한 동의가 자동으로 이루어집니다.</string>
+    <string name="really_want_delete">정말 삭제 하시겠습니까?</string>
 </resources>

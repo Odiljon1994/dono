@@ -9,7 +9,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="#020F27"
         android:orientation="vertical">
 
         <include
@@ -32,7 +32,7 @@
                 android:paddingEnd="18dp"
                 android:paddingBottom="8dp"
                 android:text="@string/search"
-                android:textColor="#4258f9"
+                android:textColor="@color/colorPrimary"
                 android:textSize="14dp"
                 android:textStyle="bold" />
 
@@ -71,9 +71,11 @@
                     android:layout_marginTop="20dp"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
+                    android:textColor="@color/white"
                     android:drawableEnd="@drawable/search_icon"
                     android:layout_marginEnd="24dp"
-                    android:background="@drawable/corner"
+                    android:textColorHint="#B9BABB"
+                    android:background="@drawable/linear_bgr"
                     android:hint="@string/enter_token_symbol"
                     android:imeOptions="actionSearch"
                     android:singleLine="true"
@@ -97,7 +99,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@color/white"
             android:gravity="center|left"
             android:orientation="horizontal"
             android:visibility="gone">
@@ -118,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="Binance"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="14dp"
                 android:textStyle="bold" />
 
@@ -133,7 +134,6 @@
             android:id="@+id/customTokensLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
             android:orientation="vertical"
             android:visibility="gone">
 
@@ -240,7 +240,7 @@
                 \n
 \n네트워크 토큰의 스마트 컨트락 주소를 입력하여, 토큰을 추가해보세요.
 "
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="14dp"
                 android:visibility="gone" />
 

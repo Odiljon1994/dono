@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">RichLand Ai</string>
+    <string name="app_name">DONO</string>
     <string name="navigation_open">Open navigation</string>
     <string name="navigation_close">Close navigation</string>
     <string name="create_new_wallet">新しいウォレットの作成</string>
@@ -108,5 +108,6 @@
     <string name="wallet">財布</string>
     <string name="invalid_wallet_address">ウォレットアドレスが無効です</string>
     <string name="copied">コピーされました！</string>
-
+    <string name="terms_of_use_second_line">取り扱いに関する同意が自動的に行われます。</string>
+    <string name="really_want_delete">本当に削除してもよろしいですか？</string>
 </resources>
