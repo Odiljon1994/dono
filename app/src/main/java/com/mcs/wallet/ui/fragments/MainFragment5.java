@@ -93,7 +93,7 @@ public class MainFragment5 extends Fragment {
 
                 }, error -> {
                     binding.progressBar.setVisibility(View.GONE);
-                    Toast.makeText(this.getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(this.getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     System.out.println(error.getMessage());
 
                 });
