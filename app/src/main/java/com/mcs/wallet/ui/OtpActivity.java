@@ -2,6 +2,7 @@ package com.mcs.wallet.ui;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -12,12 +13,14 @@ import androidx.databinding.DataBindingUtil;
 
 import com.andrognito.pinlockview.PinLockListener;
 import com.mcs.wallet.MyApp;
-import com.mcs.wallet.R;
-import com.mcs.wallet.databinding.ActivityOtpBinding;
 import com.mcs.wallet.ui.dialogs.BaseDialog;
 import com.mcs.wallet.util.PreferencesUtil;
-import com.mcs.wallet.web3.EthManager;
 import com.mcs.wallet.web3.MnemonicWallet;
+import com.mcs.wallet.R;
+import com.mcs.wallet.api.ApiUtils;
+import com.mcs.wallet.database.DatabaseMainnetToken;
+import com.mcs.wallet.databinding.ActivityOtpBinding;
+import com.mcs.wallet.web3.EthManager;
 
 
 import javax.inject.Inject;
@@ -40,20 +43,20 @@ public class OtpActivity extends AppCompatActivity {
         ((MyApp) getApplication()).getAppComponent().inject(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_otp);
 
-//        DatabaseMainnetToken databaseMainnetToken = new DatabaseMainnetToken(this);
-//        boolean isTokenExist = false;
-//
-//        Cursor data = databaseMainnetToken.getData();
-//
-//        while (data.moveToNext()) {
-//            String contractAddress = data.getString(1);
-//            if (contractAddress.equals("G3S")) {
-//                isTokenExist = true;
-//            }
-//        }
-//        if (!isTokenExist) {
-//            boolean insetData = databaseMainnetToken.addData("G3S", "G3S", ApiUtils.getContractAddress());
-//        }
+        DatabaseMainnetToken databaseMainnetToken = new DatabaseMainnetToken(this);
+        boolean isTokenExist = false;
+
+        Cursor data = databaseMainnetToken.getData();
+
+        while (data.moveToNext()) {
+            String contractAddress = data.getString(1);
+            if (contractAddress.equals("DONOpia")) {
+                isTokenExist = true;
+            }
+        }
+        if (!isTokenExist) {
+            boolean insetData = databaseMainnetToken.addData("DONOpia", "DONOpia", ApiUtils.getContractAddress());
+        }
 
         binding.toolbar.backBtn.setOnClickListener(v -> finish());
         binding.pinLockView.attachIndicatorDots(binding.indicatorDots);

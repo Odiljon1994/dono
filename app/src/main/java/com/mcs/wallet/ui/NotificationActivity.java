@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mcs.wallet.MyApp;
-import com.mcs.wallet.R;
-import com.mcs.wallet.adapter.NotificationAdapter;
-import com.mcs.wallet.adapter.NotificationsAdapter;
-import com.mcs.wallet.databinding.ActivityNotificationBinding;
 import com.mcs.wallet.di.ViewModelFactory;
 import com.mcs.wallet.models.NotificationModel;
 import com.mcs.wallet.ui.viewmodel.NotificationVM;
 import com.mcs.wallet.util.PreferencesUtil;
+import com.mcs.wallet.R;
+import com.mcs.wallet.adapter.NotificationAdapter;
+import com.mcs.wallet.adapter.NotificationsAdapter;
+import com.mcs.wallet.databinding.ActivityNotificationBinding;
 
 import java.util.ArrayList;
 import java.util.List;

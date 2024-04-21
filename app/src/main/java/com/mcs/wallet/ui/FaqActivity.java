@@ -12,13 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mcs.wallet.MyApp;
-import com.mcs.wallet.R;
-import com.mcs.wallet.adapter.FaqAdapter;
-import com.mcs.wallet.databinding.ActivityFaqBinding;
 import com.mcs.wallet.di.ViewModelFactory;
 import com.mcs.wallet.models.FaqModel;
 import com.mcs.wallet.ui.viewmodel.FaqVM;
 import com.mcs.wallet.util.PreferencesUtil;
+import com.mcs.wallet.R;
+import com.mcs.wallet.adapter.FaqAdapter;
+import com.mcs.wallet.databinding.ActivityFaqBinding;
 
 import java.util.ArrayList;
 import java.util.List;

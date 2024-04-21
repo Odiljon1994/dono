@@ -16,14 +16,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mcs.wallet.MyApp;
+import com.mcs.wallet.di.ViewModelFactory;
+import com.mcs.wallet.ui.ReceiveActivity;
 import com.mcs.wallet.R;
 import com.mcs.wallet.adapter.TransactionsAdapter;
 import com.mcs.wallet.api.ApiUtils;
 import com.mcs.wallet.databinding.FragmentTokenBinding;
-import com.mcs.wallet.databinding.FragmentWalletBinding;
-import com.mcs.wallet.di.ViewModelFactory;
 import com.mcs.wallet.models.Transaction;
-import com.mcs.wallet.ui.ReceiveActivity;
 import com.mcs.wallet.ui.SendActivity;
 import com.mcs.wallet.ui.viewmodel.EthereumVM;
 import com.mcs.wallet.util.PreferencesUtil;

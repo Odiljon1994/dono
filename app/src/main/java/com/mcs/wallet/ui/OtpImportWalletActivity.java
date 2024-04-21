@@ -9,9 +9,9 @@ import androidx.databinding.DataBindingUtil;
 
 import com.andrognito.pinlockview.PinLockListener;
 import com.mcs.wallet.MyApp;
+import com.mcs.wallet.util.PreferencesUtil;
 import com.mcs.wallet.R;
 import com.mcs.wallet.databinding.ActivityOtpBinding;
-import com.mcs.wallet.util.PreferencesUtil;
 
 import javax.inject.Inject;
 

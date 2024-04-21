@@ -21,16 +21,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.mcs.wallet.MyApp;
+import com.mcs.wallet.di.ViewModelFactory;
+import com.mcs.wallet.ui.AddTokenActivity;
+import com.mcs.wallet.ui.TokenActivity;
 import com.mcs.wallet.R;
 import com.mcs.wallet.adapter.TokensAdapter;
 import com.mcs.wallet.api.ApiUtils;
 import com.mcs.wallet.database.DatabaseMainnetToken;
 import com.mcs.wallet.databinding.FragmentWallet2Binding;
-import com.mcs.wallet.databinding.FragmentWalletBinding;
-import com.mcs.wallet.di.ViewModelFactory;
 import com.mcs.wallet.models.TokensModel;
-import com.mcs.wallet.ui.AddTokenActivity;
-import com.mcs.wallet.ui.TokenActivity;
 import com.mcs.wallet.ui.viewmodel.CoinMarketCapVM;
 import com.mcs.wallet.util.PreferencesUtil;
 import com.mcs.wallet.web3.EthManager;
@@ -90,12 +89,12 @@ public class WalletFragment2 extends Fragment {
             String tokenSymbol = data.getString(1);
             String tokenName = data.getString(2);
             String contractAddress = data.getString(3);
-            Drawable drawable = getActivity().getDrawable(R.drawable.ttap_coin_logo);
+            Drawable drawable = getActivity().getDrawable(R.drawable.dono_appicon);
 
             if (tokenSymbol.equals("USDT")) {
                 drawable = getActivity().getDrawable(R.drawable.usdt);
-            } else if (tokenSymbol.equals("G3S")) {
-                drawable = getActivity().getDrawable(R.drawable.g3s);
+            } else if (tokenSymbol.equals("DONOpia")) {
+                drawable = getActivity().getDrawable(R.drawable.donpia_logo);
             }
             else if (tokenSymbol.equals("TTAP")) {
                 drawable = getActivity().getDrawable(R.drawable.ttap_new_icon);
@@ -186,7 +185,7 @@ public class WalletFragment2 extends Fragment {
         });
 
         binding.recyclerview.setAdapter(adapter);
-        checkBalanaces(mainnetTokenList);
+       // checkBalanaces(mainnetTokenList);
 
         binding.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -280,7 +279,7 @@ public class WalletFragment2 extends Fragment {
 //                        });
 
 
-                if (tokenModel.getTokenSymbol().equals("G3S")) {
+                if (tokenModel.getTokenSymbol().equals("DONOpia")) {
                     ethManager.getTokenBalance(preferencesUtil.getWalletAddress(), "", ApiUtils.getContractAddress(), getActivity())
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
@@ -350,12 +349,10 @@ public class WalletFragment2 extends Fragment {
 
             if (tokenSymbol.equals("USDT")) {
                 drawable = getActivity().getDrawable(R.drawable.usdt);
-            } else if (tokenSymbol.equals("G3S")) {
-                drawable = getActivity().getDrawable(R.drawable.g3s);
+            } else if (tokenSymbol.equals("DONOpia")) {
+                drawable = getActivity().getDrawable(R.drawable.donpia_logo);
             }
-            else if (tokenSymbol.equals("TTAP")) {
-                drawable = getActivity().getDrawable(R.drawable.ttap_new_icon);
-            }else if (tokenSymbol.equals("DAI")) {
+            else if (tokenSymbol.equals("DAI")) {
                 drawable = getActivity().getDrawable(R.drawable.dai);
             } else if (tokenSymbol.equals("LINK")) {
                 drawable = getActivity().getDrawable(R.drawable.link);

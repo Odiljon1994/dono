@@ -13,11 +13,11 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.mcs.wallet.MyApp;
+import com.mcs.wallet.di.ViewModelFactory;
 import com.mcs.wallet.R;
 import com.mcs.wallet.adapter.TransactionAdapter;
 import com.mcs.wallet.api.ApiUtils;
 import com.mcs.wallet.databinding.FragmentTokenBinding;
-import com.mcs.wallet.di.ViewModelFactory;
 import com.mcs.wallet.models.TransactionsModel;
 import com.mcs.wallet.ui.viewmodel.EtherScanVM;
 import com.mcs.wallet.util.PreferencesUtil;

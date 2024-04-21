@@ -9,10 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mcs.wallet.R;
-import com.mcs.wallet.databinding.ItemTransactionsBinding;
 import com.mcs.wallet.models.TransactionsModel;
 import com.mcs.wallet.web3.BalanceUtils;
+import com.mcs.wallet.R;
+import com.mcs.wallet.databinding.ItemTransactionsBinding;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

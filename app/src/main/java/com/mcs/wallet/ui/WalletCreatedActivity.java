@@ -9,9 +9,9 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.mcs.wallet.MyApp;
+import com.mcs.wallet.di.ViewModelFactory;
 import com.mcs.wallet.R;
 import com.mcs.wallet.databinding.ActivityWalletCreatedBinding;
-import com.mcs.wallet.di.ViewModelFactory;
 import com.mcs.wallet.models.PostWalletAddressResModel;
 import com.mcs.wallet.ui.viewmodel.PostWalletAddressVM;
 import com.mcs.wallet.util.PreferencesUtil;

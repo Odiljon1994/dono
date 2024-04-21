@@ -19,13 +19,12 @@ import androidx.lifecycle.ViewModelProviders;
 
 
 import com.mcs.wallet.MyApp;
+import com.mcs.wallet.di.ViewModelFactory;
+import com.mcs.wallet.ui.AddTokenActivity;
 import com.mcs.wallet.R;
 import com.mcs.wallet.api.ApiUtils;
-import com.mcs.wallet.databinding.FragmentMainBinding;
 import com.mcs.wallet.databinding.FragmentWalletBinding;
-import com.mcs.wallet.di.ViewModelFactory;
 import com.mcs.wallet.models.Token;
-import com.mcs.wallet.ui.AddTokenActivity;
 import com.mcs.wallet.ui.viewmodel.CoinMarketCapVM;
 import com.mcs.wallet.util.PreferencesUtil;
 import com.mcs.wallet.web3.EthManager;

@@ -17,12 +17,12 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.mcs.wallet.MyApp;
-import com.mcs.wallet.R;
-import com.mcs.wallet.databinding.ActivityMainBinding;
-import com.mcs.wallet.ui.fragments.MainFragment5;
 import com.mcs.wallet.ui.fragments.SettingsFragment;
 import com.mcs.wallet.ui.fragments.WalletFragment2;
 import com.mcs.wallet.util.PreferencesUtil;
+import com.mcs.wallet.R;
+import com.mcs.wallet.databinding.ActivityMainBinding;
+import com.mcs.wallet.ui.fragments.MainFragment5;
 import com.google.android.material.appbar.AppBarLayout;
 
 import java.util.Locale;

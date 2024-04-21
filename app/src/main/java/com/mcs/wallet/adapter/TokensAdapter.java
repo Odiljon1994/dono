@@ -8,9 +8,9 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mcs.wallet.models.TokensModel;
 import com.mcs.wallet.R;
 import com.mcs.wallet.databinding.ItemTokensBinding;
-import com.mcs.wallet.models.TokensModel;
 
 import java.util.HashMap;
 import java.util.List;

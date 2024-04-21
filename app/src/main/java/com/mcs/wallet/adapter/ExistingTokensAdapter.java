@@ -10,9 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mcs.wallet.models.ExistingTokenModel;
 import com.mcs.wallet.R;
 import com.mcs.wallet.databinding.ItemExistingTokensBinding;
-import com.mcs.wallet.models.ExistingTokenModel;
 
 import java.util.ArrayList;
 import java.util.Collection;

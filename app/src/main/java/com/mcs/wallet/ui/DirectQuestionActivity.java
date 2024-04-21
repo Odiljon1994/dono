@@ -14,9 +14,9 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.mcs.wallet.MyApp;
-import com.mcs.wallet.R;
 import com.mcs.wallet.databinding.ActivityDirectQuestionBinding;
 import com.mcs.wallet.di.ViewModelFactory;
+import com.mcs.wallet.R;
 import com.mcs.wallet.models.DirectQuestionResModel;
 import com.mcs.wallet.ui.dialogs.DirectQuestionDialog;
 import com.mcs.wallet.ui.viewmodel.DirectQuestionVM;

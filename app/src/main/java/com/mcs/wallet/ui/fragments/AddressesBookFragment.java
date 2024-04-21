@@ -18,14 +18,14 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mcs.wallet.ui.AddWalletAddressActivity;
+import com.mcs.wallet.ui.dialogs.BaseDialog;
 import com.mcs.wallet.R;
 import com.mcs.wallet.adapter.AddressesBookAdapter;
 import com.mcs.wallet.database.AddressesBookDB;
 import com.mcs.wallet.databinding.FragmentAddressesBookBinding;
 import com.mcs.wallet.models.AddressesBookModel;
-import com.mcs.wallet.ui.AddWalletAddressActivity;
 import com.mcs.wallet.ui.MainActivity;
-import com.mcs.wallet.ui.dialogs.BaseDialog;
 
 import java.util.ArrayList;
 import java.util.List;

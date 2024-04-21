@@ -16,14 +16,13 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.bumptech.glide.Glide;
 import com.mcs.wallet.MyApp;
+import com.mcs.wallet.di.ViewModelFactory;
+import com.mcs.wallet.ui.NotificationBodyActivity;
 import com.mcs.wallet.R;
 import com.mcs.wallet.api.ApiUtils;
-import com.mcs.wallet.databinding.FragmentMain2Binding;
 import com.mcs.wallet.databinding.FragmentMain3Binding;
-import com.mcs.wallet.di.ViewModelFactory;
 import com.mcs.wallet.models.BannerListModel;
 import com.mcs.wallet.models.NotificationModel;
-import com.mcs.wallet.ui.NotificationBodyActivity;
 import com.mcs.wallet.ui.viewmodel.BannersListVM;
 import com.mcs.wallet.ui.viewmodel.NotificationVM;
 import com.mcs.wallet.util.PreferencesUtil;

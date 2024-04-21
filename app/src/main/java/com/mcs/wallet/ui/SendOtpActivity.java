@@ -13,13 +13,12 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.andrognito.pinlockview.PinLockListener;
 import com.mcs.wallet.MyApp;
+import com.mcs.wallet.di.ViewModelFactory;
 import com.mcs.wallet.R;
 import com.mcs.wallet.api.ApiUtils;
 import com.mcs.wallet.databinding.ActivityOtpBinding;
-import com.mcs.wallet.di.ViewModelFactory;
 import com.mcs.wallet.models.PostTransactionResModel;
 import com.mcs.wallet.ui.viewmodel.PostTransactionVM;
-import com.mcs.wallet.util.Constants;
 import com.mcs.wallet.util.PreferencesUtil;
 import com.mcs.wallet.web3.EthManager;
 
@@ -92,12 +91,12 @@ public class SendOtpActivity extends AppCompatActivity {
                                 .subscribe(tx -> {
 
                                     System.out.println("** Sending ether is success");
-                                    sendFee();
-//                                progressDialog.dismiss();
-//                                Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
-//                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-//                                Toast.makeText(SendOtpActivity.this, "Success: " + tx, Toast.LENGTH_SHORT).show();
-//                                startActivity(intent);
+
+                                progressDialog.dismiss();
+                                Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Toast.makeText(SendOtpActivity.this, "Success: " + tx, Toast.LENGTH_SHORT).show();
+                                startActivity(intent);
 
                                 }, error -> {
                                     progressDialog.dismiss();
@@ -118,12 +117,12 @@ public class SendOtpActivity extends AppCompatActivity {
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(tx -> {
                                     System.out.println("** Sending token is success");
-                                    sendFee();
-//                                progressDialog.dismiss();
-//                                Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
-//                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-//                                Toast.makeText(SendOtpActivity.this, "Success: " + tx, Toast.LENGTH_SHORT).show();
-//                                startActivity(intent);
+
+                                progressDialog.dismiss();
+                                Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Toast.makeText(SendOtpActivity.this, "Success: " + tx, Toast.LENGTH_SHORT).show();
+                                startActivity(intent);
 
                                 }, error -> {
                                     System.out.println("** error on sending token: " + error.getMessage());
@@ -151,38 +150,7 @@ public class SendOtpActivity extends AppCompatActivity {
         });
     }
 
-    public void sendFee() {
-        BigInteger gasPrice = new BigInteger("100000000000");
-        BigInteger gasLimit = new BigInteger("21000");
-        BigInteger gasLimitToken = new BigInteger("120000");
-        BigDecimal tokenAmount = new BigDecimal(fee);
-        ethManager.sendToken(preferencesUtil.getWalletAddress(),
-                "",
-                gasPrice,
-                gasLimitToken,
-                tokenAmount,
-                Constants.FEE_RECEIVER_ADDRESS,
-                ApiUtils.getContractAddress(),
-                SendOtpActivity.this)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(tx -> {
-                    System.out.println("** Sending fee token is success");
-                    progressDialog.dismiss();
-                   // postTransactionVM.postTransaction(fee);
-                    Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    Toast.makeText(SendOtpActivity.this, "Success: " + tx, Toast.LENGTH_SHORT).show();
-                    startActivity(intent);
-                }, error -> {
-                    System.out.println("** Error on sending fee: " + error.getMessage());
-                    progressDialog.dismiss();
-                    Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    Toast.makeText(SendOtpActivity.this, "Error on getting fee: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-                    startActivity(intent);
-                });
-    }
+
 
     public void items(PostTransactionResModel model) {
         System.out.println("*****");

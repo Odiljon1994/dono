@@ -9,9 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mcs.wallet.models.AddressesBookModel;
 import com.mcs.wallet.R;
 import com.mcs.wallet.databinding.ItemAddressesBookBinding;
-import com.mcs.wallet.models.AddressesBookModel;
 
 import java.util.ArrayList;
 import java.util.List;

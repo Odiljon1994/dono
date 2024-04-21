@@ -8,9 +8,11 @@ import android.widget.Filterable;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.mcs.wallet.models.SearchSectionModel;
 import com.mcs.wallet.R;
 import com.mcs.wallet.databinding.ItemSearchSectionsBinding;
-import com.mcs.wallet.models.SearchSectionModel;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

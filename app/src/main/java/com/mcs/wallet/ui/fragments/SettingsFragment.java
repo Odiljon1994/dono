@@ -16,10 +16,10 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.mcs.wallet.MyApp;
-import com.mcs.wallet.R;
-import com.mcs.wallet.databinding.FragmentSettingsBinding;
 import com.mcs.wallet.ui.LockAppActivity;
 import com.mcs.wallet.ui.OtpExportKeysActivity;
+import com.mcs.wallet.R;
+import com.mcs.wallet.databinding.FragmentSettingsBinding;
 import com.mcs.wallet.util.PreferencesUtil;
 
 import java.util.Locale;

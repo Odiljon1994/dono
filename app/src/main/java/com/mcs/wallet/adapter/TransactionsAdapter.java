@@ -10,10 +10,10 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.mcs.wallet.R;
-import com.mcs.wallet.databinding.ItemEthTransactionBinding;
 import com.mcs.wallet.models.Transaction;
 import com.mcs.wallet.web3.BalanceUtils;
+import com.mcs.wallet.R;
+import com.mcs.wallet.databinding.ItemEthTransactionBinding;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;

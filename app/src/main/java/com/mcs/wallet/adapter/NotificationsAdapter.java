@@ -8,9 +8,9 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mcs.wallet.models.NotificationModel;
 import com.mcs.wallet.R;
 import com.mcs.wallet.databinding.ItemNotificationBinding;
-import com.mcs.wallet.models.NotificationModel;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -12,14 +12,13 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.mcs.wallet.MyApp;
-import com.mcs.wallet.R;
 import com.mcs.wallet.adapter.SearchSectionsAdapter;
-import com.mcs.wallet.api.ApiUtils;
-import com.mcs.wallet.databinding.FragmentMain4Binding;
-import com.mcs.wallet.databinding.FragmentMain5Binding;
 import com.mcs.wallet.di.ViewModelFactory;
 import com.mcs.wallet.util.PreferencesUtil;
 import com.mcs.wallet.web3.EthManager;
+import com.mcs.wallet.R;
+import com.mcs.wallet.api.ApiUtils;
+import com.mcs.wallet.databinding.FragmentMain5Binding;
 
 import javax.inject.Inject;
 
