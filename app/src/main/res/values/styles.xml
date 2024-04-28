@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/window_background</item>
         <item name="android:windowDisablePreview">true</item>
+        <item name="drawerArrowStyle">@style/MyDrawerArrowToggle</item>
     </style>
 
     <style name="Theme.Transparent" parent="android:Theme">
@@ -41,5 +42,9 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+
+    <style name="MyDrawerArrowToggle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">#CFD3D7</item>
+    </style>
 
 </resources>

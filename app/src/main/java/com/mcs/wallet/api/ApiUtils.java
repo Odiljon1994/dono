@@ -28,16 +28,23 @@ public class ApiUtils {
         if (isMainnet) {
             return etherScan;
         } else {
-            return "https://api-ropsten.etherscan.io/api/";
+            return "https://api-holesky.etherscan.io/api/";
         }
     }
 
     public static String getInfura() {
-        return "http://13.209.112.0:8545";
+       // return "http://13.209.112.0:8545";
+        if (isMainnet) {
+            return "https://mainnet.infura.io/v3/a396c3461ac048a59f389c7778f06689";
+        } else {
+            return "https://sepolia.infura.io/v3/a396c3461ac048a59f389c7778f06689";
+        }
+
+
 //        if (isMainnet) {
-//            return "https://mainnet.infura.io/v3/7c36e7f5656d4384bbcb2cbaf67ad699";
+//            return "https://polygon-mainnet.infura.io/v3/a396c3461ac048a59f389c7778f06689";
 //        } else {
-//            return "https://ropsten.infura.io/v3/ebcfe32ac5ca498d87f8d8b8dce1567a";
+//            return "https://polygon-amoy.infura.io/v3/a396c3461ac048a59f389c7778f06689";
 //        }
     }
 
