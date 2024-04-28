@@ -81,7 +81,7 @@ public class WalletFragment2 extends Fragment {
         binding.recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         mainnetTokenList = new ArrayList<>();
-        mainnetTokenList.add(new TokensModel(getActivity().getDrawable(R.drawable.eth_icon), "Ethereum", "0", "ETH", "", preferencesUtil.getWalletAddress()));
+        mainnetTokenList.add(new TokensModel(getActivity().getDrawable(R.drawable.matic), "MATIC", "0", "MATIC", "", preferencesUtil.getWalletAddress()));
         Cursor data;
         data = databaseMainnetToken.getData();
 
