@@ -397,10 +397,13 @@ public class EthManager {
     public Single<BigDecimal> getTokenBalance(String walletAddress, String password, String tokenContractAddress, Context context) {
         return loadCredentials(walletAddress, password, context)
                 .flatMap(credentials -> {
+                    Integer maticMainnet = new Integer(137);
+                    byte maticMainnetByte = maticMainnet.byteValue();
                     TransactionReceiptProcessor transactionReceiptProcessor = new NoOpProcessor(web3j);
                     TransactionManager transactionManager = new RawTransactionManager(
                           //  web3j, credentials, isMainNet() ? ChainId.MAINNET : ChainId.ROPSTEN, transactionReceiptProcessor);
-                    web3j, credentials, isMainNet() ? ChainId.MAINNET : ChainId.ROPSTEN, transactionReceiptProcessor);
+                    //web3j, credentials, isMainNet() ? ChainId.MAINNET : ChainId.ROPSTEN, transactionReceiptProcessor);
+                    web3j, credentials, isMainNet() ? maticMainnetByte : ChainId.ROPSTEN, transactionReceiptProcessor);
                     Erc20TokenWrapper contract = Erc20TokenWrapper.load(tokenContractAddress, web3j,
                             transactionManager, BigInteger.ZERO, BigInteger.ZERO);
                     Address address = new Address(walletAddress);

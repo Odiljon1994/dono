@@ -93,7 +93,7 @@ public class WalletFragment2 extends Fragment {
 
             if (tokenSymbol.equals("USDT")) {
                 drawable = getActivity().getDrawable(R.drawable.usdt);
-            } else if (tokenSymbol.equals("DONOpia")) {
+            } else if (tokenSymbol.equals("DONpia")) {
                 drawable = getActivity().getDrawable(R.drawable.donpia_logo);
             }
             else if (tokenSymbol.equals("TTAP")) {
@@ -185,7 +185,7 @@ public class WalletFragment2 extends Fragment {
         });
 
         binding.recyclerview.setAdapter(adapter);
-       // checkBalanaces(mainnetTokenList);
+        checkBalanaces(mainnetTokenList);
 
         binding.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -229,7 +229,7 @@ public class WalletFragment2 extends Fragment {
         binding.swipeRefreshLayout.setRefreshing(true);
         for (TokensModel tokenModel : items) {
 
-            boolean isCoin = tokenModel.getTokenSymbol().toUpperCase() == "ETH";
+            boolean isCoin = tokenModel.getTokenSymbol().toUpperCase() == "MATIC";
 
             if (isCoin) {
 
@@ -279,7 +279,7 @@ public class WalletFragment2 extends Fragment {
 //                        });
 
 
-                if (tokenModel.getTokenSymbol().equals("DONOpia")) {
+                if (tokenModel.getTokenSymbol().equals("DONpia")) {
                     ethManager.getTokenBalance(preferencesUtil.getWalletAddress(), "", ApiUtils.getContractAddress(), getActivity())
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())

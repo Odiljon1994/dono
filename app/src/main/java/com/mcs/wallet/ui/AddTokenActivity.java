@@ -70,7 +70,7 @@ public class AddTokenActivity extends AppCompatActivity {
 //        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.usdc), "USD Coin (USDC)", "USDC", "0x0d9c8723b343a8368bebe0b5e89273ff8d712e3c"));
 
         // Main net
-        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.usdt), "Tether USD (USDT)", "USDT", "0xdac17f958d2ee523a2206206994597c13d831ec7"));
+        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.usdt), "Tether USD (USDT)", "USDT", "0xc2132D05D31c914a87C6611C10748AEb04B58e8F"));
         items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.dai), "Dai Stablecoin (DAI)", "DAI", "0x6b175474e89094c44da98b954eedeac495271d0f"));
         items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.link), "ChainLink Token (LINK)", "LINK", "0x514910771af9ca656af840dff83e8264ecf986ca"));
         items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.uni), "Uniswap (UNI)", "UNI", "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"));

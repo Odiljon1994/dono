@@ -50,12 +50,12 @@ public class OtpActivity extends AppCompatActivity {
 
         while (data.moveToNext()) {
             String contractAddress = data.getString(1);
-            if (contractAddress.equals("DONOpia")) {
+            if (contractAddress.equals("DONpia")) {
                 isTokenExist = true;
             }
         }
         if (!isTokenExist) {
-            boolean insetData = databaseMainnetToken.addData("DONOpia", "DONOpia", ApiUtils.getContractAddress());
+            boolean insetData = databaseMainnetToken.addData("DONpia", "DONpia", ApiUtils.getContractAddress());
         }
 
         binding.toolbar.backBtn.setOnClickListener(v -> finish());
