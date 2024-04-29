@@ -73,8 +73,6 @@ public class EthManager {
     private Web3j web3j;
 
 
-    private HyperLedgerApi hyperLedgerApi;
-
     /**
      * Infura node url
      */
@@ -101,7 +99,6 @@ public class EthManager {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
-        hyperLedgerApi = retrofit.create(HyperLedgerApi.class);
     }
 
     /**
@@ -154,13 +151,11 @@ public class EthManager {
                 body.put("action_type", "WALLET_CREATE");
                 body.put("wallet_address", walletAddress);
                 body.put("status", "SUCCESS");
-                sendEventToLedger(body, context);
                 return new Wallet(walletAddress, keystore);
             } catch (CipherException | IOException | NoSuchAlgorithmException | InvalidAlgorithmParameterException | NoSuchProviderException e) {
                 e.printStackTrace();
                 body.put("status", "FAILURE");
             }
-            sendEventToLedger(body, context);
             return null;
         });
     }
@@ -247,13 +242,11 @@ public class EthManager {
                 body.put("action_type", "WALLET_EXPORT_KEYSTORE");
                 body.put("wallet_address", walletAddress);
                 body.put("status", "SUCCESS");
-                sendEventToLedger(body, context);
                 return read_file(context, keystoreFile.getName());
             } else {
                 body.put("action_type", "WALLET_EXPORT_KEYSTORE");
                 body.put("wallet_address", walletAddress);
                 body.put("status", "FAILURE");
-                sendEventToLedger(body, context);
                 throw new Exception("Keystore is NULL");
             }
         });
@@ -273,13 +266,11 @@ public class EthManager {
                 body.put("action_type", "WALLET_IMPORT_KEYSTORE");
                 body.put("wallet_address", walletAddress);
                 body.put("status", "SUCCESS");
-                sendEventToLedger(body, context);
                 return walletAddress;
             } catch (IOException e) {
                 body.put("status", "FAILURE");
                 e.printStackTrace();
             }
-            sendEventToLedger(body, context);
             return null;
         });
     }
@@ -302,13 +293,11 @@ public class EthManager {
                 body.put("action_type", "WALLET_IMPORT_PRIVATE_KEY");
                 body.put("wallet_address", walletAddress);
                 body.put("status", "SUCCESS");
-                sendEventToLedger(body, context);
                 return walletAddress;
             } catch (CipherException | IOException e) {
                 e.printStackTrace();
                 body.put("status", "FAILURE");
             }
-            sendEventToLedger(body, context);
             return null;
         });
     }
@@ -325,7 +314,6 @@ public class EthManager {
                     body.put("action_type", "WALLET_EXPORT_PRIVATE_KEY");
                     body.put("wallet_address", walletAddress);
                     body.put("status", "SUCCESS");
-                    sendEventToLedger(body, context);
                     return Single.just(privateKey);
                 });
     }
@@ -346,7 +334,6 @@ public class EthManager {
             body.put("network", isMainNet() ? "MAINNET" : "TESTNET");
             body.put("balance", BalanceUtils.weiToEth(valueInWei));
             body.put("status", "SUCCESS");
-            sendEventToLedger(body, context);
 
 
             return BalanceUtils.weiToEth(valueInWei);
@@ -423,7 +410,6 @@ public class EthManager {
                     body.put("token_symbol", tokenSymbol);
                     body.put("balance", tokenValueByDecimals.doubleValue());
                     body.put("status", "SUCCESS");
-                    sendEventToLedger(body, context);
 
 
                     return Single.just(tokenValueByDecimals);
@@ -470,7 +456,6 @@ public class EthManager {
                     body.put("fee", gasLimit.multiply(gasPrice).toString());
                     body.put("network", isMainNet() ? "MAINNET" : "TESTNET");
                     body.put("status", "SUCCESS");
-                    sendEventToLedger(body, context);
 
                     return Single.just(transactionHash);
                 });
@@ -542,8 +527,6 @@ public class EthManager {
                     body.put("token_name", tokenName);
                     body.put("token_symbol", tokenSymbol);
 
-                    sendEventToLedger(body, context);
-
                     return Single.just(mReceipt.getTransactionHash());
                 });
     }
@@ -569,31 +552,6 @@ public class EthManager {
             sb.append(line).append("\n");
         }
         return sb.toString();
-    }
-
-    private void sendEventToLedger(HashMap<String, Object> map, Context context) {
-        try {
-            SubmitTransactionModel submitTransactionModel = new SubmitTransactionModel();
-            submitTransactionModel.setTx_type("ETHEREUM");
-            submitTransactionModel.setUsername("user1");
-            submitTransactionModel.setOrgname("org1");
-
-            HashMap<String, Object> deviceInfo = deviceInfo(context);
-            if (deviceInfo != null) {
-                map.put("DEVICE_INFO", new Gson().toJson(deviceInfo));
-            }
-
-            submitTransactionModel.setBody(map);
-            hyperLedgerApi.submitTransaction(submitTransactionModel)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe((objectBaseResponse, throwable) -> {
-                        System.out.println(objectBaseResponse);
-                    });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
 
     private HashMap<String, Object> deviceInfo(Context context) {

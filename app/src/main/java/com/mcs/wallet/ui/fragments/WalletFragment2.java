@@ -300,8 +300,9 @@ public class WalletFragment2 extends Fragment {
                                 /**
                                  * if function fails error can be caught in this block
                                  */
-
+                                System.out.println("************");
                                 System.out.println(error.getMessage());
+                                System.out.println("************");
                                 dismissRefreshLayout(items.size());
 
                             });
