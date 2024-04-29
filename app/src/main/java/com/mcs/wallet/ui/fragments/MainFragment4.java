@@ -22,7 +22,6 @@ import com.bumptech.glide.Glide;
 import com.mcs.wallet.MyApp;
 import com.mcs.wallet.di.ViewModelFactory;
 import com.mcs.wallet.ui.AddressesBookActivity;
-import com.mcs.wallet.ui.DirectQuestionActivity;
 import com.mcs.wallet.ui.FaqBodyActivity;
 import com.mcs.wallet.ui.NotificationBodyActivity;
 import com.mcs.wallet.ui.PrivacyPolicyActivity;
@@ -108,7 +107,6 @@ public class MainFragment4 extends Fragment {
         searchSectionModels = new ArrayList<>();
         searchSectionModels.add(new SearchSectionModel("other", "공지사항", 0));
         searchSectionModels.add(new SearchSectionModel("other", "FAQ", 0));
-        searchSectionModels.add(new SearchSectionModel("other", "1:1 문의하기", 0));
         searchSectionModels.add(new SearchSectionModel("other", "주소록", 0));
         searchSectionModels.add(new SearchSectionModel("other", "이용약관", 0));
         searchSectionModels.add(new SearchSectionModel("other", "개인정보보호처리방침", 0));
@@ -125,8 +123,6 @@ public class MainFragment4 extends Fragment {
                 startActivity(new Intent(getActivity(), NotificationActivity.class));
             } else if (item.getType().equals("other") && item.getTitle().equals("FAQ")) {
                 startActivity(new Intent(getActivity(), FaqActivity.class));
-            } else if (item.getType().equals("other") && item.getTitle().equals("1:1 문의하기")) {
-                startActivity(new Intent(getActivity(), DirectQuestionActivity.class));
             } else if (item.getType().equals("other") && item.getTitle().equals("주소록")) {
                 startActivity(new Intent(getActivity(), AddressesBookActivity.class));
             } else if (item.getType().equals("other") && item.getType().equals("other") && item.getTitle().equals("이용약관")) {

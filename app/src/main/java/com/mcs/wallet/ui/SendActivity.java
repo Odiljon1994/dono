@@ -84,7 +84,12 @@ public class SendActivity extends AppCompatActivity {
             binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.eth_icon));
             binding.cymbolHead.setText("ETH");
             binding.cymbol.setText("ETH");
-        } else if (tokenName.equals("BNB")) {
+        } else if (tokenName.equals("MATIC")) {
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.matic));
+        } else if (tokenName.equals("DONpia")) {
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.donpia_logo));
+        }
+        else if (tokenName.equals("BNB")) {
             binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.bnb_icon));
             binding.cymbolHead.setText("BNB");
             binding.cymbol.setText("BNB");

@@ -70,8 +70,10 @@ public class TokenActivity extends AppCompatActivity {
         binding.tokenName.setText(tokenName);
         if (tokenName.equals("ETH")) {
             binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.eth_icon));
-        } else if (tokenName.equals("G3S")) {
-            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.g3s));
+        } else if (tokenName.equals("MATIC")) {
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.matic));
+        } else if (tokenName.equals("DONpia")) {
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.donpia_logo));
         }
         else if (tokenName.equals("BNB")) {
             binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.bnb_icon));

@@ -111,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
         TextView settings = headerView.findViewById(R.id.settings);
         TextView notice = headerView.findViewById(R.id.notice);
         TextView faq = headerView.findViewById(R.id.faq);
-        TextView directMessage = headerView.findViewById(R.id.directMessage);
         TextView terms = headerView.findViewById(R.id.terms);
         TextView privacy = headerView.findViewById(R.id.privacy);
         TextView version = headerView.findViewById(R.id.version);
@@ -177,11 +176,7 @@ public class MainActivity extends AppCompatActivity {
             binding.appBar.setVisibility(View.VISIBLE);
             startActivity(new Intent(MainActivity.this, FaqActivity.class));
         });
-        directMessage.setOnClickListener(v -> {
-            binding.drawerLayout.closeDrawer(GravityCompat.START);
-            binding.appBar.setVisibility(View.VISIBLE);
-            startActivity(new Intent(MainActivity.this, DirectQuestionActivity.class));
-        });
+
         terms.setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, TermsOfUseActivity.class));
         });

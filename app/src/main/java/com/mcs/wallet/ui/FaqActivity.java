@@ -62,7 +62,7 @@ public class FaqActivity extends AppCompatActivity {
 
         List<FaqModel.FaqData> list = new ArrayList<>();
         if (preferencesUtil.getLANGUAGE().equals("en")) {
-            list.add(new FaqModel.FaqData(1, "VONUS Wallet 생성은 어떻게 하나요?", "그들의 보내는 앞이 쓸쓸하랴? 소담스러운 청춘에서만 아니더면, 충분히 전인\n" +
+            list.add(new FaqModel.FaqData(1, "DONO Wallet 생성은 어떻게 하나요?", "그들의 보내는 앞이 쓸쓸하랴? 소담스러운 청춘에서만 아니더면, 충분히 전인\n" +
                     "방지하는 것이다. 끓는 있을 품고 이상의 철환하였는가? 구할 얼마나 과실이 이상\n" +
                     "따뜻한 이상의 우리 때문이다. 못할 충분히 더운지라 그것을 영원히 되려니와,\n" +
                     "밝은 것이다. 끝에 않는 위하여서, 있는 소담스러운 작고 밝은 청춘에서만 가치를 끓는다.\n" +

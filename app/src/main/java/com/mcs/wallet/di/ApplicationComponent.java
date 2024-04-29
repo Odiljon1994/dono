@@ -5,7 +5,6 @@ import com.mcs.wallet.ui.AddTokenActivity;
 import com.mcs.wallet.ui.AddressesBookActivity;
 import com.mcs.wallet.ui.BackUpQrCodeActivity;
 import com.mcs.wallet.ui.BackUpSeedsActivity;
-import com.mcs.wallet.ui.DirectQuestionActivity;
 import com.mcs.wallet.ui.ExportPrivatekeyActivity;
 import com.mcs.wallet.ui.FaqActivity;
 import com.mcs.wallet.ui.ImportWalletActivity;
@@ -79,7 +78,6 @@ public interface ApplicationComponent {
     void inject(ScanQrCodeActivity activity);
     void inject(WalletImportedActivity activity);
     void inject(WalletCreatedActivity activity);
-    void inject(DirectQuestionActivity activity);
     void inject(NotificationActivity activity);
     void inject(LockAppActivity activity);
     void inject(LoginOTPActivity activity);
