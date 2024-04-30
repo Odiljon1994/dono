@@ -47,18 +47,6 @@ public class MainActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         setAppLocale(preferencesUtil.getLANGUAGE());
 
-//        EthManager ethManager = EthManager.getInstance();
-//        ethManager.init("https://mainnet.infura.io/v3/7c36e7f5656d4384bbcb2cbaf67ad699");
-//        ethManager.importFromPrivateKey("0xd9b7b635e587629b59984543276813e9c087a5c1eb43d7f555d07341e0689245", this)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(walletAddress -> {
-//                    System.out.println(walletAddress);
-//                    //showDialog();
-//                    Toast.makeText(this, walletAddress, Toast.LENGTH_SHORT).show();
-//
-//                });
-
         mainFragment3 = new MainFragment5();
         walletFragment2 = new WalletFragment2();
         settingsFragment = new SettingsFragment();
