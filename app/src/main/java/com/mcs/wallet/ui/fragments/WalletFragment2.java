@@ -199,7 +199,7 @@ public class WalletFragment2 extends Fragment {
     private void dismissRefreshLayout(int listCount) {
         try {
             if (counterPfResponses == listCount) {
-                // binding.swipeRefreshLayout.setRefreshing(false);
+                 binding.swipeRefreshLayout.setRefreshing(false);
 
                 for (int i = 0; i < tokensForConvertingKRW.size(); i++) {
                     if (tokensForConvertingKRW.get(i).getTokenSymbol().equals("G3S") && i != 1) {
@@ -209,7 +209,7 @@ public class WalletFragment2 extends Fragment {
                     }
                 }
 
-                coinMarketCapVM.getPrices2(tokensForConvertingKRW);
+                //coinMarketCapVM.getPrices2(tokensForConvertingKRW);
             }
         } catch (Throwable error) {
             System.out.println(error.getMessage());

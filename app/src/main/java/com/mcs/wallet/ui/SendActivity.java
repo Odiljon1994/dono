@@ -50,7 +50,7 @@ public class SendActivity extends AppCompatActivity {
     ViewModelFactory viewModelFactory;
     private double balance = 0;
     private double totalAmount = 0;
-    private double fee = 1;
+    private double fee = 0;
     String tokenName = "";
     String contractAddress = "";
 
@@ -88,8 +88,7 @@ public class SendActivity extends AppCompatActivity {
             binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.matic));
         } else if (tokenName.equals("DONpia")) {
             binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.donpia_logo));
-        }
-        else if (tokenName.equals("BNB")) {
+        } else if (tokenName.equals("BNB")) {
             binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.bnb_icon));
             binding.cymbolHead.setText("BNB");
             binding.cymbol.setText("BNB");
@@ -101,13 +100,11 @@ public class SendActivity extends AppCompatActivity {
             binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.g3s));
             binding.cymbolHead.setText("G3S");
             binding.cymbol.setText("G3S");
-        }
-        else if (tokenName.equals("VONUS")) {
+        } else if (tokenName.equals("VONUS")) {
             binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.vonus));
             binding.cymbolHead.setText("VONUS");
             binding.cymbol.setText("VONUS");
-        }
-        else if (tokenName.equals("TTAP")) {
+        } else if (tokenName.equals("TTAP")) {
             binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.ttap_new_icon));
             binding.cymbolHead.setText("TTAP");
             binding.cymbol.setText("TTAP");
@@ -201,7 +198,7 @@ public class SendActivity extends AppCompatActivity {
             }
         });
 
-       // currentFeeVM.getCurrentFee();
+        // currentFeeVM.getCurrentFee();
         walletAddress = preferencesUtil.getWalletAddress();
         checkBalance();
 
@@ -210,8 +207,7 @@ public class SendActivity extends AppCompatActivity {
                     && !TextUtils.isEmpty(binding.amount.getText().toString())
                     && WalletUtils.isValidAddress(binding.receiverAddress.getText().toString())) {
 
-                if (balance >= fee
-                        && Double.parseDouble(binding.totalAmount.getText().toString()) >= Double.parseDouble(binding.amount.getText().toString())) {
+                if (Double.parseDouble(binding.totalAmount.getText().toString()) >= Double.parseDouble(binding.amount.getText().toString())) {
                     Intent intent = new Intent(SendActivity.this, VerifySendingActivity.class);
                     intent.putExtra("receiverAddress", binding.receiverAddress.getText().toString());
                     intent.putExtra("fee", String.valueOf(fee));
@@ -219,14 +215,12 @@ public class SendActivity extends AppCompatActivity {
                     intent.putExtra("contractAddress", contractAddress);
                     intent.putExtra("amount", binding.amount.getText().toString());
                     startActivity(intent);
-                } else if (balance < fee){
-                    binding.errorMessage.setText(R.string.not_enough_fee);
                 } else if (Double.parseDouble(binding.totalAmount.getText().toString()) < Double.parseDouble(binding.amount.getText().toString())) {
                     binding.errorMessage.setText(R.string.not_enough_balance);
                 }
 
 
-            } else if(!WalletUtils.isValidAddress(binding.receiverAddress.getText().toString())) {
+            } else if (!WalletUtils.isValidAddress(binding.receiverAddress.getText().toString())) {
                 binding.errorMessage.setText(R.string.invalid_wallet_address);
             } else if (TextUtils.isEmpty(binding.receiverAddress.getText().toString())) {
                 binding.errorMessage.setText(R.string.enter_receiver);
@@ -242,7 +236,7 @@ public class SendActivity extends AppCompatActivity {
     }
 
     public void currentFee(CurrentFeeModel currentFeeModel) {
-        binding.currentFee.setText(String.valueOf(currentFeeModel.getFee()) + " VONUS");
+        binding.currentFee.setText(String.valueOf(currentFeeModel.getFee()) + " DONpia");
         fee = currentFeeModel.getFee();
     }
 
@@ -251,7 +245,7 @@ public class SendActivity extends AppCompatActivity {
         EthManager ethManager = EthManager.getInstance();
         ethManager.init(ApiUtils.getInfura());
 
-        if (tokenName.equals("ETH")) {
+        if (tokenName.equals("MATIC")) {
             ethManager.balanceInEth(preferencesUtil.getWalletAddress(), this)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -275,18 +269,7 @@ public class SendActivity extends AppCompatActivity {
 //                        System.out.println(error.getMessage());
 //                    });
 //        }
-        else if (tokenName.equals("USDT")) {
-            ethManager.getTokenBalance(walletAddress, "", ApiUtils.getContractAddress(), this)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(response -> {
-                        binding.totalAmount.setText(response.toString());
-                        totalAmount = Double.parseDouble(response.toString());
-                    }, error -> {
-                        Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                        System.out.println(error.getMessage());
-                    });
-        } else {
+        else {
             ethManager.getTokenBalance(walletAddress, "", contractAddress, this)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())

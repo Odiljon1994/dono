@@ -54,6 +54,9 @@ public class VerifySendingActivity extends AppCompatActivity {
         } else if (tokenName.equals("BNB")) {
             binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.bnb_icon));
             binding.cymbol.setText("BNB");
+        } else if (tokenName.equals("MATIC")) {
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.matic));
+            binding.cymbol.setText("MATIC");
         } else if (tokenName.equals("USDT")) {
             binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.usdt));
             binding.cymbol.setText("USDT");
@@ -102,6 +105,9 @@ public class VerifySendingActivity extends AppCompatActivity {
         } else if (tokenName.equals("cUSDC")) {
             binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.cusdc));
             binding.cymbol.setText("cUSDC");
+        } else if (tokenName.equals("DONpia")) {
+            binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.donpia_logo));
+            binding.cymbol.setText("DONpia");
         }
 
 

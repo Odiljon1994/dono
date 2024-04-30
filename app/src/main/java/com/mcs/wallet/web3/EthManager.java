@@ -397,7 +397,7 @@ public class EthManager {
 
                     BigInteger currentGasPrice = getGasPrice().add(new BigInteger("4000000000"));
 
-                    System.out.println("** GasPrice Eth: " + currentGasPrice);
+                    System.out.println("** GasPrice Matic: " + currentGasPrice);
 
                     RawTransaction rawTransaction = RawTransaction.createEtherTransaction(
                             nonce, currentGasPrice, gasLimit, to_Address, weiValue.toBigIntegerExact());
