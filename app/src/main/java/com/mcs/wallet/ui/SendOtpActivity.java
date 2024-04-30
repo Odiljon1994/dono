@@ -81,7 +81,7 @@ public class SendOtpActivity extends AppCompatActivity {
 
                     binding.otpStatus.setText("출금 요청이\n완료되었습니다.");
                     binding.onSendingText.setVisibility(View.VISIBLE);
-                    if (tokenName.equals("ETH")) {
+                    if (tokenName.equals("MATIC")) {
 
 
 
@@ -90,7 +90,7 @@ public class SendOtpActivity extends AppCompatActivity {
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(tx -> {
 
-                                    System.out.println("** Sending ether is success");
+                                    System.out.println("** Sending matic is success");
 
                                 progressDialog.dismiss();
                                 Intent intent = new Intent(SendOtpActivity.this, MainActivity.class);
@@ -100,7 +100,7 @@ public class SendOtpActivity extends AppCompatActivity {
 
                                 }, error -> {
                                     progressDialog.dismiss();
-                                    System.out.println("** error on sending eth: " + error.getMessage());
+                                    System.out.println("** error on sending matic: " + error.getMessage());
                                     Toast.makeText(SendOtpActivity.this, "error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                                 });
                     } else {
