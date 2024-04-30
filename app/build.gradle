@@ -109,6 +109,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
 
     implementation group: 'commons-codec', name: 'commons-codec', version: '1.9'
-    implementation ('org.web3j:core:4.2.0-android')
+//    implementation ('org.web3j:core:4.2.0-android')
+    implementation ('org.web3j:core:5.0.0')
     implementation 'com.tomer:fadingtextview:2.6'
 }

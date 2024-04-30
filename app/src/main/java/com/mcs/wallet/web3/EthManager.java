@@ -28,10 +28,12 @@ import org.web3j.protocol.core.methods.response.EthGasPrice;
 import org.web3j.protocol.core.methods.response.EthGetTransactionCount;
 import org.web3j.protocol.core.methods.response.EthSendTransaction;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
+import org.web3j.protocol.exceptions.TransactionException;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.tx.ChainId;
 import org.web3j.tx.RawTransactionManager;
 import org.web3j.tx.TransactionManager;
+import org.web3j.tx.Transfer;
 import org.web3j.tx.response.NoOpProcessor;
 import org.web3j.tx.response.TransactionReceiptProcessor;
 import org.web3j.utils.Convert;
@@ -51,6 +53,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -95,7 +99,7 @@ public class EthManager {
         web3j = Web3j.build(new HttpService(mainnetInfuraUrl, false));
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://34.231.96.72:8081") //http://34.231.96.72/
-           //     .baseUrl("http://52.7.239.97:8081")
+                //     .baseUrl("http://52.7.239.97:8081")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
@@ -125,7 +129,7 @@ public class EthManager {
         try {
             Transaction transaction = new Transaction(senderAddress, nonce, gasPrice, gasLimit, contractAddress, value, data);
             EthEstimateGas estimateGas = web3j.ethEstimateGas(transaction).send();
-            return  estimateGas.getAmountUsed();
+            return estimateGas.getAmountUsed();
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -149,7 +153,8 @@ public class EthManager {
                 String keystore = read_file(context, keystoreFile.getName());
 
                 return new Wallet(walletAddress, keystore);
-            } catch (CipherException | IOException | NoSuchAlgorithmException | InvalidAlgorithmParameterException | NoSuchProviderException e) {
+            } catch (CipherException | IOException | NoSuchAlgorithmException |
+                     InvalidAlgorithmParameterException | NoSuchProviderException e) {
                 e.printStackTrace();
             }
             return null;
@@ -168,7 +173,7 @@ public class EthManager {
         System.out.println("Mnemonics: " + mnemonic);
         Bip32ECKeyPair masterKeypair = Bip32ECKeyPair.generateKeyPair(MnemonicUtils.generateSeed(mnemonic, null));
 
-        int[] path = {44 | Bip32ECKeyPair.HARDENED_BIT, 60 | Bip32ECKeyPair.HARDENED_BIT, 0 | Bip32ECKeyPair.HARDENED_BIT, 0,0};
+        int[] path = {44 | Bip32ECKeyPair.HARDENED_BIT, 60 | Bip32ECKeyPair.HARDENED_BIT, 0 | Bip32ECKeyPair.HARDENED_BIT, 0, 0};
         Bip32ECKeyPair x = Bip32ECKeyPair.deriveKeyPair(masterKeypair, path);
 
         Credentials credentials = Credentials.create(x);
@@ -188,7 +193,7 @@ public class EthManager {
 
         Bip32ECKeyPair masterKeypair = Bip32ECKeyPair.generateKeyPair(MnemonicUtils.generateSeed(mnemonic, null));
 
-        int[] path = {44 | Bip32ECKeyPair.HARDENED_BIT, 60 | Bip32ECKeyPair.HARDENED_BIT, 0 | Bip32ECKeyPair.HARDENED_BIT, 0,0};
+        int[] path = {44 | Bip32ECKeyPair.HARDENED_BIT, 60 | Bip32ECKeyPair.HARDENED_BIT, 0 | Bip32ECKeyPair.HARDENED_BIT, 0, 0};
         Bip32ECKeyPair x = Bip32ECKeyPair.deriveKeyPair(masterKeypair, path);
 
         Credentials credentials = Credentials.create(x);
@@ -323,6 +328,7 @@ public class EthManager {
                     }
                 });
     }
+
     /**
      * Add Custom Token
      */
@@ -348,6 +354,7 @@ public class EthManager {
                 });
 
     }
+
     /**
      * Get ERC20 Token Balance of Wallet
      */
@@ -362,8 +369,8 @@ public class EthManager {
 
                     TransactionReceiptProcessor transactionReceiptProcessor = new NoOpProcessor(web3j);
                     TransactionManager transactionManager = new RawTransactionManager(
-                    //web3j, credentials, isMainNet() ? ChainId.MAINNET : ChainId.ROPSTEN, transactionReceiptProcessor);
-                    web3j, credentials, isMainNet() ? maticMainnetByte : maticTestnetByte, transactionReceiptProcessor);
+                            //web3j, credentials, isMainNet() ? ChainId.MAINNET : ChainId.ROPSTEN, transactionReceiptProcessor);
+                            web3j, credentials, isMainNet() ? maticMainnetByte : maticTestnetByte, transactionReceiptProcessor);
                     Erc20TokenWrapper contract = Erc20TokenWrapper.load(tokenContractAddress, web3j,
                             transactionManager, BigInteger.ZERO, BigInteger.ZERO);
                     Address address = new Address(walletAddress);
@@ -390,28 +397,23 @@ public class EthManager {
                                     Context context) {
         return loadCredentials(walletAddress, password, context)
                 .flatMap(credentials -> {
-
-                    String transactionHash = null;
+                    String transactionHash;
                     BigInteger nonce = getNonce(walletAddress);
                     BigDecimal weiValue = Convert.toWei(etherAmount, Convert.Unit.ETHER);
-
-                    BigInteger currentGasPrice = getGasPrice().add(new BigInteger("4000000000"));
-
+                    BigInteger currentGasPrice = getGasPrice();
                     System.out.println("** GasPrice Matic: " + currentGasPrice);
-
+                    Integer maticMainnet = new Integer(137);
+                    Integer maticTestnet = new Integer(80001);
                     RawTransaction rawTransaction = RawTransaction.createEtherTransaction(
-                            nonce, currentGasPrice, gasLimit, to_Address, weiValue.toBigIntegerExact());
-                    byte[] signedMessage = TransactionEncoder.signMessage(rawTransaction, credentials);
+                            nonce, currentGasPrice, gasLimit, to_Address, weiValue.toBigInteger());
+                    byte[] signedMessage = TransactionEncoder.signMessage(rawTransaction, isMainNet()  ? maticMainnet : maticTestnet, credentials);
                     String hexValue = Numeric.toHexString(signedMessage);
-
-                    EthSendTransaction ethSendTransaction = web3j.ethSendRawTransaction(hexValue).sendAsync().get();
-
-                    transactionHash = ethSendTransaction.getTransactionHash();
-
-
+                    EthSendTransaction transactionResponse = web3j.ethSendRawTransaction(hexValue).sendAsync().get();
+                    transactionHash = transactionResponse.getTransactionHash();
                     return Single.just(transactionHash);
                 });
     }
+
     private static String generateDataForTokenTransfer(String _to, BigInteger _amount) {
         List<Type> params = Arrays.asList(new Address(_to), new Uint256(_amount));
         List<TypeReference<?>> returnTypes = Arrays.asList(new TypeReference<Bool>() {
@@ -419,7 +421,6 @@ public class EthManager {
         Function function = new Function("transfer", params, returnTypes);
         return FunctionEncoder.encode(function);
     }
-
 
 
     /**
@@ -435,19 +436,13 @@ public class EthManager {
         return loadCredentials(walletAddress, password, context)
                 .flatMap(credentials -> {
                     Integer maticMainnet = new Integer(137);
-                    byte maticMainnetByte = maticMainnet.byteValue();
-
                     Integer maticTestnet = new Integer(80001);
-                    byte maticTestnetByte = maticTestnet.byteValue();
-
                     TransactionReceiptProcessor transactionReceiptProcessor = new NoOpProcessor(web3j);
                     TransactionManager transactionManager = new RawTransactionManager(
-                            web3j, credentials, isMainNet() ? maticMainnetByte : maticTestnetByte, transactionReceiptProcessor);
+                            web3j, credentials, isMainNet() ? maticMainnet : maticTestnet, transactionReceiptProcessor);
 
                     BigInteger nonce = getNonce(walletAddress);
-                    BigInteger currentGasPrice = getGasPrice().add(new BigInteger("8000000000"));
-
-                 //   BigInteger decimalCount = contract.decimals().getValue();
+                    BigInteger currentGasPrice = getGasPrice();
 
                     BigDecimal formattedAmount1 = BalanceUtils.amountByDecimal(tokenAmount, new BigDecimal(18));
 
@@ -455,10 +450,8 @@ public class EthManager {
 
                     BigInteger currentGasLimit = getGasLimit(walletAddress, nonce, currentGasPrice, gasLimit, tokenContractAddress, BigInteger.ZERO, data);
 
-
                     System.out.println("** GasPrice Token: " + currentGasPrice);
                     System.out.println("** GasLimit Token: " + currentGasLimit);
-
 
                     Erc20TokenWrapper contract = Erc20TokenWrapper.load(tokenContractAddress, web3j, transactionManager, currentGasPrice, currentGasLimit);
 
@@ -466,7 +459,6 @@ public class EthManager {
 
                     BigDecimal formattedAmount = BalanceUtils.amountByDecimal(tokenAmount, new BigDecimal(decimalCount));
                     TransactionReceipt mReceipt = contract.transfer(new Address(to_Address), new Uint256(formattedAmount.toBigInteger()));
-
 
                     return Single.just(mReceipt.getTransactionHash());
                 });
