@@ -329,9 +329,15 @@ public class EthManager {
     public Single<Token> searchTokenByContractAddress(String contractAddress, String walletAddress, String password, Context context) {
         return loadCredentials(walletAddress, password, context)
                 .flatMap(credentials -> {
+                    Integer maticMainnet = new Integer(137);
+                    byte maticMainnetByte = maticMainnet.byteValue();
+
+                    Integer maticTestnet = new Integer(80001);
+                    byte maticTestnetByte = maticTestnet.byteValue();
+
                     TransactionReceiptProcessor transactionReceiptProcessor = new NoOpProcessor(web3j);
                     TransactionManager transactionManager = new RawTransactionManager(
-                            web3j, credentials, isMainNet() ? ChainId.MAINNET : ChainId.ROPSTEN, transactionReceiptProcessor);
+                            web3j, credentials, isMainNet() ? maticMainnetByte : maticTestnetByte, transactionReceiptProcessor);
                     Erc20TokenWrapper contract = Erc20TokenWrapper.load(contractAddress, web3j,
                             transactionManager, BigInteger.ZERO, BigInteger.ZERO);
                     String tokenName = contract.name().getValue();
@@ -428,9 +434,15 @@ public class EthManager {
                                     Context context) {
         return loadCredentials(walletAddress, password, context)
                 .flatMap(credentials -> {
+                    Integer maticMainnet = new Integer(137);
+                    byte maticMainnetByte = maticMainnet.byteValue();
+
+                    Integer maticTestnet = new Integer(80001);
+                    byte maticTestnetByte = maticTestnet.byteValue();
+
                     TransactionReceiptProcessor transactionReceiptProcessor = new NoOpProcessor(web3j);
                     TransactionManager transactionManager = new RawTransactionManager(
-                            web3j, credentials, isMainNet() ? ChainId.MAINNET : ChainId.ROPSTEN, transactionReceiptProcessor);
+                            web3j, credentials, isMainNet() ? maticMainnetByte : maticTestnetByte, transactionReceiptProcessor);
 
                     BigInteger nonce = getNonce(walletAddress);
                     BigInteger currentGasPrice = getGasPrice().add(new BigInteger("8000000000"));
