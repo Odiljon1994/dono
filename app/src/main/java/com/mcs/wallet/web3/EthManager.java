@@ -350,10 +350,14 @@ public class EthManager {
                 .flatMap(credentials -> {
                     Integer maticMainnet = new Integer(137);
                     byte maticMainnetByte = maticMainnet.byteValue();
+
+                    Integer maticTestnet = new Integer(80001);
+                    byte maticTestnetByte = maticTestnet.byteValue();
+
                     TransactionReceiptProcessor transactionReceiptProcessor = new NoOpProcessor(web3j);
                     TransactionManager transactionManager = new RawTransactionManager(
                     //web3j, credentials, isMainNet() ? ChainId.MAINNET : ChainId.ROPSTEN, transactionReceiptProcessor);
-                    web3j, credentials, isMainNet() ? maticMainnetByte : ChainId.ROPSTEN, transactionReceiptProcessor);
+                    web3j, credentials, isMainNet() ? maticMainnetByte : maticTestnetByte, transactionReceiptProcessor);
                     Erc20TokenWrapper contract = Erc20TokenWrapper.load(tokenContractAddress, web3j,
                             transactionManager, BigInteger.ZERO, BigInteger.ZERO);
                     Address address = new Address(walletAddress);

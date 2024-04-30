@@ -46,7 +46,7 @@ public class AddressesBookFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
 
         binding.backBtn.setOnClickListener(v -> {
-            Fragment someFragment = new MainFragment3();
+            Fragment someFragment = new MainFragment5();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, someFragment); // give your fragment container id in first parameter
             transaction.addToBackStack(null);  // if written, this transaction will be added to backstack

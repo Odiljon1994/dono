@@ -46,14 +46,14 @@ public class MainFragment5 extends Fragment {
 
 
         walletAddress = preferencesUtil.getWalletAddress();
-      //  checkBalance();
-        checkVonusBalance();
+        checkBalance();
+
         binding.progressBar.getProgress();
 
         binding.refreshBtn.setOnClickListener(v -> {
             binding.progressBar.setVisibility(View.VISIBLE);
-        //    checkBalance();
-            checkVonusBalance();
+            checkBalance();
+
         });
 
         return view;
@@ -79,23 +79,5 @@ public class MainFragment5 extends Fragment {
                 });
     }
 
-    public void checkVonusBalance() {
 
-        EthManager ethManager = EthManager.getInstance();
-        ethManager.init(ApiUtils.getInfura());
-
-        ethManager.balanceInEth(walletAddress, getActivity())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(balance -> {
-                    binding.amount.setText(balance.toString());
-                    binding.progressBar.setVisibility(View.GONE);
-
-                }, error -> {
-                    binding.progressBar.setVisibility(View.GONE);
-                   // Toast.makeText(this.getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                    System.out.println(error.getMessage());
-
-                });
-    }
 }

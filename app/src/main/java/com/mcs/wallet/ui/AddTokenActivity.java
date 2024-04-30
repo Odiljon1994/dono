@@ -61,34 +61,24 @@ public class AddTokenActivity extends AppCompatActivity {
         List<ExistingTokenModel> items = new ArrayList<>();
 
 
-        // Test net
-//        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.usdt), "Tether USD (USDT)", "USDT", "0x516de3a7a567d81737e3a46ec4ff9cfd1fcb0136"));
-//        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.dai), "Dai Stablecoin (DAI)", "DAI", "0xc2118d4d90b274016cb7a54c03ef52e6c537d957"));
-//        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.comp), "Compound", "COMP", "0x1fe16de955718cfab7a44605458ab023838c2793"));
-//        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.uni), "Uniswap (UNI)", "UNI", "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"));
-//        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.ceth), "Compound Ether (cETH)", "cETH", "0xbe839b6d93e3ea47effcca1f27841c917a8794f3"));
-//        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.usdc), "USD Coin (USDC)", "USDC", "0x0d9c8723b343a8368bebe0b5e89273ff8d712e3c"));
-
-        // Main net
-        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.usdt), "Tether USD (USDT)", "USDT", "0xc2132D05D31c914a87C6611C10748AEb04B58e8F"));
-        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.dai), "Dai Stablecoin (DAI)", "DAI", "0x6b175474e89094c44da98b954eedeac495271d0f"));
-        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.link), "ChainLink Token (LINK)", "LINK", "0x514910771af9ca656af840dff83e8264ecf986ca"));
-        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.uni), "Uniswap (UNI)", "UNI", "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"));
-        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.usdc), "USD Coin (USDC)", "USDC", "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"));
-        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.wbtc), "Wrapped BTC (WBTC)", "WBTC", "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599"));
-        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.ven), "VeChain (VEN)", "VEN", "0xd850942ef8811f2a866692a623011bde52a462c1"));
-        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.theta), "Theta Token (THETA)", "THETA", "0x3883f5e181fccaf8410fa61e12b59bad963fb645"));
-        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.wfil), "Wrapped Filecoin (WFIL)", "WFIL", "0x6e1A19F235bE7ED8E3369eF73b196C07257494DE"));
-        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.busd), "Binance USD (BUSD)", "BUSD", "0x4fabb145d64652a948d72533023f6e7a623c7c53"));
-        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.okb), "OKB (OKB)", "OKB", "0x75231f58b43240c9718dd58b4967c5114342a86c"));
-        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.cro), "Crypto.com Coin (CRO)", "CRO", "0xa0b73e1ff0b80914ab6fe0444e65848c4c34450b"));
-        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.cusdc), "Compound USD Coin (cUSDC)", "cUSDC", "0x39aa39c021dfbae8fac545936693ac917d5e7563"));
-        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.ht), "HuobiToken (HT)", "HT", "0x6f259637dcd74c767781e37bc6133cd6a68aa161"));
-        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.ceth), "Compound Ether (cETH)", "cETH", "0x4ddc2d193948926d02f9b1fe9e1daa0718270ed5"));
-        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.mkr), "Maker (MKR)", "MKR", "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2"));
-        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.cdai), "Compound Dai (cDAI)", "cDAI", "0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643"));
-        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.comp), "Compound (COMP)", "COMP", "0xc00e94cb662c3520282e6f5717214004a7f26888"));
-        items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.chz), "ChiliZ (CHZ)", "CHZ", "0x3506424f91fd33084466f402d5d97f05f8e3b4af"));
+        if (!ApiUtils.isMainnet) {
+            // Test net
+            items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.usdt), "Tether USD (USDT)", "USDT", "0xbCF39d8616d15FD146dd5dB4a86b4f244A9Bc772"));
+            items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.dai), "Dai Stablecoin (DAI)", "DAI", "0x542a0f0F599228A9A92932aAF110a2b69DbD2C11"));
+            items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.uni), "Uniswap (UNI)", "UNI", "0x39179cb99f7BA1244665AA7Ff2c2886CBCBcE3bc"));
+            items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.usdc), "USD Coin (USDC)", "USDC", "0x6EEBe75caf9c579B3FBA9030760B84050283b50a"));
+        } else {
+            // Main net
+            items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.usdt), "Tether USD (USDT)", "USDT", "0xc2132D05D31c914a87C6611C10748AEb04B58e8F"));
+            items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.dai), "Dai Stablecoin (DAI)", "DAI", "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063"));
+            items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.link), "ChainLink Token (LINK)", "LINK", "0xb0897686c545045aFc77CF20eC7A532E3120E0F1"));
+            items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.uni), "Uniswap (UNI)", "UNI", "0xb33EaAd8d922B1083446DC23f610c2567fB5180f"));
+            items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.usdc), "USD Coin (USDC)", "USDC", "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359"));
+            items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.wbtc), "Wrapped BTC (WBTC)", "WBTC", "0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6"));
+            items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.theta), "Theta Token (THETA)", "THETA", "0xB46E0ae620EFd98516f49bb00263317096C114b2"));
+            items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.busd), "Binance USD (BUSD)", "BUSD", "0xdAb529f40E671A1D4bF91361c21bf9f0C9712ab7"));
+            items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.chz), "ChiliZ (CHZ)", "CHZ", "0xf1938Ce12400f9a761084E7A80d37e732a4dA056"));
+        }
 
         binding.recyclerview.setLayoutManager(new LinearLayoutManager(this));
         adapter = new ExistingTokensAdapter(items, this, item -> {
