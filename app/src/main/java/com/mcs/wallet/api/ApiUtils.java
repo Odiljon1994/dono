@@ -15,7 +15,7 @@ public class ApiUtils {
 
     public static boolean isMainnet = true;
 
-    private static final String etherScan = "https://api.etherscan.io/api/"; // for mainnet
+    private static final String etherScan = "https://api.polygonscan.com/api/"; // for mainnet
    // private static final String baseUrl = "http://3.34.99.232:3001";
     private static final String baseUrl = "http://54.193.8.247:3001";
 
@@ -28,7 +28,7 @@ public class ApiUtils {
         if (isMainnet) {
             return etherScan;
         } else {
-            return "https://api-holesky.etherscan.io/api/";
+            return "https://api-testnet.polygonscan.com/api/";
         }
     }
 

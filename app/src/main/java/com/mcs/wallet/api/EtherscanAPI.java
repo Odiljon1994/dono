@@ -8,9 +8,9 @@ import retrofit2.http.Query;
 
 public interface EtherscanAPI {
 
-    @GET("/api?module=account&action=txlist&startblock=0&endblock=99999999&sort=desc&apikey=RGTV1D2EN6I95Z8YXB6I4TYGY5MYG9PEYD/")
+    @GET("/api?module=account&action=txlist&startblock=0&endblock=99999999&sort=desc&apikey=GBVTPKAIJVSFX1WBU698WH83XSNFQ9PKDC/")
     Single<EtherscnaResponce> getTransactrions(@Query("address") String address);
 
-    @GET("/api?module=account&action=tokentx&startblock=0&endblock=99999999&sort=desc&apikey=RGTV1D2EN6I95Z8YXB6I4TYGY5MYG9PEYD/")
+    @GET("/api?module=account&action=tokentx&startblock=0&endblock=99999999&sort=desc&apikey=GBVTPKAIJVSFX1WBU698WH83XSNFQ9PKDC/")
     Single<EtherscnaResponce> getERC20Transactrions(@Query("address") String address);
 }

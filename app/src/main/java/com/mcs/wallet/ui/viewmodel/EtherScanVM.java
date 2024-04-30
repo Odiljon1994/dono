@@ -62,7 +62,7 @@ public class EtherScanVM extends BaseVM{
                                     transactions1.getResult().get(i).getFrom(),
                                     transactions1.getResult().get(i).getTo(),
                                     transactions1.getResult().get(i).getBlockNumber(),
-                                    transactions1.getResult().get(i).getBlockHash(), "ETH"));
+                                    transactions1.getResult().get(i).getBlockHash(), "MATIC"));
                         }
                     }
                     getERC20Transactions(ethAddress, transactionModels);

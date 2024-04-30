@@ -61,7 +61,6 @@ public class TokenActivity extends AppCompatActivity {
 
         binding.toolbar.backBtn.setOnClickListener(v -> finish());
 
-
         tokenName = getIntent().getStringExtra("tokenName");
         amountInKrw = getIntent().getStringExtra("KRW");
         contractAddress = getIntent().getStringExtra("contractAddress");
@@ -227,10 +226,8 @@ public class TokenActivity extends AppCompatActivity {
 
         allTransactionList = new ArrayList<>();
 
-        //  progressDialog = ProgressDialog.show(getActivity(), "", "데이터 불러오는 중…", true);
         etherScanVM.getTransactions(preferencesUtil.getWalletAddress());
-
-        binding.swipeRefreshLayout.setRefreshing(false);
+        //etherScanVM.getTransactions("0x743b2CD77c49dF1a0a4701e0CC1a2cf776d5b200");
 
     }
 
@@ -274,28 +271,22 @@ public class TokenActivity extends AppCompatActivity {
     }
 
     public void items(List<TransactionsModel> items) {
-
         //  progressDialog.dismiss();
         allTransactionList = items;
         receiveTransactionList = new ArrayList<>();
         sendTransactionList = new ArrayList<>();
         adapter.setItems(allTransactionList);
         binding.swipeRefreshLayout.setRefreshing(false);
-
         for (int i = 0; i < items.size(); i++) {
-
             if (items.get(i).getFrom().toLowerCase().equals(preferencesUtil.getWalletAddress())) {
                 sendTransactionList.add(items.get(i));
             } else {
                 receiveTransactionList.add(items.get(i));
             }
-
         }
-
         if (binding.tabLayout.getSelectedTabPosition() != 0) {
 
             binding.tabLayout.getTabAt(0).select();
         }
-
     }
 }
