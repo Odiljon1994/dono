@@ -1,6 +1,7 @@
 package com.mcs.wallet.ui;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -9,6 +10,8 @@ import androidx.databinding.DataBindingUtil;
 
 import com.andrognito.pinlockview.PinLockListener;
 import com.mcs.wallet.MyApp;
+import com.mcs.wallet.api.ApiUtils;
+import com.mcs.wallet.database.DatabaseMainnetToken;
 import com.mcs.wallet.util.PreferencesUtil;
 import com.mcs.wallet.R;
 import com.mcs.wallet.databinding.ActivityOtpBinding;
@@ -27,20 +30,20 @@ public class OtpImportWalletActivity extends AppCompatActivity {
         ((MyApp) getApplication()).getAppComponent().inject(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_otp);
 
-//        DatabaseMainnetToken databaseMainnetToken = new DatabaseMainnetToken(this);
-//        boolean isTokenExist = false;
-//
-//        Cursor data = databaseMainnetToken.getData();
-//
-//        while (data.moveToNext()) {
-//            String contractAddress = data.getString(1);
-//            if (contractAddress.equals("G3S")) {
-//                isTokenExist = true;
-//            }
-//        }
-//        if (!isTokenExist) {
-//            boolean insetData = databaseMainnetToken.addData("G3S", "G3S", ApiUtils.getContractAddress());
-//        }
+        DatabaseMainnetToken databaseMainnetToken = new DatabaseMainnetToken(this);
+        boolean isTokenExist = false;
+
+        Cursor data = databaseMainnetToken.getData();
+
+        while (data.moveToNext()) {
+            String contractAddress = data.getString(1);
+            if (contractAddress.equals("DONpia")) {
+                isTokenExist = true;
+            }
+        }
+        if (!isTokenExist) {
+            boolean insetData = databaseMainnetToken.addData("DONpia", "DONpia", ApiUtils.getContractAddress());
+        }
 
         binding.toolbar.backBtn.setOnClickListener(v -> finish());
         binding.pinLockView.attachIndicatorDots(binding.indicatorDots);
