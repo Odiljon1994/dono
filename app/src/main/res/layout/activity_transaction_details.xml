@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -8,7 +8,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#181C1F"
+        android:background="@drawable/bgr_blue_new"
         android:orientation="vertical">
 
         <include
@@ -53,17 +53,18 @@
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:text="0x46e8b91ccdfe281bcfe73e7a7ae51941e8fb40d9fee50c674d3bcdc4d0a15d8f"
-                android:textColor="#B9BABB"
+                android:textColor="@color/white"
                 android:textSize="10dp"
 
                 android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/copyBtn"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:padding="5dp"
+                android:padding="7dp"
+                android:tint="@color/white"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="18dp"
                 android:src="@drawable/copy_btn"  />
@@ -98,7 +99,7 @@
             android:includeFontPadding="false"
             android:singleLine="true"
             android:text="Success"
-            android:textColor="#B9BABB"
+            android:textColor="@color/white"
             android:textSize="10dp"
             android:textStyle="bold" />
 
@@ -132,7 +133,7 @@
             android:includeFontPadding="false"
             android:singleLine="true"
             android:text="1345677"
-            android:textColor="#B9BABB"
+            android:textColor="@color/white"
             android:textSize="10dp"
             android:textStyle="bold" />
 
@@ -167,7 +168,7 @@
             android:includeFontPadding="false"
             android:singleLine="true"
             android:text="2021.11.19 23:46:13(UTC+09:00)"
-            android:textColor="#B9BABB"
+            android:textColor="@color/white"
             android:textSize="10dp"
             android:textStyle="bold" />
 
@@ -210,20 +211,21 @@
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:text="0x46e8b91ccdfe281bcfe73e7a7ae51941e8fb40d9fee50c674d3bcdc4d0a15d8f"
-                android:textColor="#B9BABB"
+                android:textColor="@color/white"
                 android:textSize="10dp"
 
                 android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/copyFromAddress"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:padding="5dp"
+                android:padding="7dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="18dp"
-                android:src="@drawable/copy_btn" />
+                android:src="@drawable/copy_btn"
+                app:tint="@color/white" />
         </LinearLayout>
 
         <View
@@ -264,20 +266,21 @@
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:text="0x46e8b91ccdfe281bcfe73e7a7ae51941e8fb40d9fee50c674d3bcdc4d0a15d8f"
-                android:textColor="#B9BABB"
+                android:textColor="@color/white"
                 android:textSize="10dp"
 
                 android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/copyToAddress"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:padding="5dp"
+                android:padding="7dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="18dp"
-                android:src="@drawable/copy_btn"  />
+                android:src="@drawable/copy_btn"
+                app:tint="@color/white" />
         </LinearLayout>
 
         <View
@@ -310,7 +313,7 @@
             android:includeFontPadding="false"
             android:singleLine="true"
             android:text="13.12345678 TTAP"
-            android:textColor="#B9BABB"
+            android:textColor="@color/white"
             android:textSize="10dp"
             android:textStyle="bold" />
 

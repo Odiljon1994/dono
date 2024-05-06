@@ -8,7 +8,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#020F27"
+        android:background="#282828"
         android:layout_marginStart="18dp"
         android:layout_marginEnd="18dp"
         android:orientation="vertical">
@@ -69,7 +69,7 @@
                 android:layout_weight="1"/>
             <TextView
                 android:id="@+id/noBtn"
-                android:background="#414A5A"
+                android:background="#707070"
                 android:text="@string/no"
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"

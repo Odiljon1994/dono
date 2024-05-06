@@ -27,6 +27,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="left|center"
             android:padding="18dp"
+            android:tint="@color/white"
             android:src="@drawable/bback_button" />
 
         <ImageView

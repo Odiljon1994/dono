@@ -8,7 +8,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bgr_blue"
+        android:background="@drawable/wallet_impl_bgr"
         android:orientation="vertical">
 
         <TextView
@@ -27,12 +27,14 @@
             android:layout_width="230dp"
             android:layout_height="140dp"
             android:layout_gravity="center"
+            android:visibility="invisible"
             android:src="@drawable/header_wallet_import"
             android:layout_marginTop="50dp"/>
         <ImageView
             android:layout_width="160dp"
             android:layout_height="180dp"
             android:layout_gravity="center"
+            android:visibility="invisible"
             android:layout_marginEnd="15dp"
             android:src="@drawable/cen_import_wallet"
            />

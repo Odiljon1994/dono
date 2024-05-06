@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#181C1F"
+        android:background="#020C1F"
         android:orientation="vertical">
 
         <include
@@ -24,7 +24,7 @@
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
             android:text="@string/important_private_key"
-            android:textColor="#B9BABB"
+            android:textColor="@color/white"
             android:textSize="34dp" />
 
         <TextView
@@ -58,7 +58,7 @@
                 android:layout_marginEnd="2dp"
                 android:layout_weight="1"
                 android:ellipsize="middle"
-                android:textColor="#B9BABB"
+                android:textColor="@color/white"
                 android:textSize="12dp"
                 android:singleLine="true" />
 
@@ -69,6 +69,7 @@
                 android:layout_gravity="center"
                 android:layout_marginEnd="10dp"
                 android:padding="10dp"
+                android:tint="@color/white"
                 android:src="@drawable/copy_btn" />
 
         </LinearLayout>
