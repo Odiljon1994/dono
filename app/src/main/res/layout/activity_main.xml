@@ -72,7 +72,7 @@
                     android:id="@+id/bottomNavigation"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
-                    android:background="#020F27"
+                    android:background="#101010"
                     android:elevation="10dp"
                     app:menu="@menu/bottom_navigation"
                     app:itemIconTint="@color/colorPrimary"

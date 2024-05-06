@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#020F27"
+        android:background="#020C1F"
         android:orientation="vertical">
 
         <LinearLayout
@@ -46,7 +46,7 @@
                     android:fontFamily="@font/notosanskr_regular"
                     android:includeFontPadding="false"
                     android:text="0xea674fdde714fd979de3edf0f56aa9716b898ec8"
-                    android:textColor="#999999"
+                    android:textColor="@color/white"
                     android:textSize="10dp"
                     android:textStyle="bold"
                     android:singleLine="true" />

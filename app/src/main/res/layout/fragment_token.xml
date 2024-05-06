@@ -8,7 +8,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#020F27"
+        android:background="#081532"
 
         android:orientation="vertical">
         <include
@@ -108,7 +108,7 @@
             <Button
                 android:id="@+id/send"
                 android:layout_width="0dp"
-                android:background="#010C23"
+                android:background="#1E2C48"
                 android:text="@string/send"
                 android:textColor="@color/white"
                 android:gravity="center"
@@ -123,11 +123,10 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
-            app:tabBackground="@color/white"
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/colorPrimary"
             app:tabSelectedTextColor="@color/colorPrimary"
-            app:tabTextColor="#121212"
+            app:tabTextColor="@color/white"
             >
 
         </com.google.android.material.tabs.TabLayout>
@@ -141,6 +140,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="#020C1F"
             android:layout_marginTop="1dp"
             >
 

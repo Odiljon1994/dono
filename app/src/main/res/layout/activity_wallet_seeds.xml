@@ -59,7 +59,8 @@
             android:layout_height="16dp"
             android:layout_marginStart="18dp"
             android:layout_marginTop="35dp"
-            android:src="@drawable/key" />
+            android:src="@drawable/key"
+            app:tint="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/seeds"

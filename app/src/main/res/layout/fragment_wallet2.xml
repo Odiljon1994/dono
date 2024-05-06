@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,7 +9,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#020F27"
+        android:background="#081532"
         android:orientation="vertical">
 
         <LinearLayout
@@ -33,7 +34,7 @@
                     android:includeFontPadding="false"
                     android:singleLine="true"
                     android:text="0x19f5cf38c2fas12df3c4389f78b0cfc5"
-                    android:textColor="#999999"
+                    android:textColor="@color/white"
                     android:textSize="14dp"
                     android:textStyle="bold" />
 
@@ -45,7 +46,8 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="18dp"
                     android:padding="5dp"
-                    android:src="@drawable/copy_btn" />
+                    android:src="@drawable/copy_btn"
+                    app:tint="@color/white" />
 
             </LinearLayout>
 
@@ -97,6 +99,7 @@
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefreshLayout"
             android:layout_width="match_parent"
+            android:background="#040C1E"
             android:layout_height="0dp"
             android:layout_weight="1">
 
