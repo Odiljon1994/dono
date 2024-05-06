@@ -49,6 +49,7 @@ public class TokenActivity extends AppCompatActivity {
     List<TransactionsModel> receiveTransactionList = new ArrayList<>();
     List<TransactionsModel> sendTransactionList = new ArrayList<>();
     private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,8 +74,7 @@ public class TokenActivity extends AppCompatActivity {
             binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.matic));
         } else if (tokenName.equals("DONpia")) {
             binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.donpia_logo));
-        }
-        else if (tokenName.equals("BNB")) {
+        } else if (tokenName.equals("BNB")) {
             binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.bnb_icon));
         } else if (tokenName.equals("USDT")) {
             binding.logo.setImageDrawable(getResources().getDrawable(R.drawable.usdt));
@@ -223,12 +223,7 @@ public class TokenActivity extends AppCompatActivity {
     public void loadData() {
         adapter.clearItems();
         checkBalance();
-
         allTransactionList = new ArrayList<>();
-
-        etherScanVM.getTransactions(preferencesUtil.getWalletAddress());
-        //etherScanVM.getTransactions("0x743b2CD77c49dF1a0a4701e0CC1a2cf776d5b200");
-
     }
 
     public void checkBalance() {
@@ -251,6 +246,7 @@ public class TokenActivity extends AppCompatActivity {
                         Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
                         System.out.println(error.getMessage());
                     });
+            etherScanVM.getTransactions(preferencesUtil.getWalletAddress());
         } else {
             ethManager.getTokenBalance(walletAddress, "", contractAddress, this)
                     .subscribeOn(Schedulers.io())
@@ -266,6 +262,7 @@ public class TokenActivity extends AppCompatActivity {
                         Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
                         System.out.println(error.getMessage());
                     });
+            etherScanVM.getERC20Transactions(walletAddress, contractAddress);
         }
 
     }

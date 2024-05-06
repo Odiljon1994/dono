@@ -29,12 +29,15 @@ import com.mcs.wallet.util.PreferencesUtil;
 import com.mcs.wallet.R;
 import com.mcs.wallet.api.ApiUtils;
 import com.mcs.wallet.databinding.ActivitySendBinding;
+import com.mcs.wallet.web3.BalanceUtils;
 import com.mcs.wallet.web3.EthManager;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import org.web3j.crypto.WalletUtils;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Locale;
 
 import javax.inject.Inject;
@@ -57,6 +60,13 @@ public class SendActivity extends AppCompatActivity {
     @Inject
     PreferencesUtil preferencesUtil;
 
+    private boolean isTokenTransfer = false;
+
+    private BigInteger gasLimit;
+    private BigInteger gasPrice;
+
+    private BigDecimal networkFee;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +79,8 @@ public class SendActivity extends AppCompatActivity {
 
         tokenName = getIntent().getStringExtra("tokenName");
         contractAddress = getIntent().getStringExtra("contractAddress");
+
+        isTokenTransfer = !tokenName.equals("MATIC");
 
         binding.endImage.setOnClickListener(v -> {
             setAppLocale(preferencesUtil.getLANGUAGE());
@@ -161,7 +173,16 @@ public class SendActivity extends AppCompatActivity {
 
         binding.max.setOnClickListener(v -> {
 
-            binding.amount.setText(String.valueOf(totalAmount));
+            if (isTokenTransfer) {
+                binding.amount.setText(String.valueOf(totalAmount));
+            } else {
+                System.out.println("Total Amount " + totalAmount);
+                System.out.println("NetworkFee Amount " + networkFee.toPlainString());
+                BigDecimal remainValue = BigDecimal.valueOf(totalAmount).subtract(networkFee);
+                System.out.println("Remain Amount " + remainValue.toPlainString());
+                binding.amount.setText(remainValue.toPlainString());
+            }
+
 
         });
 
@@ -173,24 +194,34 @@ public class SendActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!binding.amount.getText().toString().equals("")) {
-
-                    Double currentAmount = Double.parseDouble(binding.amount.getText().toString());
-                    if (totalAmount >= currentAmount) {
-
-                        binding.errorMessage.setText("");
-                        binding.balance.setText(getResources().getString(R.string.balance) + " : " + String.valueOf(totalAmount - currentAmount));
+                if (!binding.amount.getText().toString().isEmpty()) {
+                    BigDecimal currentAmount = new BigDecimal(binding.amount.getText().toString());
+                    if (isTokenTransfer) {
+                        // Adjust the logic for token transfers, if different
+                        BigDecimal adjustedAmount = currentAmount.subtract(networkFee);
+                        if (adjustedAmount.compareTo(BigDecimal.ZERO) < 0) {
+                            binding.errorMessage.setText(getResources().getString(R.string.not_enough_balance));
+                        } else {
+                            binding.errorMessage.setText("");
+                        }
+                        // Display the adjusted amount in plain string format
+                        binding.balance.setText(getResources().getString(R.string.balance) + " : " + adjustedAmount.toPlainString());
                     } else {
-                        binding.errorMessage.setText(getResources().getString(R.string.not_enough_balance));
+                        BigDecimal totalAmountDecimal = BigDecimal.valueOf(totalAmount); // Convert totalAmount to BigDecimal if necessary
+                        if (totalAmountDecimal.compareTo(currentAmount) >= 0) {
+                            binding.errorMessage.setText("");
+                            BigDecimal balanceAfterTransaction = totalAmountDecimal.subtract(currentAmount);
+                            // Display the balance after transaction in plain string format
+                            binding.balance.setText(getResources().getString(R.string.balance) + " : " + balanceAfterTransaction.toPlainString());
+                        } else {
+                            binding.errorMessage.setText(getResources().getString(R.string.not_enough_balance));
+                        }
                     }
-
                 }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
-
                 if (binding.amount.getText().toString().equals("")) {
                     binding.balance.setText(R.string.balance);
                     binding.errorMessage.setText("");
@@ -233,20 +264,39 @@ public class SendActivity extends AppCompatActivity {
             showDialog();
         });
 
+        getFee();
+    }
+
+    private void getFee() {
+        if (isTokenTransfer) {
+
+        } else {
+            gasLimit = BigInteger.valueOf(Long.parseLong("21000"));
+            EthManager.getInstance().getGasPriceAsSingle().subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(response -> {
+                        gasPrice = response;
+                        BigDecimal networkFeeDecimal = BalanceUtils.weiToEth(gasLimit.multiply(response));
+                        binding.currentFee.setText(networkFeeDecimal.toPlainString() + " ETH");
+                        networkFee = networkFeeDecimal;
+                    }, error -> {
+                        Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        System.out.println(error.getMessage());
+                    });
+        }
     }
 
     public void currentFee(CurrentFeeModel currentFeeModel) {
+
         binding.currentFee.setText(String.valueOf(currentFeeModel.getFee()) + " DONpia");
         fee = currentFeeModel.getFee();
     }
 
     public void checkBalance() {
 
-        EthManager ethManager = EthManager.getInstance();
-        ethManager.init(ApiUtils.getInfura());
 
         if (tokenName.equals("MATIC")) {
-            ethManager.balanceInEth(preferencesUtil.getWalletAddress(), this)
+            EthManager.getInstance().balanceInEth(preferencesUtil.getWalletAddress(), this)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(response -> {
@@ -256,21 +306,8 @@ public class SendActivity extends AppCompatActivity {
                         Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
                         System.out.println(error.getMessage());
                     });
-        }
-//        else if (tokenName.equals("BNB")) {
-//            ethManager.getTokenBalance(walletAddress, "", ApiUtils.getBnbContractAddress(), this)
-//                    .subscribeOn(Schedulers.io())
-//                    .observeOn(AndroidSchedulers.mainThread())
-//                    .subscribe(response -> {
-//                        binding.totalAmount.setText(response.toString());
-//                        totalAmount = Double.parseDouble(response.toString());
-//                    }, error -> {
-//                        Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
-//                        System.out.println(error.getMessage());
-//                    });
-//        }
-        else {
-            ethManager.getTokenBalance(walletAddress, "", contractAddress, this)
+        } else {
+            EthManager.getInstance().getTokenBalance(walletAddress, "", contractAddress, this)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(response -> {
@@ -282,15 +319,6 @@ public class SendActivity extends AppCompatActivity {
                     });
         }
 
-        ethManager.getTokenBalance(walletAddress, "", ApiUtils.getContractAddress(), this)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(response -> {
-                    balance = Double.parseDouble(response.toString());
-                }, error -> {
-                    Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                    System.out.println(error.getMessage());
-                });
     }
 
     public void showDialog() {

@@ -12,5 +12,5 @@ public interface EtherscanAPI {
     Single<EtherscnaResponce> getTransactrions(@Query("address") String address);
 
     @GET("/api?module=account&action=tokentx&startblock=0&endblock=99999999&sort=desc&apikey=GBVTPKAIJVSFX1WBU698WH83XSNFQ9PKDC/")
-    Single<EtherscnaResponce> getERC20Transactrions(@Query("address") String address);
+    Single<EtherscnaResponce> getERC20Transactrions(@Query("address") String address, @Query("contractaddress") String contractAddress);
 }

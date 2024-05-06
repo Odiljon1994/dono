@@ -258,7 +258,6 @@
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
             android:text="@string/fee"
-            android:visibility="invisible"
             android:textColor="@color/white"
             android:textSize="15dp" />
 
@@ -267,11 +266,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
-            android:visibility="invisible"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
-            android:text="1 DONpia"
             android:textColor="@color/colorPrimary"
             android:textSize="12dp" />
 

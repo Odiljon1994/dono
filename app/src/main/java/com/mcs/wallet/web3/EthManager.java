@@ -119,6 +119,14 @@ public class EthManager {
         return new BigInteger(Const.DEFAULT_GAS_PRICE);
     }
 
+    public Single<BigInteger> getGasPriceAsSingle() {
+        return Single.fromCallable(() -> {
+            EthGasPrice price = web3j.ethGasPrice()
+                    .send();
+            return price.getGasPrice();
+        });
+    }
+
     public BigInteger getGasLimit(String senderAddress,
                                   BigInteger nonce,
                                   BigInteger gasPrice,

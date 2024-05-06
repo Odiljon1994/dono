@@ -30,7 +30,13 @@ public class CurrentFeeVM extends BaseVM {
         return currentFeeModelMutableLiveData;
     }
 
-    public void getCurrentFee() {
+    public void getCurrentFee(boolean isTokenTransfer) {
+
+        if (isTokenTransfer) {
+
+        } else {
+
+        }
 
         addToSubscribe(api.getCurrentFee()
                 .subscribeOn(Schedulers.io())

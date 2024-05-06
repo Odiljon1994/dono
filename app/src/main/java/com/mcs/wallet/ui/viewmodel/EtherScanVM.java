@@ -16,7 +16,7 @@ import javax.inject.Inject;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class EtherScanVM extends BaseVM{
+public class EtherScanVM extends BaseVM {
 
     EtherscanAPI etherscanAPI;
     private MutableLiveData<List<TransactionsModel>> transactions = new MutableLiveData<>();
@@ -45,16 +45,13 @@ public class EtherScanVM extends BaseVM{
 
     // ---> TestNet transactions <---
     public void getTransactions(String ethAddress) {
-
         List<TransactionsModel> transactionModels = new ArrayList<>();
         addToSubscribe(etherscanAPI.getTransactrions(ethAddress)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(transactions1 -> {
-
                     if (transactions1.getStatus().equals("1")) {
                         for (int i = 0; i < transactions1.getResult().size(); i++) {
-
                             transactionModels.add(new TransactionsModel(transactions1.getResult().get(i).getTimeStamp(),
                                     transactions1.getResult().get(i).getHash(),
                                     transactions1.getResult().get(i).getValue(),
@@ -65,16 +62,15 @@ public class EtherScanVM extends BaseVM{
                                     transactions1.getResult().get(i).getBlockHash(), "MATIC"));
                         }
                     }
-                    getERC20Transactions(ethAddress, transactionModels);
-
+                    transactions.postValue(transactionModels);
                 }, error -> {
-                    getERC20Transactions(ethAddress, transactionModels);
                     System.out.println(error.getMessage());
                 }));
     }
 
-    public void getERC20Transactions(String ethAddress, List<TransactionsModel> transactionModels) {
-        addToSubscribe(etherscanAPI.getERC20Transactrions(ethAddress)
+    public void getERC20Transactions(String ethAddress, String tokenContractAddress) {
+        List<TransactionsModel> transactionModels = new ArrayList<>();
+        addToSubscribe(etherscanAPI.getERC20Transactrions(ethAddress, tokenContractAddress)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(erc20Transactions -> {
