@@ -71,9 +71,6 @@ public class SendErc1155Activity extends AppCompatActivity {
             binding.amount.setText("" + tokenBalance);
         });
 
-        binding.receiverAddress.setText("0x6bc4c565d67227208CB28635fE24AC2EA6a4ba4D");
-
-
         binding.nextBtn.setOnClickListener(v -> {
 
             String amount = binding.amount.getText().toString();
