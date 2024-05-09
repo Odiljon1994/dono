@@ -5,8 +5,10 @@ import android.os.Build;
 import android.provider.Settings;
 
 import com.google.gson.Gson;
+import com.mcs.wallet.api.ApiUtils;
 
 import org.web3j.abi.FunctionEncoder;
+import org.web3j.abi.TypeEncoder;
 import org.web3j.abi.TypeReference;
 import org.web3j.abi.datatypes.Address;
 import org.web3j.abi.datatypes.Bool;
@@ -17,11 +19,15 @@ import org.web3j.crypto.Bip32ECKeyPair;
 import org.web3j.crypto.CipherException;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.ECKeyPair;
+import org.web3j.crypto.Hash;
 import org.web3j.crypto.MnemonicUtils;
 import org.web3j.crypto.RawTransaction;
+import org.web3j.crypto.Sign;
 import org.web3j.crypto.TransactionEncoder;
+import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.DefaultBlockParameterName;
+import org.web3j.protocol.core.Response;
 import org.web3j.protocol.core.methods.request.Transaction;
 import org.web3j.protocol.core.methods.response.EthEstimateGas;
 import org.web3j.protocol.core.methods.response.EthGasPrice;
@@ -34,6 +40,8 @@ import org.web3j.tx.ChainId;
 import org.web3j.tx.RawTransactionManager;
 import org.web3j.tx.TransactionManager;
 import org.web3j.tx.Transfer;
+import org.web3j.tx.gas.DefaultGasProvider;
+import org.web3j.tx.gas.StaticGasProvider;
 import org.web3j.tx.response.NoOpProcessor;
 import org.web3j.tx.response.TransactionReceiptProcessor;
 import org.web3j.utils.Convert;
@@ -49,6 +57,7 @@ import java.math.BigInteger;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -125,6 +134,29 @@ public class EthManager {
                     .send();
             return price.getGasPrice();
         });
+    }
+
+    private BigInteger requestEstimatedGasLimit(String from, String to, BigInteger gasPrice, BigInteger nonce, String data) {
+        try {
+            BigInteger gasLimit = BigInteger.valueOf(200000);
+            Transaction transaction = new Transaction(from, null, gasPrice, gasLimit, to, BigInteger.ZERO, data);
+            EthEstimateGas gas = web3j.ethEstimateGas(transaction).send();
+            if (!gas.hasError()) {
+                System.out.println("Gas Estimate : " + gas.getAmountUsed().toString() + " Nonce : " + nonce.toString());
+                return gas.getAmountUsed();
+            } else {
+                Response.Error error = gas.getError();
+                //            if (error.getMessage().equals("execution reverted: ERC721: token already minted")) {
+                //                throw new NftException(NftException.NFT_ERROR.ALREADY_CREATED_TOKEN_ID, "token already minted : " + tokenID);
+                //            } else if (error.getMessage().equals("execution reverted: ERC721: transfer caller is not owner nor approved")) {
+                //                throw new NftException(NftException.NFT_ERROR.NOT_OWNER_OF_TOKEN, "not owner of tokenId : " + tokenID);
+                //            }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return BigInteger.ZERO;
+        }
+        return BigInteger.ZERO;
     }
 
     public BigInteger getGasLimit(String senderAddress,
@@ -337,6 +369,10 @@ public class EthManager {
                 });
     }
 
+    public Single<Credentials> loadCredentialsByPrivateKey(String privateKey) {
+        return Single.fromCallable(() -> Credentials.create(privateKey));
+    }
+
     /**
      * Add Custom Token
      */
@@ -394,6 +430,143 @@ public class EthManager {
                 });
     }
 
+    public Single<BigDecimal> getERC1155TokenBalance(String walletAddress, String password, String tokenContractAddress, int tokenId, Context context) {
+        return loadCredentials(walletAddress, password, context)
+                .flatMap(credentials -> {
+                    Integer maticMainnet = new Integer(137);
+                    byte maticMainnetByte = maticMainnet.byteValue();
+                    Integer maticTestnet = new Integer(80001);
+                    byte maticTestnetByte = maticTestnet.byteValue();
+                    TransactionReceiptProcessor transactionReceiptProcessor = new NoOpProcessor(web3j);
+                    TransactionManager transactionManager = new RawTransactionManager(
+                            web3j, credentials, isMainNet() ? maticMainnetByte : maticTestnetByte, transactionReceiptProcessor);
+                    Erc1155TokenWrapper contract = Erc1155TokenWrapper.load(tokenContractAddress, web3j,
+                            transactionManager, BigInteger.ZERO, BigInteger.ZERO);
+                    BigInteger tokenBalance = contract.balanceOf(walletAddress, tokenId).getValue();
+                    return Single.just(new BigDecimal(tokenBalance));
+                });
+    }
+
+    public Single<String> sendERC1155Token(String walletAddress, String password,  Context context, String nftContractAddress, String toAddress,
+                                           int tokenId, int tokenAmount) {
+        return loadCredentials(walletAddress, password, context)
+                .flatMap(credentials -> {
+                    Integer maticMainnet = new Integer(137);
+                    byte maticMainnetByte = maticMainnet.byteValue();
+                    Integer maticTestnet = new Integer(80001);
+                    byte maticTestnetByte = maticTestnet.byteValue();
+                    TransactionReceiptProcessor transactionReceiptProcessor = new NoOpProcessor(web3j);
+                    TransactionManager transactionManager = new RawTransactionManager(
+                            web3j, credentials, isMainNet() ? maticMainnetByte : maticTestnetByte, transactionReceiptProcessor);
+
+                    Erc1155TokenWrapper contract = Erc1155TokenWrapper.load(nftContractAddress, web3j,
+                            transactionManager, BigInteger.ZERO, BigInteger.ZERO);
+
+                    String transferWithData = contract.generateTransferFuncData(
+                            walletAddress, toAddress, tokenId, tokenAmount
+                    );
+                    BigInteger currentGasPrice = getGasPrice();
+                    BigInteger nonce = getNonce(walletAddress);
+                    BigInteger currentGasLimit = getGasLimit(walletAddress, nonce, currentGasPrice, BigInteger.valueOf(21000), nftContractAddress, BigInteger.ZERO, transferWithData);
+                    EthSendTransaction response = transactionManager.sendTransaction(currentGasPrice, currentGasLimit, nftContractAddress, transferWithData, BigInteger.ZERO);
+                    return Single.just(response.getTransactionHash());
+                });
+    }
+
+    public Single<String> sendERC1155TokenBySignature(HashMap<String,Object> signatureMap) {
+        return loadCredentialsByPrivateKey(ApiUtils.getOperatorPrivateKeyAddress())
+                .flatMap(credentials -> {
+                    Integer maticMainnet = new Integer(137);
+                    byte maticMainnetByte = maticMainnet.byteValue();
+                    Integer maticTestnet = new Integer(80001);
+                    byte maticTestnetByte = maticTestnet.byteValue();
+                    TransactionReceiptProcessor transactionReceiptProcessor = new NoOpProcessor(web3j);
+                    TransactionManager transactionManager = new RawTransactionManager(
+                            web3j, credentials, isMainNet() ? maticMainnetByte : maticTestnetByte, transactionReceiptProcessor);
+
+                    String nftContractAddress = (String) signatureMap.get("contract_address");
+                    String toAddress = (String) signatureMap.get("to_address");
+                    String fromAddress = (String) signatureMap.get("from_address");
+                    int tokenId = (int) signatureMap.get("token_id");
+                    int tokenAmount = (int) signatureMap.get("token_amount");
+                    int nonceSignature = (int) signatureMap.get("nonce");
+                    String signature = (String) signatureMap.get("signature");
+
+                    Erc1155TokenWrapper contract = Erc1155TokenWrapper.load(nftContractAddress, web3j,
+                            transactionManager, BigInteger.ZERO, BigInteger.ZERO);
+                    byte[] bytes = Numeric.hexStringToByteArray(signature);
+
+                    String transferWithData = contract.generateTransferWithSignatureFuncData(
+                            fromAddress, toAddress, tokenId, tokenAmount, nonceSignature, bytes
+                    );
+                    BigInteger currentGasPrice = getGasPrice();
+                    BigInteger nonce = getNonce(credentials.getAddress());
+                    BigInteger gasLimit = requestEstimatedGasLimit(credentials.getAddress(), nftContractAddress, currentGasPrice, nonce, transferWithData);
+//                    BigInteger currentGasLimit = getGasLimit(credentials.getAddress(), nonce, currentGasPrice, BigInteger.valueOf(21000), nftContractAddress, BigInteger.ZERO, transferWithData);
+                    RawTransaction rawTransaction = RawTransaction.createTransaction(
+                            nonce, currentGasPrice, gasLimit, nftContractAddress, transferWithData);
+                    byte[] signedMessage = TransactionEncoder.signMessage(rawTransaction, isMainNet() ? maticMainnet : maticTestnet, credentials);
+                    String hexValue = Numeric.toHexString(signedMessage);
+                    EthSendTransaction transactionResponse = web3j.ethSendRawTransaction(hexValue).sendAsync().get();
+                    return Single.just(transactionResponse.getTransactionHash());
+                });
+    }
+
+
+    public static int generateEightDigitNumber() {
+        SecureRandom random = new SecureRandom();
+        // Generate a random number between 10000000 and 99999999 inclusive
+        return 10000000 + random.nextInt(90000000);
+    }
+
+    public Single<HashMap<String, Object>> createSignature(String walletAddress, String password, Context context, String toAddress, int tokenId, int tokenAmount, String nftContractAddress) {
+        return loadCredentials(walletAddress, password, context)
+                .flatMap(credentials -> {
+                    int nonce = generateEightDigitNumber();
+                    String signature = signGiftCarbonNFT(walletAddress, toAddress, tokenId, tokenAmount, nonce, nftContractAddress, credentials);
+                    HashMap<String, Object> map = new HashMap<>();
+                    map.put("from_address", walletAddress);
+                    map.put("to_address", toAddress);
+                    map.put("contract_address", nftContractAddress);
+                    map.put("token_id", tokenId);
+                    map.put("token_amount", tokenAmount);
+                    map.put("nonce", nonce);
+                    map.put("signature", signature);
+                    return Single.just(map);
+                });
+    }
+
+    public String signGiftCarbonNFT(String fromAddress, String toAddress, int tokenId, int tokenAmount, int nonce, String nftContractAddress, Credentials credentials) {
+        String encodedParams = transferBySignatureSoliditySha3(fromAddress, toAddress, tokenId, tokenAmount, nonce, nftContractAddress);
+        String encodedHash = Hash.sha3(encodedParams);
+        byte[] hashBytes = Numeric.hexStringToByteArray(encodedHash);
+        Sign.SignatureData signatureData = Sign.signPrefixedMessage(hashBytes, credentials.getEcKeyPair());
+        String r = Numeric.toHexString(signatureData.getR());
+        String s = Numeric.toHexString(signatureData.getS());
+        String v = Numeric.toHexString(signatureData.getV());
+        return r + s.substring(2) + v.substring(2);
+    }
+
+    private String transferBySignatureSoliditySha3(String from, String to, int tokenId, int tokenAmount, int nonce, String contractAddress) {
+        Address fromAddressValue = new Address(from);
+        Address toAddressValue = new Address(to);
+        Address contractAddressValue = new Address(contractAddress);
+        Uint256 tokenIdValue = new Uint256(tokenId);
+        Uint256 tokenAmountValue = new Uint256(tokenAmount);
+        Uint256 nonceValue = new Uint256(nonce);
+        String encodedFromValue = TypeEncoder.encode(fromAddressValue);
+        encodedFromValue = encodedFromValue.substring(64 - (fromAddressValue.toUint().getBitSize() / 4), 64);
+        String encodedToValue = TypeEncoder.encode(toAddressValue);
+        encodedToValue = encodedToValue.substring(64 - (toAddressValue.toUint().getBitSize() / 4), 64);
+        String encodedTokenIdValue = TypeEncoder.encode(tokenIdValue);
+        String encodedTokenAmountValue = TypeEncoder.encode(tokenAmountValue);
+        String encodedNonceValue = TypeEncoder.encode(nonceValue);
+        String encodedContractValue = TypeEncoder.encode(contractAddressValue);
+        encodedContractValue = encodedContractValue.substring(64 - (contractAddressValue.toUint().getBitSize() / 4), 64);
+        return encodedFromValue + encodedToValue + encodedTokenIdValue + encodedTokenAmountValue + encodedNonceValue + encodedContractValue;
+    }
+
+
     /**
      * Send Ether
      */
@@ -414,7 +587,7 @@ public class EthManager {
                     Integer maticTestnet = new Integer(80001);
                     RawTransaction rawTransaction = RawTransaction.createEtherTransaction(
                             nonce, currentGasPrice, gasLimit, to_Address, weiValue.toBigInteger());
-                    byte[] signedMessage = TransactionEncoder.signMessage(rawTransaction, isMainNet()  ? maticMainnet : maticTestnet, credentials);
+                    byte[] signedMessage = TransactionEncoder.signMessage(rawTransaction, isMainNet() ? maticMainnet : maticTestnet, credentials);
                     String hexValue = Numeric.toHexString(signedMessage);
                     EthSendTransaction transactionResponse = web3j.ethSendRawTransaction(hexValue).sendAsync().get();
                     transactionHash = transactionResponse.getTransactionHash();

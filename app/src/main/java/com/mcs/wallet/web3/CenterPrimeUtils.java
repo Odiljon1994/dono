@@ -80,7 +80,6 @@ public class CenterPrimeUtils extends WalletUtils {
         return Credentials.create(Wallet.decrypt(password, walletFile));
     }
 
-
     private static String getWalletFileName(WalletFile walletFile) {
         return walletFile.getAddress();
     }

@@ -16,13 +16,18 @@ public class ApiUtils {
     public static boolean isMainnet = true;
 
     private static final String etherScan = "https://api.polygonscan.com/api/"; // for mainnet
-   // private static final String baseUrl = "http://3.34.99.232:3001";
+    // private static final String baseUrl = "http://3.34.99.232:3001";
     private static final String baseUrl = "http://54.193.8.247:3001";
 
     private static final String coinMarketCap = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/";
 
-    public static String getBaseUrl() {return baseUrl;}
-    public static String getCoinMarketCap() {return coinMarketCap;}
+    public static String getBaseUrl() {
+        return baseUrl;
+    }
+
+    public static String getCoinMarketCap() {
+        return coinMarketCap;
+    }
 
     public static String getEtherscanUrl() {
         if (isMainnet) {
@@ -56,6 +61,38 @@ public class ApiUtils {
         } else {
 
             return "0x625e7c977cebab5734316574a6d0dc9e53ac0057";
+        }
+    }
+
+    public static String getGoldERC1155ContractAddress() {
+        if (isMainnet) {
+            return "0xcf4433ee412bb5d5bf82532ad3fc68418c45d242";
+        } else {
+            return "";
+        }
+    }
+
+    public static String getSilverERC1155ContractAddress() {
+        if (isMainnet) {
+            return "0xc8d4a8265Ba93800Ac7Bc937762510fcA504E846";
+        } else {
+            return "";
+        }
+    }
+
+    public static String getBronzeERC1155ContractAddress() {
+        if (isMainnet) {
+            return "0x8fa438a66737Ea9adD836565CCf0bd262dE5FbFd";
+        } else {
+            return "";
+        }
+    }
+
+    public static String getOperatorPrivateKeyAddress() {
+        if (isMainnet) {
+            return "0xfa6f3d2d337df1930927450e2b821e567d5e6bc4515fb9279f80186a78aff054";
+        } else {
+            return "";
         }
     }
 

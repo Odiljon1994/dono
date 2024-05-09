@@ -22,6 +22,8 @@ import com.mcs.wallet.ui.ReceiveActivity;
 import com.mcs.wallet.ui.SaveQrCodeActivity;
 import com.mcs.wallet.ui.ScanQrCodeActivity;
 import com.mcs.wallet.ui.SendActivity;
+import com.mcs.wallet.ui.SendErc1155Activity;
+import com.mcs.wallet.ui.SendErc1155VerifyActivity;
 import com.mcs.wallet.ui.SendOtpActivity;
 import com.mcs.wallet.ui.SplashActivity;
 import com.mcs.wallet.ui.TermsOfUseActivity;
@@ -82,6 +84,9 @@ public interface ApplicationComponent {
     void inject(TokenActivity activity);
     void inject(WalletActivity activity);
     void inject(ImportWalletTypeActivity activity);
+
+    void inject(SendErc1155Activity activity);
+    void inject(SendErc1155VerifyActivity activity);
 
     @Component.Builder
     interface Builder {

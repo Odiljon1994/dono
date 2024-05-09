@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#040C1E"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#081532"
+            android:orientation="vertical">
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:clipToPadding="false">
+
+                <TextView
+                    android:id="@+id/title"
+                    style="@style/TextViewMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/send"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:textSize="15dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/backBtn"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left|center"
+                    android:padding="18dp"
+                    android:src="@drawable/dwon_arrow"
+                    android:rotation="90"
+                    app:tint="@color/grayColor" />
+
+                <ImageView
+                    android:id="@+id/endImage"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right|center"
+                    android:visibility="invisible"
+                    android:padding="18dp" />
+            </FrameLayout>
+
+
+            <LinearLayout
+                android:id="@+id/firstNftLayout"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/nft_bgr"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/cardName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="15dp"
+
+                        android:textColor="@color/white"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/firstItemDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="15dp"
+                        android:text="DONO future signal"
+                        android:textColor="#d2d2d2"
+                        android:textSize="13dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/firstItemAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="15dp"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="24dp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:text="@string/withdrawal_address"
+                    android:textSize="14dp"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#999999"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/incorrect_withdrawal_address_warning"
+                    android:textSize="8dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="18dp"
+                android:background="@drawable/linear_bgr"
+                android:gravity="center"
+                android:backgroundTint="@color/colorPrimary"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/receiverAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/white"
+                    android:ellipsize="middle"
+                    android:hint="@string/enter_address_with_ox"
+                    android:paddingStart="10dp"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColorHint="#495266"
+                    android:textSize="12dp" />
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/addressBook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="18dp"
+                android:textSize="14dp"
+                android:textColor="@color/white"
+                android:background="#495266"
+                android:text="@string/address_book" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/notosanskr_regular"
+                android:includeFontPadding="false"
+                android:text="@string/amount"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="18dp"
+                android:background="@drawable/linear_bgr"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/amount"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:textColor="@color/white"
+                    android:hint="@string/enter_quantity"
+                    android:inputType="numberDecimal"
+                    android:paddingStart="10dp"
+                    android:textColorHint="#d2d2d2"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/cymbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/max"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:text="Max"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/notosanskr_regular"
+                android:includeFontPadding="false"
+                android:text="@string/balance"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/grayColor"
+                android:layout_marginTop="20dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="#020C1F">
+
+                <TextView
+                    android:id="@+id/fee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/fee"
+                    android:visibility="invisible"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/currentFee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:visibility="invisible"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:includeFontPadding="false"
+                    android:text="1 DONpia"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12dp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/errorMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginEnd="18dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:textSize="14dp"
+                    android:textColor="#ff0000" />
+
+
+                <Button
+                    android:id="@+id/nextBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginEnd="18dp"
+                    android:layout_marginBottom="40dp"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/next"
+                    android:textSize="14dp"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

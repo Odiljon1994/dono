@@ -61,7 +61,7 @@ public class OtpActivity extends AppCompatActivity {
         binding.toolbar.backBtn.setOnClickListener(v -> finish());
         binding.pinLockView.attachIndicatorDots(binding.indicatorDots);
         ethManager = EthManager.getInstance();
-        ethManager.init("https://mainnet.infura.io/v3/7c36e7f5656d4384bbcb2cbaf67ad699");
+//        ethManager.init("https://mainnet.infura.io/v3/7c36e7f5656d4384bbcb2cbaf67ad699");
 
 
         binding.pinLockView.setPinLockListener(new PinLockListener() {
