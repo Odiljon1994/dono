@@ -70,7 +70,6 @@ public class WalletFragment2 extends Fragment {
         binding.addToken.setOnClickListener(v -> startActivity(new Intent(getActivity(), AddTokenActivity.class)));
 
         binding.walletAddress.setText(preferencesUtil.getWalletAddress());
-        binding.walletAddress.setText(preferencesUtil.getWalletAddress());
         binding.copyBtn.setOnClickListener(v -> {
             ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData clip = ClipData.newPlainText("", binding.walletAddress.getText().toString());

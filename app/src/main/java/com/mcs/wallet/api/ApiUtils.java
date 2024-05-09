@@ -54,6 +54,15 @@ public class ApiUtils {
         }
     }
 
+    public static String getUSDTContractAddress() {
+        if (isMainnet) {
+            return "0xc2132D05D31c914a87C6611C10748AEb04B58e8F";
+        } else {
+            return "0xbCF39d8616d15FD146dd5dB4a86b4f244A9Bc772";
+        }
+    }
+
+
 
     public static String getBnbContractAddress() {
         if (isMainnet) {

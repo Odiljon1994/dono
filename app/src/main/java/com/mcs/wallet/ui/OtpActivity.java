@@ -55,7 +55,7 @@ public class OtpActivity extends AppCompatActivity {
             }
         }
         if (!isTokenExist) {
-            boolean insetData = databaseMainnetToken.addData("DONpia", "DONpia", ApiUtils.getContractAddress());
+            boolean insetData = databaseMainnetToken.addData("USDT", "USDT", ApiUtils.getUSDTContractAddress());
         }
 
         binding.toolbar.backBtn.setOnClickListener(v -> finish());

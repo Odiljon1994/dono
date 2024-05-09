@@ -63,13 +63,13 @@ public class AddTokenActivity extends AppCompatActivity {
 
         if (!ApiUtils.isMainnet) {
             // Test net
-            items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.usdt), "Tether USD (USDT)", "USDT", "0xbCF39d8616d15FD146dd5dB4a86b4f244A9Bc772"));
+//            items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.usdt), "Tether USD (USDT)", "USDT", "0xbCF39d8616d15FD146dd5dB4a86b4f244A9Bc772"));
             items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.dai), "Dai Stablecoin (DAI)", "DAI", "0x542a0f0F599228A9A92932aAF110a2b69DbD2C11"));
             items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.uni), "Uniswap (UNI)", "UNI", "0x39179cb99f7BA1244665AA7Ff2c2886CBCBcE3bc"));
             items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.usdc), "USD Coin (USDC)", "USDC", "0x6EEBe75caf9c579B3FBA9030760B84050283b50a"));
         } else {
             // Main net
-            items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.usdt), "Tether USD (USDT)", "USDT", "0xc2132D05D31c914a87C6611C10748AEb04B58e8F"));
+//            items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.usdt), "Tether USD (USDT)", "USDT", "0xc2132D05D31c914a87C6611C10748AEb04B58e8F"));
             items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.dai), "Dai Stablecoin (DAI)", "DAI", "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063"));
             items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.link), "ChainLink Token (LINK)", "LINK", "0xb0897686c545045aFc77CF20eC7A532E3120E0F1"));
             items.add(new ExistingTokenModel(ContextCompat.getDrawable(this, R.drawable.uni), "Uniswap (UNI)", "UNI", "0xb33EaAd8d922B1083446DC23f610c2567fB5180f"));

@@ -88,7 +88,7 @@ public class MainFragment5 extends Fragment {
         EthManager ethManager = EthManager.getInstance();
         ethManager.init(ApiUtils.getInfura());
 
-       ethManager.getTokenBalance(walletAddress, "", ApiUtils.getContractAddress(), getActivity())
+       ethManager.getTokenBalance(walletAddress, "", ApiUtils.getUSDTContractAddress(), getActivity())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(balance -> {
