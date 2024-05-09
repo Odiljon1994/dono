@@ -86,7 +86,7 @@ public class SendErc1155Activity extends AppCompatActivity {
             }
 
             String receiverAddress = binding.receiverAddress.getText().toString();
-            if (receiverAddress.isEmpty() || WalletUtils.isValidAddress(receiverAddress)){
+            if (receiverAddress.isEmpty() || !WalletUtils.isValidAddress(receiverAddress)){
                 Toast.makeText(this, "Please enter valid wallet address", Toast.LENGTH_SHORT).show();
                 return;
             }
